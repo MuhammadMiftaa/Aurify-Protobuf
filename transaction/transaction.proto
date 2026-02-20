@@ -7,6 +7,7 @@ option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/transaction";
 service TransactionService {
     rpc GetTransactions (GetTransactionOptions) returns (stream Transaction);
     rpc GetUserTransactions (Wallets) returns (stream Transaction);
+    rpc CreateTransaction (NewTransaction) returns (Transaction);
 }
 
 message Transaction {
@@ -29,4 +30,12 @@ message Wallets {
 
 message GetTransactionOptions {
     int32 limit = 1;
+}
+
+message NewTransaction {
+    string wallet_id = 1;
+    double amount = 2;
+    string category_id = 3;
+    string transaction_date = 4;
+    string description = 5;
 }

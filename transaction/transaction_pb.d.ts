@@ -97,3 +97,35 @@ export namespace GetTransactionOptions {
         limit: number,
     }
 }
+
+export class NewTransaction extends jspb.Message { 
+    getWalletId(): string;
+    setWalletId(value: string): NewTransaction;
+    getAmount(): number;
+    setAmount(value: number): NewTransaction;
+    getCategoryId(): string;
+    setCategoryId(value: string): NewTransaction;
+    getTransactionDate(): string;
+    setTransactionDate(value: string): NewTransaction;
+    getDescription(): string;
+    setDescription(value: string): NewTransaction;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): NewTransaction.AsObject;
+    static toObject(includeInstance: boolean, msg: NewTransaction): NewTransaction.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: NewTransaction, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): NewTransaction;
+    static deserializeBinaryFromReader(message: NewTransaction, reader: jspb.BinaryReader): NewTransaction;
+}
+
+export namespace NewTransaction {
+    export type AsObject = {
+        walletId: string,
+        amount: number,
+        categoryId: string,
+        transactionDate: string,
+        description: string,
+    }
+}
