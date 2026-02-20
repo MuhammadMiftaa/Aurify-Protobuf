@@ -22,6 +22,7 @@ const (
 	TransactionService_GetTransactions_FullMethodName     = "/transaction.TransactionService/GetTransactions"
 	TransactionService_GetUserTransactions_FullMethodName = "/transaction.TransactionService/GetUserTransactions"
 	TransactionService_CreateTransaction_FullMethodName   = "/transaction.TransactionService/CreateTransaction"
+	TransactionService_DeleteTransaction_FullMethodName   = "/transaction.TransactionService/DeleteTransaction"
 )
 
 // TransactionServiceClient is the client API for TransactionService service.
@@ -31,6 +32,7 @@ type TransactionServiceClient interface {
 	GetTransactions(ctx context.Context, in *GetTransactionOptions, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
 	GetUserTransactions(ctx context.Context, in *Wallets, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
 	CreateTransaction(ctx context.Context, in *NewTransaction, opts ...grpc.CallOption) (*Transaction, error)
+	DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*Transaction, error)
 }
 
 type transactionServiceClient struct {
@@ -89,6 +91,16 @@ func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *Ne
 	return out, nil
 }
 
+func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*Transaction, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Transaction)
+	err := c.cc.Invoke(ctx, TransactionService_DeleteTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransactionServiceServer is the server API for TransactionService service.
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility.
@@ -96,6 +108,7 @@ type TransactionServiceServer interface {
 	GetTransactions(*GetTransactionOptions, grpc.ServerStreamingServer[Transaction]) error
 	GetUserTransactions(*Wallets, grpc.ServerStreamingServer[Transaction]) error
 	CreateTransaction(context.Context, *NewTransaction) (*Transaction, error)
+	DeleteTransaction(context.Context, *TransactionID) (*Transaction, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -114,6 +127,9 @@ func (UnimplementedTransactionServiceServer) GetUserTransactions(*Wallets, grpc.
 }
 func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *NewTransaction) (*Transaction, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateTransaction not implemented")
+}
+func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *TransactionID) (*Transaction, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteTransaction not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
 func (UnimplementedTransactionServiceServer) testEmbeddedByValue()                            {}
@@ -176,6 +192,24 @@ func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransactionService_DeleteTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).DeleteTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_DeleteTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).DeleteTransaction(ctx, req.(*TransactionID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransactionService_ServiceDesc is the grpc.ServiceDesc for TransactionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -186,6 +220,10 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateTransaction",
 			Handler:    _TransactionService_CreateTransaction_Handler,
+		},
+		{
+			MethodName: "DeleteTransaction",
+			Handler:    _TransactionService_DeleteTransaction_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

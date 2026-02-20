@@ -11,6 +11,7 @@ interface ITransactionServiceService extends grpc.ServiceDefinition<grpc.Untyped
     getTransactions: ITransactionServiceService_IGetTransactions;
     getUserTransactions: ITransactionServiceService_IGetUserTransactions;
     createTransaction: ITransactionServiceService_ICreateTransaction;
+    deleteTransaction: ITransactionServiceService_IDeleteTransaction;
 }
 
 interface ITransactionServiceService_IGetTransactions extends grpc.MethodDefinition<transaction_transaction_pb.GetTransactionOptions, transaction_transaction_pb.Transaction> {
@@ -40,6 +41,15 @@ interface ITransactionServiceService_ICreateTransaction extends grpc.MethodDefin
     responseSerialize: grpc.serialize<transaction_transaction_pb.Transaction>;
     responseDeserialize: grpc.deserialize<transaction_transaction_pb.Transaction>;
 }
+interface ITransactionServiceService_IDeleteTransaction extends grpc.MethodDefinition<transaction_transaction_pb.TransactionID, transaction_transaction_pb.Transaction> {
+    path: "/transaction.TransactionService/DeleteTransaction";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.TransactionID>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.TransactionID>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.Transaction>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.Transaction>;
+}
 
 export const TransactionServiceService: ITransactionServiceService;
 
@@ -47,6 +57,7 @@ export interface ITransactionServiceServer extends grpc.UntypedServiceImplementa
     getTransactions: grpc.handleServerStreamingCall<transaction_transaction_pb.GetTransactionOptions, transaction_transaction_pb.Transaction>;
     getUserTransactions: grpc.handleServerStreamingCall<transaction_transaction_pb.Wallets, transaction_transaction_pb.Transaction>;
     createTransaction: grpc.handleUnaryCall<transaction_transaction_pb.NewTransaction, transaction_transaction_pb.Transaction>;
+    deleteTransaction: grpc.handleUnaryCall<transaction_transaction_pb.TransactionID, transaction_transaction_pb.Transaction>;
 }
 
 export interface ITransactionServiceClient {
@@ -57,6 +68,9 @@ export interface ITransactionServiceClient {
     createTransaction(request: transaction_transaction_pb.NewTransaction, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
     createTransaction(request: transaction_transaction_pb.NewTransaction, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
     createTransaction(request: transaction_transaction_pb.NewTransaction, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    deleteTransaction(request: transaction_transaction_pb.TransactionID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    deleteTransaction(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    deleteTransaction(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
 }
 
 export class TransactionServiceClient extends grpc.Client implements ITransactionServiceClient {
@@ -68,4 +82,7 @@ export class TransactionServiceClient extends grpc.Client implements ITransactio
     public createTransaction(request: transaction_transaction_pb.NewTransaction, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
     public createTransaction(request: transaction_transaction_pb.NewTransaction, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
     public createTransaction(request: transaction_transaction_pb.NewTransaction, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    public deleteTransaction(request: transaction_transaction_pb.TransactionID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    public deleteTransaction(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
+    public deleteTransaction(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Transaction) => void): grpc.ClientUnaryCall;
 }

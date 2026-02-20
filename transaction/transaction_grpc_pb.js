@@ -37,6 +37,17 @@ function deserialize_transaction_Transaction(buffer_arg) {
   return transaction_transaction_pb.Transaction.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_transaction_TransactionID(arg) {
+  if (!(arg instanceof transaction_transaction_pb.TransactionID)) {
+    throw new Error('Expected argument of type transaction.TransactionID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_TransactionID(buffer_arg) {
+  return transaction_transaction_pb.TransactionID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_transaction_Wallets(arg) {
   if (!(arg instanceof transaction_transaction_pb.Wallets)) {
     throw new Error('Expected argument of type transaction.Wallets');
@@ -80,6 +91,17 @@ var TransactionServiceService = exports.TransactionServiceService = {
     responseType: transaction_transaction_pb.Transaction,
     requestSerialize: serialize_transaction_NewTransaction,
     requestDeserialize: deserialize_transaction_NewTransaction,
+    responseSerialize: serialize_transaction_Transaction,
+    responseDeserialize: deserialize_transaction_Transaction,
+  },
+  deleteTransaction: {
+    path: '/transaction.TransactionService/DeleteTransaction',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.TransactionID,
+    responseType: transaction_transaction_pb.Transaction,
+    requestSerialize: serialize_transaction_TransactionID,
+    requestDeserialize: deserialize_transaction_TransactionID,
     responseSerialize: serialize_transaction_Transaction,
     responseDeserialize: deserialize_transaction_Transaction,
   },

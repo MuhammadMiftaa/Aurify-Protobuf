@@ -233,6 +233,50 @@ func (x *GetTransactionOptions) GetLimit() int32 {
 	return 0
 }
 
+type TransactionID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TransactionID) Reset() {
+	*x = TransactionID{}
+	mi := &file_transaction_transaction_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TransactionID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TransactionID) ProtoMessage() {}
+
+func (x *TransactionID) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TransactionID.ProtoReflect.Descriptor instead.
+func (*TransactionID) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TransactionID) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
 type NewTransaction struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	WalletId        string                 `protobuf:"bytes,1,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
@@ -246,7 +290,7 @@ type NewTransaction struct {
 
 func (x *NewTransaction) Reset() {
 	*x = NewTransaction{}
-	mi := &file_transaction_transaction_proto_msgTypes[3]
+	mi := &file_transaction_transaction_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -258,7 +302,7 @@ func (x *NewTransaction) String() string {
 func (*NewTransaction) ProtoMessage() {}
 
 func (x *NewTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_transaction_transaction_proto_msgTypes[3]
+	mi := &file_transaction_transaction_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -271,7 +315,7 @@ func (x *NewTransaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NewTransaction.ProtoReflect.Descriptor instead.
 func (*NewTransaction) Descriptor() ([]byte, []int) {
-	return file_transaction_transaction_proto_rawDescGZIP(), []int{3}
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *NewTransaction) GetWalletId() string {
@@ -333,18 +377,21 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\aWallets\x12\x1b\n" +
 	"\twallet_id\x18\x01 \x03(\tR\bwalletId\"-\n" +
 	"\x15GetTransactionOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\xb3\x01\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\x1f\n" +
+	"\rTransactionID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xb3\x01\n" +
 	"\x0eNewTransaction\x12\x1b\n" +
 	"\twallet_id\x18\x01 \x01(\tR\bwalletId\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x01R\x06amount\x12\x1f\n" +
 	"\vcategory_id\x18\x03 \x01(\tR\n" +
 	"categoryId\x12)\n" +
 	"\x10transaction_date\x18\x04 \x01(\tR\x0ftransactionDate\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription2\xfc\x01\n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription2\xc7\x02\n" +
 	"\x12TransactionService\x12Q\n" +
 	"\x0fGetTransactions\x12\".transaction.GetTransactionOptions\x1a\x18.transaction.Transaction0\x01\x12G\n" +
 	"\x13GetUserTransactions\x12\x14.transaction.Wallets\x1a\x18.transaction.Transaction0\x01\x12J\n" +
-	"\x11CreateTransaction\x12\x1b.transaction.NewTransaction\x1a\x18.transaction.TransactionB7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
+	"\x11CreateTransaction\x12\x1b.transaction.NewTransaction\x1a\x18.transaction.Transaction\x12I\n" +
+	"\x11DeleteTransaction\x12\x1a.transaction.TransactionID\x1a\x18.transaction.TransactionB7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
 
 var (
 	file_transaction_transaction_proto_rawDescOnce sync.Once
@@ -358,22 +405,25 @@ func file_transaction_transaction_proto_rawDescGZIP() []byte {
 	return file_transaction_transaction_proto_rawDescData
 }
 
-var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_transaction_transaction_proto_goTypes = []any{
 	(*Transaction)(nil),           // 0: transaction.Transaction
 	(*Wallets)(nil),               // 1: transaction.Wallets
 	(*GetTransactionOptions)(nil), // 2: transaction.GetTransactionOptions
-	(*NewTransaction)(nil),        // 3: transaction.NewTransaction
+	(*TransactionID)(nil),         // 3: transaction.TransactionID
+	(*NewTransaction)(nil),        // 4: transaction.NewTransaction
 }
 var file_transaction_transaction_proto_depIdxs = []int32{
 	2, // 0: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
 	1, // 1: transaction.TransactionService.GetUserTransactions:input_type -> transaction.Wallets
-	3, // 2: transaction.TransactionService.CreateTransaction:input_type -> transaction.NewTransaction
-	0, // 3: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
-	0, // 4: transaction.TransactionService.GetUserTransactions:output_type -> transaction.Transaction
-	0, // 5: transaction.TransactionService.CreateTransaction:output_type -> transaction.Transaction
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	4, // 2: transaction.TransactionService.CreateTransaction:input_type -> transaction.NewTransaction
+	3, // 3: transaction.TransactionService.DeleteTransaction:input_type -> transaction.TransactionID
+	0, // 4: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
+	0, // 5: transaction.TransactionService.GetUserTransactions:output_type -> transaction.Transaction
+	0, // 6: transaction.TransactionService.CreateTransaction:output_type -> transaction.Transaction
+	0, // 7: transaction.TransactionService.DeleteTransaction:output_type -> transaction.Transaction
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -390,7 +440,7 @@ func file_transaction_transaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transaction_transaction_proto_rawDesc), len(file_transaction_transaction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

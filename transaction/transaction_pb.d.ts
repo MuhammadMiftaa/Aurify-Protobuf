@@ -98,6 +98,26 @@ export namespace GetTransactionOptions {
     }
 }
 
+export class TransactionID extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TransactionID;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TransactionID.AsObject;
+    static toObject(includeInstance: boolean, msg: TransactionID): TransactionID.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TransactionID, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TransactionID;
+    static deserializeBinaryFromReader(message: TransactionID, reader: jspb.BinaryReader): TransactionID;
+}
+
+export namespace TransactionID {
+    export type AsObject = {
+        id: string,
+    }
+}
+
 export class NewTransaction extends jspb.Message { 
     getWalletId(): string;
     setWalletId(value: string): NewTransaction;

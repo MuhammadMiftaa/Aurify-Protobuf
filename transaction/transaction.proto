@@ -8,6 +8,7 @@ service TransactionService {
     rpc GetTransactions (GetTransactionOptions) returns (stream Transaction);
     rpc GetUserTransactions (Wallets) returns (stream Transaction);
     rpc CreateTransaction (NewTransaction) returns (Transaction);
+    rpc DeleteTransaction (TransactionID) returns (Transaction);
 }
 
 message Transaction {
@@ -30,6 +31,10 @@ message Wallets {
 
 message GetTransactionOptions {
     int32 limit = 1;
+}
+
+message TransactionID {
+    string id = 1;
 }
 
 message NewTransaction {
