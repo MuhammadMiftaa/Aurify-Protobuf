@@ -14,7 +14,10 @@
     "generate:investment:go": "./generate.sh investment go",
     "generate:investment:node": "./generate.sh investment node",
     "generate:investment:all": "./generate.sh investment all",
-    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all && ./generate.sh investment all"
+    "generate:dashboard:go": "./generate.sh dashboard go",
+    "generate:dashboard:node": "./generate.sh dashboard node",
+    "generate:dashboard:all": "./generate.sh dashboard all",
+    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all && ./generate.sh investment all && ./generate.sh dashboard all"
   },
   "keywords": [
     "protobuf",

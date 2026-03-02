@@ -1,0 +1,246 @@
+syntax = "proto3";
+
+package dashboard;
+
+option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/dashboard";
+
+// ═══════════════════════════════════════════════
+// Dashboard Analytics Service
+// ═══════════════════════════════════════════════
+
+service DashboardService {
+    rpc GetUserTransactions (GetUserTransactionsRequest) returns (GetUserTransactionsResponse);
+    rpc GetUserBalance (GetUserBalanceRequest) returns (GetUserBalanceResponse);
+    rpc GetUserFinancialSummary (GetUserFinancialSummaryRequest) returns (GetUserFinancialSummaryResponse);
+    rpc GetUserNetWorthComposition (GetUserNetWorthCompositionRequest) returns (NetWorthComposition);
+    rpc GetUserWallets (UserID) returns (GetUserWalletsResponse);
+}
+
+// ═══════════════════════════════════════════════
+// Shared Messages
+// ═══════════════════════════════════════════════
+
+message UserID {
+    string id = 1;
+}
+
+message DateRange {
+    string start = 1;
+    string end = 2;
+}
+
+message DateOption {
+    string date = 1;
+    int32 year = 2;
+    int32 month = 3;
+    int32 day = 4;
+    DateRange range = 5;
+}
+
+// ═══════════════════════════════════════════════
+// User Transactions (category summaries)
+// ═══════════════════════════════════════════════
+
+message GetUserTransactionsRequest {
+    string user_id = 1;
+    string wallet_id = 2;
+    DateOption date_option = 3;
+}
+
+message TransactionCategory {
+    string category_id = 1;
+    string category_name = 2;
+    string category_type = 3;
+    double total_amount = 4;
+    int32 total_transactions = 5;
+}
+
+message GetUserTransactionsResponse {
+    repeated TransactionCategory categories = 1;
+}
+
+// ═══════════════════════════════════════════════
+// User Balance (balance snapshots)
+// ═══════════════════════════════════════════════
+
+message GetUserBalanceRequest {
+    string user_id = 1;
+    string wallet_id = 2;
+    string aggregation = 3; // "daily" | "weekly" | "monthly"
+    DateRange range = 4;
+}
+
+message BalanceSnapshot {
+    string wallet_id = 1;
+    string wallet_name = 2;
+    string date = 3;
+    int32 year = 4;
+    int32 month = 5;
+    int32 week = 6;
+    int32 day = 7;
+    double opening_balance = 8;
+    double closing_balance = 9;
+    double total_income = 10;
+    double total_expense = 11;
+    double net_change = 12;
+    int32 transaction_count = 13;
+}
+
+message GetUserBalanceResponse {
+    repeated BalanceSnapshot snapshots = 1;
+}
+
+// ═══════════════════════════════════════════════
+// User Financial Summary
+// ═══════════════════════════════════════════════
+
+message GetUserFinancialSummaryRequest {
+    string user_id = 1;
+    string wallet_id = 2;
+    DateRange range = 3;
+}
+
+message CategorySummary {
+    string category_id = 1;
+    string category_name = 2;
+    double amount = 3;
+    double percentage = 4;
+    int32 transaction_count = 5;
+}
+
+message WalletSummary {
+    string wallet_id = 1;
+    string wallet_name = 2;
+    string wallet_type = 3;
+    double opening_balance = 4;
+    double closing_balance = 5;
+    double income = 6;
+    double expense = 7;
+    double net_change = 8;
+    double share_of_balance_pct = 9;
+}
+
+message InvestmentSummary {
+    double total_invested = 1;
+    double total_current_valuation = 2;
+    double total_sold_amount = 3;
+    double total_deficit = 4;
+    double unrealized_gain = 5;
+    double realized_gain = 6;
+    double investment_growth_pct = 7;
+    int32 buy_count = 8;
+    int32 sell_count = 9;
+    int32 active_positions = 10;
+}
+
+message NetWorthSummary {
+    double total = 1;
+    double wallet_portion = 2;
+    double investment_portion = 3;
+    double net_worth_prev = 4;
+    double net_worth_growth_pct = 5;
+}
+
+message FinancialSummary {
+    string user_id = 1;
+    string period_type = 2;
+    string period_key = 3;
+    string period_start = 4;
+    string period_end = 5;
+
+    // Current period values
+    double income_now = 6;
+    double expense_now = 7;
+    double profit_now = 8;
+    double balance_now = 9;
+
+    // Previous period values
+    double income_prev = 10;
+    double expense_prev = 11;
+    double profit_prev = 12;
+    double balance_prev = 13;
+
+    // Growth percentages
+    double income_growth_pct = 14;
+    double expense_growth_pct = 15;
+    double profit_growth_pct = 16;
+    double balance_growth_pct = 17;
+
+    // Ratios & health indicators
+    double savings_rate = 18;
+    double expense_to_income_ratio = 19;
+    double burn_rate_daily = 20;
+    double avg_income_daily = 21;
+    double avg_expense_daily = 22;
+    double runway_days = 23;
+
+    // Transaction stats
+    int32 total_transactions = 24;
+    int32 income_transaction_count = 25;
+    int32 expense_transaction_count = 26;
+    double avg_transaction_amount = 27;
+    double largest_income = 28;
+    double largest_expense = 29;
+
+    // Nested summaries
+    InvestmentSummary investment_summary = 30;
+    NetWorthSummary net_worth = 31;
+
+    // Top categories
+    repeated CategorySummary top_expense_categories = 32;
+    repeated CategorySummary top_income_categories = 33;
+
+    // Per wallet breakdown
+    repeated WalletSummary wallet_summaries = 34;
+}
+
+message GetUserFinancialSummaryResponse {
+    repeated FinancialSummary summaries = 1;
+}
+
+// ═══════════════════════════════════════════════
+// Net Worth Composition
+// ═══════════════════════════════════════════════
+
+message GetUserNetWorthCompositionRequest {
+    string user_id = 1;
+}
+
+message NetWorthSliceDetails {
+    int32 item_count = 1;
+    string description = 2;
+    double unrealized_gain = 3;
+}
+
+message NetWorthSlice {
+    string label = 1;
+    double amount = 2;
+    double percentage = 3;
+    NetWorthSliceDetails details = 4;
+}
+
+message NetWorthComposition {
+    string user_id = 1;
+    double total = 2;
+    repeated NetWorthSlice slices = 3;
+}
+
+// ═══════════════════════════════════════════════
+// User Wallets
+// ═══════════════════════════════════════════════
+
+message DashboardWallet {
+    string wallet_id = 1;
+    string user_id = 2;
+    string wallet_name = 3;
+    string wallet_type = 4;
+    string wallet_type_name = 5;
+    double balance = 6;
+    string currency = 7;
+    string icon = 8;
+    bool is_active = 9;
+}
+
+message GetUserWalletsResponse {
+    repeated DashboardWallet wallets = 1;
+}
