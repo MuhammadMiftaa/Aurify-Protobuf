@@ -6,10 +6,16 @@ option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/wallet";
 
 service WalletService {
     rpc GetWallets (GetWalletOptions) returns (stream Wallet);
-    rpc GetUserWallets (UserID) returns (stream Wallet);
+    rpc GetUserWallets (UserID) returns (GetUserWalletsResponse);
     rpc GetWalletByID (WalletID) returns (Wallet);
-    rpc UpdateWallet (Wallet) returns (Wallet);
+    rpc CreateWallet (CreateWalletRequest) returns (Wallet);
+    rpc UpdateWallet (UpdateWalletRequest) returns (Wallet);
+    rpc DeleteWallet (WalletID) returns (Wallet);
+    rpc GetWalletTypes (Empty) returns (GetWalletTypesResponse);
+    rpc GetWalletSummary (UserID) returns (WalletSummary);
 }
+
+message Empty {}
 
 message Wallet {
     string id = 1;
@@ -22,6 +28,17 @@ message Wallet {
     string wallet_type_name = 8;
     string created_at = 9;
     string updated_at = 10;
+    int32 transaction_count = 11;
+    WalletTypeDetail wallet_type_detail = 12;
+}
+
+message WalletTypeDetail {
+    string id = 1;
+    string name = 2;
+    string type = 3;
+    string description = 4;
+    string created_at = 5;
+    string updated_at = 6;
 }
 
 message WalletID {
@@ -34,4 +51,33 @@ message UserID {
 
 message GetWalletOptions {
     int32 limit = 1;
+}
+
+message CreateWalletRequest {
+    string user_id = 1;
+    string wallet_type_id = 2;
+    string name = 3;
+    string number = 4;
+    double balance = 5;
+}
+
+message UpdateWalletRequest {
+    string id = 1;
+    string name = 2;
+    string number = 3;
+    string wallet_type_id = 4;
+}
+
+message GetUserWalletsResponse {
+    repeated Wallet wallets = 1;
+}
+
+message GetWalletTypesResponse {
+    repeated WalletTypeDetail wallet_types = 1;
+}
+
+message WalletSummary {
+    int32 total_wallets = 1;
+    double total_balance = 2;
+    int32 total_transactions = 3;
 }
