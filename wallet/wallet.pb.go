@@ -487,6 +487,7 @@ type UpdateWalletRequest struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Number        string                 `protobuf:"bytes,3,opt,name=number,proto3" json:"number,omitempty"`
 	WalletTypeId  string                 `protobuf:"bytes,4,opt,name=wallet_type_id,json=walletTypeId,proto3" json:"wallet_type_id,omitempty"`
+	Balance       float64                `protobuf:"fixed64,5,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -547,6 +548,13 @@ func (x *UpdateWalletRequest) GetWalletTypeId() string {
 		return x.WalletTypeId
 	}
 	return ""
+}
+
+func (x *UpdateWalletRequest) GetBalance() float64 {
+	if x != nil {
+		return x.Balance
+	}
+	return 0
 }
 
 type GetUserWalletsResponse struct {
@@ -740,12 +748,13 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\x0ewallet_type_id\x18\x02 \x01(\tR\fwalletTypeId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x16\n" +
 	"\x06number\x18\x04 \x01(\tR\x06number\x12\x18\n" +
-	"\abalance\x18\x05 \x01(\x01R\abalance\"w\n" +
+	"\abalance\x18\x05 \x01(\x01R\abalance\"\x91\x01\n" +
 	"\x13UpdateWalletRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
 	"\x06number\x18\x03 \x01(\tR\x06number\x12$\n" +
-	"\x0ewallet_type_id\x18\x04 \x01(\tR\fwalletTypeId\"B\n" +
+	"\x0ewallet_type_id\x18\x04 \x01(\tR\fwalletTypeId\x12\x18\n" +
+	"\abalance\x18\x05 \x01(\x01R\abalance\"B\n" +
 	"\x16GetUserWalletsResponse\x12(\n" +
 	"\awallets\x18\x01 \x03(\v2\x0e.wallet.WalletR\awallets\"U\n" +
 	"\x16GetWalletTypesResponse\x12;\n" +

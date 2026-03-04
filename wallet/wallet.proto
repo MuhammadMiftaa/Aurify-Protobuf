@@ -66,6 +66,7 @@ message UpdateWalletRequest {
     string name = 2;
     string number = 3;
     string wallet_type_id = 4;
+    double balance = 5;
 }
 
 message GetUserWalletsResponse {
