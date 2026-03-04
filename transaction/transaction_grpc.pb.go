@@ -19,20 +19,37 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TransactionService_GetTransactions_FullMethodName     = "/transaction.TransactionService/GetTransactions"
-	TransactionService_GetUserTransactions_FullMethodName = "/transaction.TransactionService/GetUserTransactions"
-	TransactionService_CreateTransaction_FullMethodName   = "/transaction.TransactionService/CreateTransaction"
-	TransactionService_DeleteTransaction_FullMethodName   = "/transaction.TransactionService/DeleteTransaction"
+	TransactionService_GetTransactions_FullMethodName               = "/transaction.TransactionService/GetTransactions"
+	TransactionService_GetUserTransactions_FullMethodName           = "/transaction.TransactionService/GetUserTransactions"
+	TransactionService_GetTransactionByID_FullMethodName            = "/transaction.TransactionService/GetTransactionByID"
+	TransactionService_CreateTransaction_FullMethodName             = "/transaction.TransactionService/CreateTransaction"
+	TransactionService_CreateFundTransfer_FullMethodName            = "/transaction.TransactionService/CreateFundTransfer"
+	TransactionService_UpdateTransaction_FullMethodName             = "/transaction.TransactionService/UpdateTransaction"
+	TransactionService_DeleteTransaction_FullMethodName             = "/transaction.TransactionService/DeleteTransaction"
+	TransactionService_GetCategories_FullMethodName                 = "/transaction.TransactionService/GetCategories"
+	TransactionService_GetAttachmentsByTransactionID_FullMethodName = "/transaction.TransactionService/GetAttachmentsByTransactionID"
+	TransactionService_CreateAttachment_FullMethodName              = "/transaction.TransactionService/CreateAttachment"
+	TransactionService_DeleteAttachment_FullMethodName              = "/transaction.TransactionService/DeleteAttachment"
 )
 
 // TransactionServiceClient is the client API for TransactionService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransactionServiceClient interface {
+	// ── Transaction RPCs ──
 	GetTransactions(ctx context.Context, in *GetTransactionOptions, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
-	GetUserTransactions(ctx context.Context, in *Wallets, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
-	CreateTransaction(ctx context.Context, in *NewTransaction, opts ...grpc.CallOption) (*Transaction, error)
-	DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*Transaction, error)
+	GetUserTransactions(ctx context.Context, in *GetUserTransactionsRequest, opts ...grpc.CallOption) (*GetUserTransactionsResponse, error)
+	GetTransactionByID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*TransactionDetail, error)
+	CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*TransactionDetail, error)
+	CreateFundTransfer(ctx context.Context, in *CreateFundTransferRequest, opts ...grpc.CallOption) (*FundTransferResponse, error)
+	UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*TransactionDetail, error)
+	DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*TransactionDetail, error)
+	// ── Category RPCs ──
+	GetCategories(ctx context.Context, in *GetCategoriesRequest, opts ...grpc.CallOption) (*GetCategoriesResponse, error)
+	// ── Attachment RPCs ──
+	GetAttachmentsByTransactionID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*GetAttachmentsResponse, error)
+	CreateAttachment(ctx context.Context, in *CreateAttachmentRequest, opts ...grpc.CallOption) (*Attachment, error)
+	DeleteAttachment(ctx context.Context, in *AttachmentID, opts ...grpc.CallOption) (*Attachment, error)
 }
 
 type transactionServiceClient struct {
@@ -62,28 +79,29 @@ func (c *transactionServiceClient) GetTransactions(ctx context.Context, in *GetT
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TransactionService_GetTransactionsClient = grpc.ServerStreamingClient[Transaction]
 
-func (c *transactionServiceClient) GetUserTransactions(ctx context.Context, in *Wallets, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error) {
+func (c *transactionServiceClient) GetUserTransactions(ctx context.Context, in *GetUserTransactionsRequest, opts ...grpc.CallOption) (*GetUserTransactionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &TransactionService_ServiceDesc.Streams[1], TransactionService_GetUserTransactions_FullMethodName, cOpts...)
+	out := new(GetUserTransactionsResponse)
+	err := c.cc.Invoke(ctx, TransactionService_GetUserTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Wallets, Transaction]{ClientStream: stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	return out, nil
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TransactionService_GetUserTransactionsClient = grpc.ServerStreamingClient[Transaction]
-
-func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *NewTransaction, opts ...grpc.CallOption) (*Transaction, error) {
+func (c *transactionServiceClient) GetTransactionByID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*TransactionDetail, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Transaction)
+	out := new(TransactionDetail)
+	err := c.cc.Invoke(ctx, TransactionService_GetTransactionByID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *CreateTransactionRequest, opts ...grpc.CallOption) (*TransactionDetail, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransactionDetail)
 	err := c.cc.Invoke(ctx, TransactionService_CreateTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -91,10 +109,70 @@ func (c *transactionServiceClient) CreateTransaction(ctx context.Context, in *Ne
 	return out, nil
 }
 
-func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*Transaction, error) {
+func (c *transactionServiceClient) CreateFundTransfer(ctx context.Context, in *CreateFundTransferRequest, opts ...grpc.CallOption) (*FundTransferResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Transaction)
+	out := new(FundTransferResponse)
+	err := c.cc.Invoke(ctx, TransactionService_CreateFundTransfer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*TransactionDetail, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransactionDetail)
+	err := c.cc.Invoke(ctx, TransactionService_UpdateTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*TransactionDetail, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransactionDetail)
 	err := c.cc.Invoke(ctx, TransactionService_DeleteTransaction_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) GetCategories(ctx context.Context, in *GetCategoriesRequest, opts ...grpc.CallOption) (*GetCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCategoriesResponse)
+	err := c.cc.Invoke(ctx, TransactionService_GetCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) GetAttachmentsByTransactionID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*GetAttachmentsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAttachmentsResponse)
+	err := c.cc.Invoke(ctx, TransactionService_GetAttachmentsByTransactionID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) CreateAttachment(ctx context.Context, in *CreateAttachmentRequest, opts ...grpc.CallOption) (*Attachment, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Attachment)
+	err := c.cc.Invoke(ctx, TransactionService_CreateAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) DeleteAttachment(ctx context.Context, in *AttachmentID, opts ...grpc.CallOption) (*Attachment, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Attachment)
+	err := c.cc.Invoke(ctx, TransactionService_DeleteAttachment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,10 +183,20 @@ func (c *transactionServiceClient) DeleteTransaction(ctx context.Context, in *Tr
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility.
 type TransactionServiceServer interface {
+	// ── Transaction RPCs ──
 	GetTransactions(*GetTransactionOptions, grpc.ServerStreamingServer[Transaction]) error
-	GetUserTransactions(*Wallets, grpc.ServerStreamingServer[Transaction]) error
-	CreateTransaction(context.Context, *NewTransaction) (*Transaction, error)
-	DeleteTransaction(context.Context, *TransactionID) (*Transaction, error)
+	GetUserTransactions(context.Context, *GetUserTransactionsRequest) (*GetUserTransactionsResponse, error)
+	GetTransactionByID(context.Context, *TransactionID) (*TransactionDetail, error)
+	CreateTransaction(context.Context, *CreateTransactionRequest) (*TransactionDetail, error)
+	CreateFundTransfer(context.Context, *CreateFundTransferRequest) (*FundTransferResponse, error)
+	UpdateTransaction(context.Context, *UpdateTransactionRequest) (*TransactionDetail, error)
+	DeleteTransaction(context.Context, *TransactionID) (*TransactionDetail, error)
+	// ── Category RPCs ──
+	GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error)
+	// ── Attachment RPCs ──
+	GetAttachmentsByTransactionID(context.Context, *TransactionID) (*GetAttachmentsResponse, error)
+	CreateAttachment(context.Context, *CreateAttachmentRequest) (*Attachment, error)
+	DeleteAttachment(context.Context, *AttachmentID) (*Attachment, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -122,14 +210,35 @@ type UnimplementedTransactionServiceServer struct{}
 func (UnimplementedTransactionServiceServer) GetTransactions(*GetTransactionOptions, grpc.ServerStreamingServer[Transaction]) error {
 	return status.Error(codes.Unimplemented, "method GetTransactions not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetUserTransactions(*Wallets, grpc.ServerStreamingServer[Transaction]) error {
-	return status.Error(codes.Unimplemented, "method GetUserTransactions not implemented")
+func (UnimplementedTransactionServiceServer) GetUserTransactions(context.Context, *GetUserTransactionsRequest) (*GetUserTransactionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserTransactions not implemented")
 }
-func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *NewTransaction) (*Transaction, error) {
+func (UnimplementedTransactionServiceServer) GetTransactionByID(context.Context, *TransactionID) (*TransactionDetail, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetTransactionByID not implemented")
+}
+func (UnimplementedTransactionServiceServer) CreateTransaction(context.Context, *CreateTransactionRequest) (*TransactionDetail, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *TransactionID) (*Transaction, error) {
+func (UnimplementedTransactionServiceServer) CreateFundTransfer(context.Context, *CreateFundTransferRequest) (*FundTransferResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateFundTransfer not implemented")
+}
+func (UnimplementedTransactionServiceServer) UpdateTransaction(context.Context, *UpdateTransactionRequest) (*TransactionDetail, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateTransaction not implemented")
+}
+func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, *TransactionID) (*TransactionDetail, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteTransaction not implemented")
+}
+func (UnimplementedTransactionServiceServer) GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCategories not implemented")
+}
+func (UnimplementedTransactionServiceServer) GetAttachmentsByTransactionID(context.Context, *TransactionID) (*GetAttachmentsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAttachmentsByTransactionID not implemented")
+}
+func (UnimplementedTransactionServiceServer) CreateAttachment(context.Context, *CreateAttachmentRequest) (*Attachment, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateAttachment not implemented")
+}
+func (UnimplementedTransactionServiceServer) DeleteAttachment(context.Context, *AttachmentID) (*Attachment, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAttachment not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
 func (UnimplementedTransactionServiceServer) testEmbeddedByValue()                            {}
@@ -163,19 +272,44 @@ func _TransactionService_GetTransactions_Handler(srv interface{}, stream grpc.Se
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TransactionService_GetTransactionsServer = grpc.ServerStreamingServer[Transaction]
 
-func _TransactionService_GetUserTransactions_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Wallets)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _TransactionService_GetUserTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserTransactionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(TransactionServiceServer).GetUserTransactions(m, &grpc.GenericServerStream[Wallets, Transaction]{ServerStream: stream})
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetUserTransactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetUserTransactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetUserTransactions(ctx, req.(*GetUserTransactionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type TransactionService_GetUserTransactionsServer = grpc.ServerStreamingServer[Transaction]
+func _TransactionService_GetTransactionByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetTransactionByID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetTransactionByID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetTransactionByID(ctx, req.(*TransactionID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NewTransaction)
+	in := new(CreateTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -187,7 +321,43 @@ func _TransactionService_CreateTransaction_Handler(srv interface{}, ctx context.
 		FullMethod: TransactionService_CreateTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).CreateTransaction(ctx, req.(*NewTransaction))
+		return srv.(TransactionServiceServer).CreateTransaction(ctx, req.(*CreateTransactionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_CreateFundTransfer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateFundTransferRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).CreateFundTransfer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_CreateFundTransfer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).CreateFundTransfer(ctx, req.(*CreateFundTransferRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_UpdateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTransactionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).UpdateTransaction(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_UpdateTransaction_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).UpdateTransaction(ctx, req.(*UpdateTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -210,6 +380,78 @@ func _TransactionService_DeleteTransaction_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransactionService_GetCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetCategories(ctx, req.(*GetCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_GetAttachmentsByTransactionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransactionID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetAttachmentsByTransactionID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetAttachmentsByTransactionID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetAttachmentsByTransactionID(ctx, req.(*TransactionID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_CreateAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).CreateAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_CreateAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).CreateAttachment(ctx, req.(*CreateAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_DeleteAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AttachmentID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).DeleteAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_DeleteAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).DeleteAttachment(ctx, req.(*AttachmentID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransactionService_ServiceDesc is the grpc.ServiceDesc for TransactionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -218,23 +460,50 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TransactionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "GetUserTransactions",
+			Handler:    _TransactionService_GetUserTransactions_Handler,
+		},
+		{
+			MethodName: "GetTransactionByID",
+			Handler:    _TransactionService_GetTransactionByID_Handler,
+		},
+		{
 			MethodName: "CreateTransaction",
 			Handler:    _TransactionService_CreateTransaction_Handler,
 		},
 		{
+			MethodName: "CreateFundTransfer",
+			Handler:    _TransactionService_CreateFundTransfer_Handler,
+		},
+		{
+			MethodName: "UpdateTransaction",
+			Handler:    _TransactionService_UpdateTransaction_Handler,
+		},
+		{
 			MethodName: "DeleteTransaction",
 			Handler:    _TransactionService_DeleteTransaction_Handler,
+		},
+		{
+			MethodName: "GetCategories",
+			Handler:    _TransactionService_GetCategories_Handler,
+		},
+		{
+			MethodName: "GetAttachmentsByTransactionID",
+			Handler:    _TransactionService_GetAttachmentsByTransactionID_Handler,
+		},
+		{
+			MethodName: "CreateAttachment",
+			Handler:    _TransactionService_CreateAttachment_Handler,
+		},
+		{
+			MethodName: "DeleteAttachment",
+			Handler:    _TransactionService_DeleteAttachment_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetTransactions",
 			Handler:       _TransactionService_GetTransactions_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetUserTransactions",
-			Handler:       _TransactionService_GetUserTransactions_Handler,
 			ServerStreams: true,
 		},
 	},
