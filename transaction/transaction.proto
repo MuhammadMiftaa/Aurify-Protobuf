@@ -102,16 +102,18 @@ message GetTransactionOptions {
 
 message GetUserTransactionsRequest {
     repeated string wallet_ids = 1;
-    int32 page = 2;
-    int32 page_size = 3;
-    string sort_by = 4;
-    string sort_order = 5;
-    string search = 6;
-    string wallet_id = 7;
-    string category_id = 8;
-    string category_type = 9;
-    string date_from = 10;
-    string date_to = 11;
+    int32 page_size = 2;
+    string sort_by = 3;
+    string sort_order = 4;
+    string search = 5;
+    string wallet_id = 6;
+    string category_id = 7;
+    string category_type = 8;
+    string date_from = 9;
+    string date_to = 10;
+    string cursor = 11;         // keyset cursor (last item ID from previous page)
+    double cursor_amount = 12;  // cursor sort value when sorting by amount
+    string cursor_date = 13;    // cursor sort value when sorting by date
 }
 
 message CreateTransactionRequest {
@@ -167,9 +169,11 @@ message CreateAttachmentRequest {
 message GetUserTransactionsResponse {
     repeated TransactionDetail transactions = 1;
     int32 total = 2;
-    int32 page = 3;
-    int32 page_size = 4;
-    int32 total_pages = 5;
+    int32 page_size = 3;
+    string next_cursor = 4;       // ID of the last item (use as cursor for next page)
+    bool has_next = 5;            // whether there are more items
+    double next_cursor_amount = 6;
+    string next_cursor_date = 7;
 }
 
 message GetCategoriesResponse {

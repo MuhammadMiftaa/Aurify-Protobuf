@@ -21,6 +21,42 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Empty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	mi := &file_investment_investment_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{0}
+}
+
 type AssetCode struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
@@ -37,7 +73,7 @@ type AssetCode struct {
 
 func (x *AssetCode) Reset() {
 	*x = AssetCode{}
-	mi := &file_investment_investment_proto_msgTypes[0]
+	mi := &file_investment_investment_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -49,7 +85,7 @@ func (x *AssetCode) String() string {
 func (*AssetCode) ProtoMessage() {}
 
 func (x *AssetCode) ProtoReflect() protoreflect.Message {
-	mi := &file_investment_investment_proto_msgTypes[0]
+	mi := &file_investment_investment_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +98,7 @@ func (x *AssetCode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AssetCode.ProtoReflect.Descriptor instead.
 func (*AssetCode) Descriptor() ([]byte, []int) {
-	return file_investment_investment_proto_rawDescGZIP(), []int{0}
+	return file_investment_investment_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AssetCode) GetCode() string {
@@ -140,7 +176,7 @@ type Investment struct {
 
 func (x *Investment) Reset() {
 	*x = Investment{}
-	mi := &file_investment_investment_proto_msgTypes[1]
+	mi := &file_investment_investment_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -152,7 +188,7 @@ func (x *Investment) String() string {
 func (*Investment) ProtoMessage() {}
 
 func (x *Investment) ProtoReflect() protoreflect.Message {
-	mi := &file_investment_investment_proto_msgTypes[1]
+	mi := &file_investment_investment_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -165,7 +201,7 @@ func (x *Investment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Investment.ProtoReflect.Descriptor instead.
 func (*Investment) Descriptor() ([]byte, []int) {
-	return file_investment_investment_proto_rawDescGZIP(), []int{1}
+	return file_investment_investment_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Investment) GetId() string {
@@ -245,6 +281,138 @@ func (x *Investment) GetUpdatedAt() string {
 	return ""
 }
 
+type InvestmentSold struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investmentId,proto3" json:"investmentId,omitempty"`
+	UserId        string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	Quantity      float64                `protobuf:"fixed64,4,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	SellPrice     float64                `protobuf:"fixed64,5,opt,name=sellPrice,proto3" json:"sellPrice,omitempty"`
+	Amount        float64                `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
+	Date          string                 `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty"`
+	Description   string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
+	Deficit       float64                `protobuf:"fixed64,9,opt,name=deficit,proto3" json:"deficit,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	AssetCode     *AssetCode             `protobuf:"bytes,12,opt,name=assetCode,proto3" json:"assetCode,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *InvestmentSold) Reset() {
+	*x = InvestmentSold{}
+	mi := &file_investment_investment_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InvestmentSold) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InvestmentSold) ProtoMessage() {}
+
+func (x *InvestmentSold) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InvestmentSold.ProtoReflect.Descriptor instead.
+func (*InvestmentSold) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *InvestmentSold) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetInvestmentId() string {
+	if x != nil {
+		return x.InvestmentId
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetQuantity() float64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+func (x *InvestmentSold) GetSellPrice() float64 {
+	if x != nil {
+		return x.SellPrice
+	}
+	return 0
+}
+
+func (x *InvestmentSold) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *InvestmentSold) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetDeficit() float64 {
+	if x != nil {
+		return x.Deficit
+	}
+	return 0
+}
+
+func (x *InvestmentSold) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+func (x *InvestmentSold) GetAssetCode() *AssetCode {
+	if x != nil {
+		return x.AssetCode
+	}
+	return nil
+}
+
 type InvestmentID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -254,7 +422,7 @@ type InvestmentID struct {
 
 func (x *InvestmentID) Reset() {
 	*x = InvestmentID{}
-	mi := &file_investment_investment_proto_msgTypes[2]
+	mi := &file_investment_investment_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -266,7 +434,7 @@ func (x *InvestmentID) String() string {
 func (*InvestmentID) ProtoMessage() {}
 
 func (x *InvestmentID) ProtoReflect() protoreflect.Message {
-	mi := &file_investment_investment_proto_msgTypes[2]
+	mi := &file_investment_investment_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -279,7 +447,7 @@ func (x *InvestmentID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvestmentID.ProtoReflect.Descriptor instead.
 func (*InvestmentID) Descriptor() ([]byte, []int) {
-	return file_investment_investment_proto_rawDescGZIP(), []int{2}
+	return file_investment_investment_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *InvestmentID) GetId() string {
@@ -298,7 +466,7 @@ type UserID struct {
 
 func (x *UserID) Reset() {
 	*x = UserID{}
-	mi := &file_investment_investment_proto_msgTypes[3]
+	mi := &file_investment_investment_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -310,7 +478,7 @@ func (x *UserID) String() string {
 func (*UserID) ProtoMessage() {}
 
 func (x *UserID) ProtoReflect() protoreflect.Message {
-	mi := &file_investment_investment_proto_msgTypes[3]
+	mi := &file_investment_investment_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -323,7 +491,7 @@ func (x *UserID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserID.ProtoReflect.Descriptor instead.
 func (*UserID) Descriptor() ([]byte, []int) {
-	return file_investment_investment_proto_rawDescGZIP(), []int{3}
+	return file_investment_investment_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UserID) GetId() string {
@@ -342,7 +510,7 @@ type GetInvestmentOptions struct {
 
 func (x *GetInvestmentOptions) Reset() {
 	*x = GetInvestmentOptions{}
-	mi := &file_investment_investment_proto_msgTypes[4]
+	mi := &file_investment_investment_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -354,7 +522,7 @@ func (x *GetInvestmentOptions) String() string {
 func (*GetInvestmentOptions) ProtoMessage() {}
 
 func (x *GetInvestmentOptions) ProtoReflect() protoreflect.Message {
-	mi := &file_investment_investment_proto_msgTypes[4]
+	mi := &file_investment_investment_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -367,7 +535,7 @@ func (x *GetInvestmentOptions) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetInvestmentOptions.ProtoReflect.Descriptor instead.
 func (*GetInvestmentOptions) Descriptor() ([]byte, []int) {
-	return file_investment_investment_proto_rawDescGZIP(), []int{4}
+	return file_investment_investment_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetInvestmentOptions) GetLimit() int32 {
@@ -377,12 +545,589 @@ func (x *GetInvestmentOptions) GetLimit() int32 {
 	return 0
 }
 
+type GetUserInvestmentListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	SortBy        string                 `protobuf:"bytes,4,opt,name=sortBy,proto3" json:"sortBy,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,5,opt,name=sortOrder,proto3" json:"sortOrder,omitempty"`
+	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`
+	Code          string                 `protobuf:"bytes,7,opt,name=code,proto3" json:"code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInvestmentListRequest) Reset() {
+	*x = GetUserInvestmentListRequest{}
+	mi := &file_investment_investment_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInvestmentListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInvestmentListRequest) ProtoMessage() {}
+
+func (x *GetUserInvestmentListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInvestmentListRequest.ProtoReflect.Descriptor instead.
+func (*GetUserInvestmentListRequest) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetUserInvestmentListRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetUserInvestmentListRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetUserInvestmentListRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetUserInvestmentListRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *GetUserInvestmentListRequest) GetSortOrder() string {
+	if x != nil {
+		return x.SortOrder
+	}
+	return ""
+}
+
+func (x *GetUserInvestmentListRequest) GetSearch() string {
+	if x != nil {
+		return x.Search
+	}
+	return ""
+}
+
+func (x *GetUserInvestmentListRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+type GetInvestmentDetailRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investmentId,proto3" json:"investmentId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetInvestmentDetailRequest) Reset() {
+	*x = GetInvestmentDetailRequest{}
+	mi := &file_investment_investment_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetInvestmentDetailRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetInvestmentDetailRequest) ProtoMessage() {}
+
+func (x *GetInvestmentDetailRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetInvestmentDetailRequest.ProtoReflect.Descriptor instead.
+func (*GetInvestmentDetailRequest) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetInvestmentDetailRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetInvestmentDetailRequest) GetInvestmentId() string {
+	if x != nil {
+		return x.InvestmentId
+	}
+	return ""
+}
+
+type CreateInvestmentRequest struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	UserId           string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	Code             string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	Quantity         float64                `protobuf:"fixed64,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Amount           float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initialValuation,proto3" json:"initialValuation,omitempty"`
+	Date             string                 `protobuf:"bytes,6,opt,name=date,proto3" json:"date,omitempty"`
+	Description      string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *CreateInvestmentRequest) Reset() {
+	*x = CreateInvestmentRequest{}
+	mi := &file_investment_investment_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateInvestmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateInvestmentRequest) ProtoMessage() {}
+
+func (x *CreateInvestmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateInvestmentRequest.ProtoReflect.Descriptor instead.
+func (*CreateInvestmentRequest) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *CreateInvestmentRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CreateInvestmentRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *CreateInvestmentRequest) GetQuantity() float64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+func (x *CreateInvestmentRequest) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *CreateInvestmentRequest) GetInitialValuation() float64 {
+	if x != nil {
+		return x.InitialValuation
+	}
+	return 0
+}
+
+func (x *CreateInvestmentRequest) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *CreateInvestmentRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type SellInvestmentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	Assetcode     string                 `protobuf:"bytes,2,opt,name=assetcode,proto3" json:"assetcode,omitempty"`
+	Quantity      float64                `protobuf:"fixed64,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Amount        float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	Date          string                 `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`
+	Description   string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SellInvestmentRequest) Reset() {
+	*x = SellInvestmentRequest{}
+	mi := &file_investment_investment_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SellInvestmentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SellInvestmentRequest) ProtoMessage() {}
+
+func (x *SellInvestmentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SellInvestmentRequest.ProtoReflect.Descriptor instead.
+func (*SellInvestmentRequest) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *SellInvestmentRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *SellInvestmentRequest) GetAssetcode() string {
+	if x != nil {
+		return x.Assetcode
+	}
+	return ""
+}
+
+func (x *SellInvestmentRequest) GetQuantity() float64 {
+	if x != nil {
+		return x.Quantity
+	}
+	return 0
+}
+
+func (x *SellInvestmentRequest) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *SellInvestmentRequest) GetDate() string {
+	if x != nil {
+		return x.Date
+	}
+	return ""
+}
+
+func (x *SellInvestmentRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type GetUserInvestmentListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Investments   []*Investment          `protobuf:"bytes,1,rep,name=investments,proto3" json:"investments,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	TotalPages    int32                  `protobuf:"varint,5,opt,name=totalPages,proto3" json:"totalPages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInvestmentListResponse) Reset() {
+	*x = GetUserInvestmentListResponse{}
+	mi := &file_investment_investment_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInvestmentListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInvestmentListResponse) ProtoMessage() {}
+
+func (x *GetUserInvestmentListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInvestmentListResponse.ProtoReflect.Descriptor instead.
+func (*GetUserInvestmentListResponse) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetUserInvestmentListResponse) GetInvestments() []*Investment {
+	if x != nil {
+		return x.Investments
+	}
+	return nil
+}
+
+func (x *GetUserInvestmentListResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *GetUserInvestmentListResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *GetUserInvestmentListResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *GetUserInvestmentListResponse) GetTotalPages() int32 {
+	if x != nil {
+		return x.TotalPages
+	}
+	return 0
+}
+
+type SellInvestmentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SoldRecords   []*InvestmentSold      `protobuf:"bytes,1,rep,name=soldRecords,proto3" json:"soldRecords,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SellInvestmentResponse) Reset() {
+	*x = SellInvestmentResponse{}
+	mi := &file_investment_investment_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SellInvestmentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SellInvestmentResponse) ProtoMessage() {}
+
+func (x *SellInvestmentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SellInvestmentResponse.ProtoReflect.Descriptor instead.
+func (*SellInvestmentResponse) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *SellInvestmentResponse) GetSoldRecords() []*InvestmentSold {
+	if x != nil {
+		return x.SoldRecords
+	}
+	return nil
+}
+
+type InvestmentSummaryResponse struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	TotalInvestments   int32                  `protobuf:"varint,1,opt,name=totalInvestments,proto3" json:"totalInvestments,omitempty"`
+	TotalInvested      float64                `protobuf:"fixed64,2,opt,name=totalInvested,proto3" json:"totalInvested,omitempty"`
+	TotalCurrentValue  float64                `protobuf:"fixed64,3,opt,name=totalCurrentValue,proto3" json:"totalCurrentValue,omitempty"`
+	TotalProfitLoss    float64                `protobuf:"fixed64,4,opt,name=totalProfitLoss,proto3" json:"totalProfitLoss,omitempty"`
+	TotalProfitLossPct float64                `protobuf:"fixed64,5,opt,name=totalProfitLossPct,proto3" json:"totalProfitLossPct,omitempty"`
+	TotalSoldAmount    float64                `protobuf:"fixed64,6,opt,name=totalSoldAmount,proto3" json:"totalSoldAmount,omitempty"`
+	TotalRealizedGain  float64                `protobuf:"fixed64,7,opt,name=totalRealizedGain,proto3" json:"totalRealizedGain,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *InvestmentSummaryResponse) Reset() {
+	*x = InvestmentSummaryResponse{}
+	mi := &file_investment_investment_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *InvestmentSummaryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InvestmentSummaryResponse) ProtoMessage() {}
+
+func (x *InvestmentSummaryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InvestmentSummaryResponse.ProtoReflect.Descriptor instead.
+func (*InvestmentSummaryResponse) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *InvestmentSummaryResponse) GetTotalInvestments() int32 {
+	if x != nil {
+		return x.TotalInvestments
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalInvested() float64 {
+	if x != nil {
+		return x.TotalInvested
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalCurrentValue() float64 {
+	if x != nil {
+		return x.TotalCurrentValue
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalProfitLoss() float64 {
+	if x != nil {
+		return x.TotalProfitLoss
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalProfitLossPct() float64 {
+	if x != nil {
+		return x.TotalProfitLossPct
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalSoldAmount() float64 {
+	if x != nil {
+		return x.TotalSoldAmount
+	}
+	return 0
+}
+
+func (x *InvestmentSummaryResponse) GetTotalRealizedGain() float64 {
+	if x != nil {
+		return x.TotalRealizedGain
+	}
+	return 0
+}
+
+type GetAssetCodesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AssetCodes    []*AssetCode           `protobuf:"bytes,1,rep,name=assetCodes,proto3" json:"assetCodes,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAssetCodesResponse) Reset() {
+	*x = GetAssetCodesResponse{}
+	mi := &file_investment_investment_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAssetCodesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAssetCodesResponse) ProtoMessage() {}
+
+func (x *GetAssetCodesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAssetCodesResponse.ProtoReflect.Descriptor instead.
+func (*GetAssetCodesResponse) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetAssetCodesResponse) GetAssetCodes() []*AssetCode {
+	if x != nil {
+		return x.AssetCodes
+	}
+	return nil
+}
+
 var File_investment_investment_proto protoreflect.FileDescriptor
 
 const file_investment_investment_proto_rawDesc = "" +
 	"\n" +
 	"\x1binvestment/investment.proto\x12\n" +
-	"investment\"\xc5\x01\n" +
+	"investment\"\a\n" +
+	"\x05Empty\"\xc5\x01\n" +
 	"\tAssetCode\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -405,16 +1150,84 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\tassetCode\x18\t \x01(\v2\x15.investment.AssetCodeR\tassetCode\x12\x1c\n" +
 	"\tcreatedAt\x18\n" +
 	" \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\"\x1e\n" +
+	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\"\xef\x02\n" +
+	"\x0eInvestmentSold\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
+	"\finvestmentId\x18\x02 \x01(\tR\finvestmentId\x12\x16\n" +
+	"\x06userId\x18\x03 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bquantity\x18\x04 \x01(\x01R\bquantity\x12\x1c\n" +
+	"\tsellPrice\x18\x05 \x01(\x01R\tsellPrice\x12\x16\n" +
+	"\x06amount\x18\x06 \x01(\x01R\x06amount\x12\x12\n" +
+	"\x04date\x18\a \x01(\tR\x04date\x12 \n" +
+	"\vdescription\x18\b \x01(\tR\vdescription\x12\x18\n" +
+	"\adeficit\x18\t \x01(\x01R\adeficit\x12\x1c\n" +
+	"\tcreatedAt\x18\n" +
+	" \x01(\tR\tcreatedAt\x12\x1c\n" +
+	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\x123\n" +
+	"\tassetCode\x18\f \x01(\v2\x15.investment.AssetCodeR\tassetCode\"\x1e\n" +
 	"\fInvestmentID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\",\n" +
 	"\x14GetInvestmentOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xa5\x01\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\xc8\x01\n" +
+	"\x1cGetUserInvestmentListRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1a\n" +
+	"\bpageSize\x18\x03 \x01(\x05R\bpageSize\x12\x16\n" +
+	"\x06sortBy\x18\x04 \x01(\tR\x06sortBy\x12\x1c\n" +
+	"\tsortOrder\x18\x05 \x01(\tR\tsortOrder\x12\x16\n" +
+	"\x06search\x18\x06 \x01(\tR\x06search\x12\x12\n" +
+	"\x04code\x18\a \x01(\tR\x04code\"X\n" +
+	"\x1aGetInvestmentDetailRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\"\n" +
+	"\finvestmentId\x18\x02 \x01(\tR\finvestmentId\"\xdb\x01\n" +
+	"\x17CreateInvestmentRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x1a\n" +
+	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12*\n" +
+	"\x10initialValuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x12\n" +
+	"\x04date\x18\x06 \x01(\tR\x04date\x12 \n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\"\xb7\x01\n" +
+	"\x15SellInvestmentRequest\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x1c\n" +
+	"\tassetcode\x18\x02 \x01(\tR\tassetcode\x12\x1a\n" +
+	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12\x12\n" +
+	"\x04date\x18\x05 \x01(\tR\x04date\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\"\xbf\x01\n" +
+	"\x1dGetUserInvestmentListResponse\x128\n" +
+	"\vinvestments\x18\x01 \x03(\v2\x16.investment.InvestmentR\vinvestments\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1a\n" +
+	"\bpageSize\x18\x04 \x01(\x05R\bpageSize\x12\x1e\n" +
+	"\n" +
+	"totalPages\x18\x05 \x01(\x05R\n" +
+	"totalPages\"V\n" +
+	"\x16SellInvestmentResponse\x12<\n" +
+	"\vsoldRecords\x18\x01 \x03(\v2\x1a.investment.InvestmentSoldR\vsoldRecords\"\xcd\x02\n" +
+	"\x19InvestmentSummaryResponse\x12*\n" +
+	"\x10totalInvestments\x18\x01 \x01(\x05R\x10totalInvestments\x12$\n" +
+	"\rtotalInvested\x18\x02 \x01(\x01R\rtotalInvested\x12,\n" +
+	"\x11totalCurrentValue\x18\x03 \x01(\x01R\x11totalCurrentValue\x12(\n" +
+	"\x0ftotalProfitLoss\x18\x04 \x01(\x01R\x0ftotalProfitLoss\x12.\n" +
+	"\x12totalProfitLossPct\x18\x05 \x01(\x01R\x12totalProfitLossPct\x12(\n" +
+	"\x0ftotalSoldAmount\x18\x06 \x01(\x01R\x0ftotalSoldAmount\x12,\n" +
+	"\x11totalRealizedGain\x18\a \x01(\x01R\x11totalRealizedGain\"N\n" +
+	"\x15GetAssetCodesResponse\x125\n" +
+	"\n" +
+	"assetCodes\x18\x01 \x03(\v2\x15.investment.AssetCodeR\n" +
+	"assetCodes2\xae\x05\n" +
 	"\x11InvestmentService\x12L\n" +
 	"\x0eGetInvestments\x12 .investment.GetInvestmentOptions\x1a\x16.investment.Investment0\x01\x12B\n" +
-	"\x12GetUserInvestments\x12\x12.investment.UserID\x1a\x16.investment.Investment0\x01B6Z4github.com/MuhammadMiftaa/Refina-Protobuf/investmentb\x06proto3"
+	"\x12GetUserInvestments\x12\x12.investment.UserID\x1a\x16.investment.Investment0\x01\x12l\n" +
+	"\x15GetUserInvestmentList\x12(.investment.GetUserInvestmentListRequest\x1a).investment.GetUserInvestmentListResponse\x12U\n" +
+	"\x13GetInvestmentDetail\x12&.investment.GetInvestmentDetailRequest\x1a\x16.investment.Investment\x12O\n" +
+	"\x10CreateInvestment\x12#.investment.CreateInvestmentRequest\x1a\x16.investment.Investment\x12W\n" +
+	"\x0eSellInvestment\x12!.investment.SellInvestmentRequest\x1a\".investment.SellInvestmentResponse\x12Q\n" +
+	"\x14GetInvestmentSummary\x12\x12.investment.UserID\x1a%.investment.InvestmentSummaryResponse\x12E\n" +
+	"\rGetAssetCodes\x12\x11.investment.Empty\x1a!.investment.GetAssetCodesResponseB6Z4github.com/MuhammadMiftaa/Refina-Protobuf/investmentb\x06proto3"
 
 var (
 	file_investment_investment_proto_rawDescOnce sync.Once
@@ -428,25 +1241,51 @@ func file_investment_investment_proto_rawDescGZIP() []byte {
 	return file_investment_investment_proto_rawDescData
 }
 
-var file_investment_investment_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_investment_investment_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_investment_investment_proto_goTypes = []any{
-	(*AssetCode)(nil),            // 0: investment.AssetCode
-	(*Investment)(nil),           // 1: investment.Investment
-	(*InvestmentID)(nil),         // 2: investment.InvestmentID
-	(*UserID)(nil),               // 3: investment.UserID
-	(*GetInvestmentOptions)(nil), // 4: investment.GetInvestmentOptions
+	(*Empty)(nil),                         // 0: investment.Empty
+	(*AssetCode)(nil),                     // 1: investment.AssetCode
+	(*Investment)(nil),                    // 2: investment.Investment
+	(*InvestmentSold)(nil),                // 3: investment.InvestmentSold
+	(*InvestmentID)(nil),                  // 4: investment.InvestmentID
+	(*UserID)(nil),                        // 5: investment.UserID
+	(*GetInvestmentOptions)(nil),          // 6: investment.GetInvestmentOptions
+	(*GetUserInvestmentListRequest)(nil),  // 7: investment.GetUserInvestmentListRequest
+	(*GetInvestmentDetailRequest)(nil),    // 8: investment.GetInvestmentDetailRequest
+	(*CreateInvestmentRequest)(nil),       // 9: investment.CreateInvestmentRequest
+	(*SellInvestmentRequest)(nil),         // 10: investment.SellInvestmentRequest
+	(*GetUserInvestmentListResponse)(nil), // 11: investment.GetUserInvestmentListResponse
+	(*SellInvestmentResponse)(nil),        // 12: investment.SellInvestmentResponse
+	(*InvestmentSummaryResponse)(nil),     // 13: investment.InvestmentSummaryResponse
+	(*GetAssetCodesResponse)(nil),         // 14: investment.GetAssetCodesResponse
 }
 var file_investment_investment_proto_depIdxs = []int32{
-	0, // 0: investment.Investment.assetCode:type_name -> investment.AssetCode
-	4, // 1: investment.InvestmentService.GetInvestments:input_type -> investment.GetInvestmentOptions
-	3, // 2: investment.InvestmentService.GetUserInvestments:input_type -> investment.UserID
-	1, // 3: investment.InvestmentService.GetInvestments:output_type -> investment.Investment
-	1, // 4: investment.InvestmentService.GetUserInvestments:output_type -> investment.Investment
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1,  // 0: investment.Investment.assetCode:type_name -> investment.AssetCode
+	1,  // 1: investment.InvestmentSold.assetCode:type_name -> investment.AssetCode
+	2,  // 2: investment.GetUserInvestmentListResponse.investments:type_name -> investment.Investment
+	3,  // 3: investment.SellInvestmentResponse.soldRecords:type_name -> investment.InvestmentSold
+	1,  // 4: investment.GetAssetCodesResponse.assetCodes:type_name -> investment.AssetCode
+	6,  // 5: investment.InvestmentService.GetInvestments:input_type -> investment.GetInvestmentOptions
+	5,  // 6: investment.InvestmentService.GetUserInvestments:input_type -> investment.UserID
+	7,  // 7: investment.InvestmentService.GetUserInvestmentList:input_type -> investment.GetUserInvestmentListRequest
+	8,  // 8: investment.InvestmentService.GetInvestmentDetail:input_type -> investment.GetInvestmentDetailRequest
+	9,  // 9: investment.InvestmentService.CreateInvestment:input_type -> investment.CreateInvestmentRequest
+	10, // 10: investment.InvestmentService.SellInvestment:input_type -> investment.SellInvestmentRequest
+	5,  // 11: investment.InvestmentService.GetInvestmentSummary:input_type -> investment.UserID
+	0,  // 12: investment.InvestmentService.GetAssetCodes:input_type -> investment.Empty
+	2,  // 13: investment.InvestmentService.GetInvestments:output_type -> investment.Investment
+	2,  // 14: investment.InvestmentService.GetUserInvestments:output_type -> investment.Investment
+	11, // 15: investment.InvestmentService.GetUserInvestmentList:output_type -> investment.GetUserInvestmentListResponse
+	2,  // 16: investment.InvestmentService.GetInvestmentDetail:output_type -> investment.Investment
+	2,  // 17: investment.InvestmentService.CreateInvestment:output_type -> investment.Investment
+	12, // 18: investment.InvestmentService.SellInvestment:output_type -> investment.SellInvestmentResponse
+	13, // 19: investment.InvestmentService.GetInvestmentSummary:output_type -> investment.InvestmentSummaryResponse
+	14, // 20: investment.InvestmentService.GetAssetCodes:output_type -> investment.GetAssetCodesResponse
+	13, // [13:21] is the sub-list for method output_type
+	5,  // [5:13] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_investment_investment_proto_init() }
@@ -460,7 +1299,7 @@ func file_investment_investment_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_investment_investment_proto_rawDesc), len(file_investment_investment_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

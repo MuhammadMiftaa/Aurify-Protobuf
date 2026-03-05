@@ -748,16 +748,18 @@ func (x *GetTransactionOptions) GetLimit() int32 {
 type GetUserTransactionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	WalletIds     []string               `protobuf:"bytes,1,rep,name=wallet_ids,json=walletIds,proto3" json:"wallet_ids,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
-	SortOrder     string                 `protobuf:"bytes,5,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
-	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`
-	WalletId      string                 `protobuf:"bytes,7,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
-	CategoryId    string                 `protobuf:"bytes,8,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
-	CategoryType  string                 `protobuf:"bytes,9,opt,name=category_type,json=categoryType,proto3" json:"category_type,omitempty"`
-	DateFrom      string                 `protobuf:"bytes,10,opt,name=date_from,json=dateFrom,proto3" json:"date_from,omitempty"`
-	DateTo        string                 `protobuf:"bytes,11,opt,name=date_to,json=dateTo,proto3" json:"date_to,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	SortBy        string                 `protobuf:"bytes,3,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,4,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
+	WalletId      string                 `protobuf:"bytes,6,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
+	CategoryId    string                 `protobuf:"bytes,7,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	CategoryType  string                 `protobuf:"bytes,8,opt,name=category_type,json=categoryType,proto3" json:"category_type,omitempty"`
+	DateFrom      string                 `protobuf:"bytes,9,opt,name=date_from,json=dateFrom,proto3" json:"date_from,omitempty"`
+	DateTo        string                 `protobuf:"bytes,10,opt,name=date_to,json=dateTo,proto3" json:"date_to,omitempty"`
+	Cursor        string                 `protobuf:"bytes,11,opt,name=cursor,proto3" json:"cursor,omitempty"`                                   // keyset cursor (last item ID from previous page)
+	CursorAmount  float64                `protobuf:"fixed64,12,opt,name=cursor_amount,json=cursorAmount,proto3" json:"cursor_amount,omitempty"` // cursor sort value when sorting by amount
+	CursorDate    string                 `protobuf:"bytes,13,opt,name=cursor_date,json=cursorDate,proto3" json:"cursor_date,omitempty"`         // cursor sort value when sorting by date
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -797,13 +799,6 @@ func (x *GetUserTransactionsRequest) GetWalletIds() []string {
 		return x.WalletIds
 	}
 	return nil
-}
-
-func (x *GetUserTransactionsRequest) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
 }
 
 func (x *GetUserTransactionsRequest) GetPageSize() int32 {
@@ -865,6 +860,27 @@ func (x *GetUserTransactionsRequest) GetDateFrom() string {
 func (x *GetUserTransactionsRequest) GetDateTo() string {
 	if x != nil {
 		return x.DateTo
+	}
+	return ""
+}
+
+func (x *GetUserTransactionsRequest) GetCursor() string {
+	if x != nil {
+		return x.Cursor
+	}
+	return ""
+}
+
+func (x *GetUserTransactionsRequest) GetCursorAmount() float64 {
+	if x != nil {
+		return x.CursorAmount
+	}
+	return 0
+}
+
+func (x *GetUserTransactionsRequest) GetCursorDate() string {
+	if x != nil {
+		return x.CursorDate
 	}
 	return ""
 }
@@ -1326,14 +1342,16 @@ func (x *CreateAttachmentRequest) GetSize() int64 {
 }
 
 type GetUserTransactionsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Transactions  []*TransactionDetail   `protobuf:"bytes,1,rep,name=transactions,proto3" json:"transactions,omitempty"`
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	TotalPages    int32                  `protobuf:"varint,5,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Transactions     []*TransactionDetail   `protobuf:"bytes,1,rep,name=transactions,proto3" json:"transactions,omitempty"`
+	Total            int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	PageSize         int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	NextCursor       string                 `protobuf:"bytes,4,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"` // ID of the last item (use as cursor for next page)
+	HasNext          bool                   `protobuf:"varint,5,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`         // whether there are more items
+	NextCursorAmount float64                `protobuf:"fixed64,6,opt,name=next_cursor_amount,json=nextCursorAmount,proto3" json:"next_cursor_amount,omitempty"`
+	NextCursorDate   string                 `protobuf:"bytes,7,opt,name=next_cursor_date,json=nextCursorDate,proto3" json:"next_cursor_date,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetUserTransactionsResponse) Reset() {
@@ -1380,13 +1398,6 @@ func (x *GetUserTransactionsResponse) GetTotal() int32 {
 	return 0
 }
 
-func (x *GetUserTransactionsResponse) GetPage() int32 {
-	if x != nil {
-		return x.Page
-	}
-	return 0
-}
-
 func (x *GetUserTransactionsResponse) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
@@ -1394,11 +1405,32 @@ func (x *GetUserTransactionsResponse) GetPageSize() int32 {
 	return 0
 }
 
-func (x *GetUserTransactionsResponse) GetTotalPages() int32 {
+func (x *GetUserTransactionsResponse) GetNextCursor() string {
 	if x != nil {
-		return x.TotalPages
+		return x.NextCursor
+	}
+	return ""
+}
+
+func (x *GetUserTransactionsResponse) GetHasNext() bool {
+	if x != nil {
+		return x.HasNext
+	}
+	return false
+}
+
+func (x *GetUserTransactionsResponse) GetNextCursorAmount() float64 {
+	if x != nil {
+		return x.NextCursorAmount
 	}
 	return 0
+}
+
+func (x *GetUserTransactionsResponse) GetNextCursorDate() string {
+	if x != nil {
+		return x.NextCursorDate
+	}
+	return ""
 }
 
 type GetCategoriesResponse struct {
@@ -1729,23 +1761,26 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\aWallets\x12\x1b\n" +
 	"\twallet_id\x18\x01 \x03(\tR\bwalletId\"-\n" +
 	"\x15GetTransactionOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\xd5\x02\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\x9f\x03\n" +
 	"\x1aGetUserTransactionsRequest\x12\x1d\n" +
 	"\n" +
-	"wallet_ids\x18\x01 \x03(\tR\twalletIds\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x17\n" +
-	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x1d\n" +
+	"wallet_ids\x18\x01 \x03(\tR\twalletIds\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x17\n" +
+	"\asort_by\x18\x03 \x01(\tR\x06sortBy\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\x05 \x01(\tR\tsortOrder\x12\x16\n" +
-	"\x06search\x18\x06 \x01(\tR\x06search\x12\x1b\n" +
-	"\twallet_id\x18\a \x01(\tR\bwalletId\x12\x1f\n" +
-	"\vcategory_id\x18\b \x01(\tR\n" +
+	"sort_order\x18\x04 \x01(\tR\tsortOrder\x12\x16\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search\x12\x1b\n" +
+	"\twallet_id\x18\x06 \x01(\tR\bwalletId\x12\x1f\n" +
+	"\vcategory_id\x18\a \x01(\tR\n" +
 	"categoryId\x12#\n" +
-	"\rcategory_type\x18\t \x01(\tR\fcategoryType\x12\x1b\n" +
-	"\tdate_from\x18\n" +
-	" \x01(\tR\bdateFrom\x12\x17\n" +
-	"\adate_to\x18\v \x01(\tR\x06dateTo\"\xf8\x01\n" +
+	"\rcategory_type\x18\b \x01(\tR\fcategoryType\x12\x1b\n" +
+	"\tdate_from\x18\t \x01(\tR\bdateFrom\x12\x17\n" +
+	"\adate_to\x18\n" +
+	" \x01(\tR\x06dateTo\x12\x16\n" +
+	"\x06cursor\x18\v \x01(\tR\x06cursor\x12#\n" +
+	"\rcursor_amount\x18\f \x01(\x01R\fcursorAmount\x12\x1f\n" +
+	"\vcursor_date\x18\r \x01(\tR\n" +
+	"cursorDate\"\xf8\x01\n" +
 	"\x18CreateTransactionRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x12\x1f\n" +
@@ -1784,14 +1819,16 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x0etransaction_id\x18\x01 \x01(\tR\rtransactionId\x12\x14\n" +
 	"\x05image\x18\x02 \x01(\tR\x05image\x12\x16\n" +
 	"\x06format\x18\x03 \x01(\tR\x06format\x12\x12\n" +
-	"\x04size\x18\x04 \x01(\x03R\x04size\"\xc9\x01\n" +
+	"\x04size\x18\x04 \x01(\x03R\x04size\"\xa8\x02\n" +
 	"\x1bGetUserTransactionsResponse\x12B\n" +
 	"\ftransactions\x18\x01 \x03(\v2\x1e.transaction.TransactionDetailR\ftransactions\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
-	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
-	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
-	"totalPages\"S\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x1f\n" +
+	"\vnext_cursor\x18\x04 \x01(\tR\n" +
+	"nextCursor\x12\x19\n" +
+	"\bhas_next\x18\x05 \x01(\bR\ahasNext\x12,\n" +
+	"\x12next_cursor_amount\x18\x06 \x01(\x01R\x10nextCursorAmount\x12(\n" +
+	"\x10next_cursor_date\x18\a \x01(\tR\x0enextCursorDate\"S\n" +
 	"\x15GetCategoriesResponse\x12:\n" +
 	"\n" +
 	"categories\x18\x01 \x03(\v2\x1a.transaction.CategoryGroupR\n" +

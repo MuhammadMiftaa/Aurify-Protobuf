@@ -19,8 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	InvestmentService_GetInvestments_FullMethodName     = "/investment.InvestmentService/GetInvestments"
-	InvestmentService_GetUserInvestments_FullMethodName = "/investment.InvestmentService/GetUserInvestments"
+	InvestmentService_GetInvestments_FullMethodName        = "/investment.InvestmentService/GetInvestments"
+	InvestmentService_GetUserInvestments_FullMethodName    = "/investment.InvestmentService/GetUserInvestments"
+	InvestmentService_GetUserInvestmentList_FullMethodName = "/investment.InvestmentService/GetUserInvestmentList"
+	InvestmentService_GetInvestmentDetail_FullMethodName   = "/investment.InvestmentService/GetInvestmentDetail"
+	InvestmentService_CreateInvestment_FullMethodName      = "/investment.InvestmentService/CreateInvestment"
+	InvestmentService_SellInvestment_FullMethodName        = "/investment.InvestmentService/SellInvestment"
+	InvestmentService_GetInvestmentSummary_FullMethodName  = "/investment.InvestmentService/GetInvestmentSummary"
+	InvestmentService_GetAssetCodes_FullMethodName         = "/investment.InvestmentService/GetAssetCodes"
 )
 
 // InvestmentServiceClient is the client API for InvestmentService service.
@@ -29,6 +35,12 @@ const (
 type InvestmentServiceClient interface {
 	GetInvestments(ctx context.Context, in *GetInvestmentOptions, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Investment], error)
 	GetUserInvestments(ctx context.Context, in *UserID, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Investment], error)
+	GetUserInvestmentList(ctx context.Context, in *GetUserInvestmentListRequest, opts ...grpc.CallOption) (*GetUserInvestmentListResponse, error)
+	GetInvestmentDetail(ctx context.Context, in *GetInvestmentDetailRequest, opts ...grpc.CallOption) (*Investment, error)
+	CreateInvestment(ctx context.Context, in *CreateInvestmentRequest, opts ...grpc.CallOption) (*Investment, error)
+	SellInvestment(ctx context.Context, in *SellInvestmentRequest, opts ...grpc.CallOption) (*SellInvestmentResponse, error)
+	GetInvestmentSummary(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*InvestmentSummaryResponse, error)
+	GetAssetCodes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetAssetCodesResponse, error)
 }
 
 type investmentServiceClient struct {
@@ -77,12 +89,78 @@ func (c *investmentServiceClient) GetUserInvestments(ctx context.Context, in *Us
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type InvestmentService_GetUserInvestmentsClient = grpc.ServerStreamingClient[Investment]
 
+func (c *investmentServiceClient) GetUserInvestmentList(ctx context.Context, in *GetUserInvestmentListRequest, opts ...grpc.CallOption) (*GetUserInvestmentListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUserInvestmentListResponse)
+	err := c.cc.Invoke(ctx, InvestmentService_GetUserInvestmentList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) GetInvestmentDetail(ctx context.Context, in *GetInvestmentDetailRequest, opts ...grpc.CallOption) (*Investment, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Investment)
+	err := c.cc.Invoke(ctx, InvestmentService_GetInvestmentDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) CreateInvestment(ctx context.Context, in *CreateInvestmentRequest, opts ...grpc.CallOption) (*Investment, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Investment)
+	err := c.cc.Invoke(ctx, InvestmentService_CreateInvestment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) SellInvestment(ctx context.Context, in *SellInvestmentRequest, opts ...grpc.CallOption) (*SellInvestmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SellInvestmentResponse)
+	err := c.cc.Invoke(ctx, InvestmentService_SellInvestment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) GetInvestmentSummary(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*InvestmentSummaryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(InvestmentSummaryResponse)
+	err := c.cc.Invoke(ctx, InvestmentService_GetInvestmentSummary_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) GetAssetCodes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetAssetCodesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAssetCodesResponse)
+	err := c.cc.Invoke(ctx, InvestmentService_GetAssetCodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InvestmentServiceServer is the server API for InvestmentService service.
 // All implementations must embed UnimplementedInvestmentServiceServer
 // for forward compatibility.
 type InvestmentServiceServer interface {
 	GetInvestments(*GetInvestmentOptions, grpc.ServerStreamingServer[Investment]) error
 	GetUserInvestments(*UserID, grpc.ServerStreamingServer[Investment]) error
+	GetUserInvestmentList(context.Context, *GetUserInvestmentListRequest) (*GetUserInvestmentListResponse, error)
+	GetInvestmentDetail(context.Context, *GetInvestmentDetailRequest) (*Investment, error)
+	CreateInvestment(context.Context, *CreateInvestmentRequest) (*Investment, error)
+	SellInvestment(context.Context, *SellInvestmentRequest) (*SellInvestmentResponse, error)
+	GetInvestmentSummary(context.Context, *UserID) (*InvestmentSummaryResponse, error)
+	GetAssetCodes(context.Context, *Empty) (*GetAssetCodesResponse, error)
 	mustEmbedUnimplementedInvestmentServiceServer()
 }
 
@@ -98,6 +176,24 @@ func (UnimplementedInvestmentServiceServer) GetInvestments(*GetInvestmentOptions
 }
 func (UnimplementedInvestmentServiceServer) GetUserInvestments(*UserID, grpc.ServerStreamingServer[Investment]) error {
 	return status.Error(codes.Unimplemented, "method GetUserInvestments not implemented")
+}
+func (UnimplementedInvestmentServiceServer) GetUserInvestmentList(context.Context, *GetUserInvestmentListRequest) (*GetUserInvestmentListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserInvestmentList not implemented")
+}
+func (UnimplementedInvestmentServiceServer) GetInvestmentDetail(context.Context, *GetInvestmentDetailRequest) (*Investment, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetInvestmentDetail not implemented")
+}
+func (UnimplementedInvestmentServiceServer) CreateInvestment(context.Context, *CreateInvestmentRequest) (*Investment, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateInvestment not implemented")
+}
+func (UnimplementedInvestmentServiceServer) SellInvestment(context.Context, *SellInvestmentRequest) (*SellInvestmentResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SellInvestment not implemented")
+}
+func (UnimplementedInvestmentServiceServer) GetInvestmentSummary(context.Context, *UserID) (*InvestmentSummaryResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetInvestmentSummary not implemented")
+}
+func (UnimplementedInvestmentServiceServer) GetAssetCodes(context.Context, *Empty) (*GetAssetCodesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAssetCodes not implemented")
 }
 func (UnimplementedInvestmentServiceServer) mustEmbedUnimplementedInvestmentServiceServer() {}
 func (UnimplementedInvestmentServiceServer) testEmbeddedByValue()                           {}
@@ -142,13 +238,146 @@ func _InvestmentService_GetUserInvestments_Handler(srv interface{}, stream grpc.
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type InvestmentService_GetUserInvestmentsServer = grpc.ServerStreamingServer[Investment]
 
+func _InvestmentService_GetUserInvestmentList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserInvestmentListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).GetUserInvestmentList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_GetUserInvestmentList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).GetUserInvestmentList(ctx, req.(*GetUserInvestmentListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_GetInvestmentDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetInvestmentDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).GetInvestmentDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_GetInvestmentDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).GetInvestmentDetail(ctx, req.(*GetInvestmentDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_CreateInvestment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateInvestmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).CreateInvestment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_CreateInvestment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).CreateInvestment(ctx, req.(*CreateInvestmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_SellInvestment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SellInvestmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).SellInvestment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_SellInvestment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).SellInvestment(ctx, req.(*SellInvestmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_GetInvestmentSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).GetInvestmentSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_GetInvestmentSummary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).GetInvestmentSummary(ctx, req.(*UserID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_GetAssetCodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).GetAssetCodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_GetAssetCodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).GetAssetCodes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InvestmentService_ServiceDesc is the grpc.ServiceDesc for InvestmentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var InvestmentService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "investment.InvestmentService",
 	HandlerType: (*InvestmentServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetUserInvestmentList",
+			Handler:    _InvestmentService_GetUserInvestmentList_Handler,
+		},
+		{
+			MethodName: "GetInvestmentDetail",
+			Handler:    _InvestmentService_GetInvestmentDetail_Handler,
+		},
+		{
+			MethodName: "CreateInvestment",
+			Handler:    _InvestmentService_CreateInvestment_Handler,
+		},
+		{
+			MethodName: "SellInvestment",
+			Handler:    _InvestmentService_SellInvestment_Handler,
+		},
+		{
+			MethodName: "GetInvestmentSummary",
+			Handler:    _InvestmentService_GetInvestmentSummary_Handler,
+		},
+		{
+			MethodName: "GetAssetCodes",
+			Handler:    _InvestmentService_GetAssetCodes_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GetInvestments",

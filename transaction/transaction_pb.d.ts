@@ -327,8 +327,6 @@ export class GetUserTransactionsRequest extends jspb.Message {
     getWalletIdsList(): Array<string>;
     setWalletIdsList(value: Array<string>): GetUserTransactionsRequest;
     addWalletIds(value: string, index?: number): string;
-    getPage(): number;
-    setPage(value: number): GetUserTransactionsRequest;
     getPageSize(): number;
     setPageSize(value: number): GetUserTransactionsRequest;
     getSortBy(): string;
@@ -347,6 +345,12 @@ export class GetUserTransactionsRequest extends jspb.Message {
     setDateFrom(value: string): GetUserTransactionsRequest;
     getDateTo(): string;
     setDateTo(value: string): GetUserTransactionsRequest;
+    getCursor(): string;
+    setCursor(value: string): GetUserTransactionsRequest;
+    getCursorAmount(): number;
+    setCursorAmount(value: number): GetUserTransactionsRequest;
+    getCursorDate(): string;
+    setCursorDate(value: string): GetUserTransactionsRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetUserTransactionsRequest.AsObject;
@@ -361,7 +365,6 @@ export class GetUserTransactionsRequest extends jspb.Message {
 export namespace GetUserTransactionsRequest {
     export type AsObject = {
         walletIdsList: Array<string>,
-        page: number,
         pageSize: number,
         sortBy: string,
         sortOrder: string,
@@ -371,6 +374,9 @@ export namespace GetUserTransactionsRequest {
         categoryType: string,
         dateFrom: string,
         dateTo: string,
+        cursor: string,
+        cursorAmount: number,
+        cursorDate: string,
     }
 }
 
@@ -579,12 +585,16 @@ export class GetUserTransactionsResponse extends jspb.Message {
     addTransactions(value?: TransactionDetail, index?: number): TransactionDetail;
     getTotal(): number;
     setTotal(value: number): GetUserTransactionsResponse;
-    getPage(): number;
-    setPage(value: number): GetUserTransactionsResponse;
     getPageSize(): number;
     setPageSize(value: number): GetUserTransactionsResponse;
-    getTotalPages(): number;
-    setTotalPages(value: number): GetUserTransactionsResponse;
+    getNextCursor(): string;
+    setNextCursor(value: string): GetUserTransactionsResponse;
+    getHasNext(): boolean;
+    setHasNext(value: boolean): GetUserTransactionsResponse;
+    getNextCursorAmount(): number;
+    setNextCursorAmount(value: number): GetUserTransactionsResponse;
+    getNextCursorDate(): string;
+    setNextCursorDate(value: string): GetUserTransactionsResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetUserTransactionsResponse.AsObject;
@@ -600,9 +610,11 @@ export namespace GetUserTransactionsResponse {
     export type AsObject = {
         transactionsList: Array<TransactionDetail.AsObject>,
         total: number,
-        page: number,
         pageSize: number,
-        totalPages: number,
+        nextCursor: string,
+        hasNext: boolean,
+        nextCursorAmount: number,
+        nextCursorDate: string,
     }
 }
 

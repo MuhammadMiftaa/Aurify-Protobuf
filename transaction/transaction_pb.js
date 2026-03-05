@@ -2984,16 +2984,18 @@ proto.transaction.GetUserTransactionsRequest.prototype.toObject = function(opt_i
 proto.transaction.GetUserTransactionsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     walletIdsList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f,
-    page: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    sortBy: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortOrder: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    search: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    walletId: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    categoryId: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    categoryType: jspb.Message.getFieldWithDefault(msg, 9, ""),
-    dateFrom: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    dateTo: jspb.Message.getFieldWithDefault(msg, 11, "")
+    pageSize: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    sortBy: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    sortOrder: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    search: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    walletId: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    categoryId: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    categoryType: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    dateFrom: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    dateTo: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    cursor: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    cursorAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 12, 0.0),
+    cursorDate: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -3036,43 +3038,51 @@ proto.transaction.GetUserTransactionsRequest.deserializeBinaryFromReader = funct
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPage(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
-    case 4:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setSortBy(value);
       break;
-    case 5:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setSortOrder(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setSearch(value);
       break;
-    case 7:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setWalletId(value);
       break;
-    case 8:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setCategoryId(value);
       break;
-    case 9:
+    case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setCategoryType(value);
       break;
-    case 10:
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setDateFrom(value);
       break;
-    case 11:
+    case 10:
       var value = /** @type {string} */ (reader.readString());
       msg.setDateTo(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCursor(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setCursorAmount(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setCursorDate(value);
       break;
     default:
       reader.skipField();
@@ -3110,73 +3120,87 @@ proto.transaction.GetUserTransactionsRequest.serializeBinaryToWriter = function(
       f
     );
   }
-  f = message.getPage();
+  f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
       2,
       f
     );
   }
-  f = message.getPageSize();
-  if (f !== 0) {
-    writer.writeInt32(
-      3,
-      f
-    );
-  }
   f = message.getSortBy();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      3,
       f
     );
   }
   f = message.getSortOrder();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      4,
       f
     );
   }
   f = message.getSearch();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      5,
       f
     );
   }
   f = message.getWalletId();
   if (f.length > 0) {
     writer.writeString(
-      7,
+      6,
       f
     );
   }
   f = message.getCategoryId();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      7,
       f
     );
   }
   f = message.getCategoryType();
   if (f.length > 0) {
     writer.writeString(
-      9,
+      8,
       f
     );
   }
   f = message.getDateFrom();
   if (f.length > 0) {
     writer.writeString(
-      10,
+      9,
       f
     );
   }
   f = message.getDateTo();
   if (f.length > 0) {
     writer.writeString(
+      10,
+      f
+    );
+  }
+  f = message.getCursor();
+  if (f.length > 0) {
+    writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getCursorAmount();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      12,
+      f
+    );
+  }
+  f = message.getCursorDate();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
       f
     );
   }
@@ -3221,10 +3245,10 @@ proto.transaction.GetUserTransactionsRequest.prototype.clearWalletIdsList = func
 
 
 /**
- * optional int32 page = 2;
+ * optional int32 page_size = 2;
  * @return {number}
  */
-proto.transaction.GetUserTransactionsRequest.prototype.getPage = function() {
+proto.transaction.GetUserTransactionsRequest.prototype.getPageSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -3233,35 +3257,17 @@ proto.transaction.GetUserTransactionsRequest.prototype.getPage = function() {
  * @param {number} value
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
-proto.transaction.GetUserTransactionsRequest.prototype.setPage = function(value) {
+proto.transaction.GetUserTransactionsRequest.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional int32 page_size = 3;
- * @return {number}
- */
-proto.transaction.GetUserTransactionsRequest.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.transaction.GetUserTransactionsRequest} returns this
- */
-proto.transaction.GetUserTransactionsRequest.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 3, value);
-};
-
-
-/**
- * optional string sort_by = 4;
+ * optional string sort_by = 3;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getSortBy = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -3270,16 +3276,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getSortBy = function() {
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setSortBy = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string sort_order = 5;
+ * optional string sort_order = 4;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getSortOrder = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -3288,16 +3294,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getSortOrder = function()
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setSortOrder = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string search = 6;
+ * optional string search = 5;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getSearch = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
@@ -3306,16 +3312,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getSearch = function() {
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setSearch = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string wallet_id = 7;
+ * optional string wallet_id = 6;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getWalletId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
@@ -3324,16 +3330,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getWalletId = function() 
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setWalletId = function(value) {
-  return jspb.Message.setProto3StringField(this, 7, value);
+  return jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string category_id = 8;
+ * optional string category_id = 7;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getCategoryId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
@@ -3342,16 +3348,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getCategoryId = function(
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setCategoryId = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string category_type = 9;
+ * optional string category_type = 8;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getCategoryType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
@@ -3360,16 +3366,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getCategoryType = functio
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setCategoryType = function(value) {
-  return jspb.Message.setProto3StringField(this, 9, value);
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
 /**
- * optional string date_from = 10;
+ * optional string date_from = 9;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getDateFrom = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
@@ -3378,16 +3384,16 @@ proto.transaction.GetUserTransactionsRequest.prototype.getDateFrom = function() 
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setDateFrom = function(value) {
-  return jspb.Message.setProto3StringField(this, 10, value);
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
 /**
- * optional string date_to = 11;
+ * optional string date_to = 10;
  * @return {string}
  */
 proto.transaction.GetUserTransactionsRequest.prototype.getDateTo = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
@@ -3396,7 +3402,61 @@ proto.transaction.GetUserTransactionsRequest.prototype.getDateTo = function() {
  * @return {!proto.transaction.GetUserTransactionsRequest} returns this
  */
 proto.transaction.GetUserTransactionsRequest.prototype.setDateTo = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
+};
+
+
+/**
+ * optional string cursor = 11;
+ * @return {string}
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.getCursor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.transaction.GetUserTransactionsRequest} returns this
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.setCursor = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional double cursor_amount = 12;
+ * @return {number}
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.getCursorAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 12, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.transaction.GetUserTransactionsRequest} returns this
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.setCursorAmount = function(value) {
+  return jspb.Message.setProto3FloatField(this, 12, value);
+};
+
+
+/**
+ * optional string cursor_date = 13;
+ * @return {string}
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.getCursorDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.transaction.GetUserTransactionsRequest} returns this
+ */
+proto.transaction.GetUserTransactionsRequest.prototype.setCursorDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -5024,9 +5084,11 @@ proto.transaction.GetUserTransactionsResponse.toObject = function(includeInstanc
     transactionsList: jspb.Message.toObjectList(msg.getTransactionsList(),
     proto.transaction.TransactionDetail.toObject, includeInstance),
     total: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    page: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    totalPages: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    nextCursor: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    hasNext: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    nextCursorAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    nextCursorDate: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -5074,15 +5136,23 @@ proto.transaction.GetUserTransactionsResponse.deserializeBinaryFromReader = func
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPage(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readInt32());
       msg.setPageSize(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextCursor(value);
+      break;
     case 5:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setTotalPages(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHasNext(value);
+      break;
+    case 6:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setNextCursorAmount(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNextCursorDate(value);
       break;
     default:
       reader.skipField();
@@ -5128,24 +5198,38 @@ proto.transaction.GetUserTransactionsResponse.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getPage();
+  f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getPageSize();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getNextCursor();
+  if (f.length > 0) {
+    writer.writeString(
       4,
       f
     );
   }
-  f = message.getTotalPages();
-  if (f !== 0) {
-    writer.writeInt32(
+  f = message.getHasNext();
+  if (f) {
+    writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getNextCursorAmount();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      6,
+      f
+    );
+  }
+  f = message.getNextCursorDate();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -5209,10 +5293,10 @@ proto.transaction.GetUserTransactionsResponse.prototype.setTotal = function(valu
 
 
 /**
- * optional int32 page = 3;
+ * optional int32 page_size = 3;
  * @return {number}
  */
-proto.transaction.GetUserTransactionsResponse.prototype.getPage = function() {
+proto.transaction.GetUserTransactionsResponse.prototype.getPageSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -5221,17 +5305,53 @@ proto.transaction.GetUserTransactionsResponse.prototype.getPage = function() {
  * @param {number} value
  * @return {!proto.transaction.GetUserTransactionsResponse} returns this
  */
-proto.transaction.GetUserTransactionsResponse.prototype.setPage = function(value) {
+proto.transaction.GetUserTransactionsResponse.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional int32 page_size = 4;
+ * optional string next_cursor = 4;
+ * @return {string}
+ */
+proto.transaction.GetUserTransactionsResponse.prototype.getNextCursor = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.transaction.GetUserTransactionsResponse} returns this
+ */
+proto.transaction.GetUserTransactionsResponse.prototype.setNextCursor = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional bool has_next = 5;
+ * @return {boolean}
+ */
+proto.transaction.GetUserTransactionsResponse.prototype.getHasNext = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.transaction.GetUserTransactionsResponse} returns this
+ */
+proto.transaction.GetUserTransactionsResponse.prototype.setHasNext = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional double next_cursor_amount = 6;
  * @return {number}
  */
-proto.transaction.GetUserTransactionsResponse.prototype.getPageSize = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.transaction.GetUserTransactionsResponse.prototype.getNextCursorAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
 };
 
 
@@ -5239,26 +5359,26 @@ proto.transaction.GetUserTransactionsResponse.prototype.getPageSize = function()
  * @param {number} value
  * @return {!proto.transaction.GetUserTransactionsResponse} returns this
  */
-proto.transaction.GetUserTransactionsResponse.prototype.setPageSize = function(value) {
-  return jspb.Message.setProto3IntField(this, 4, value);
+proto.transaction.GetUserTransactionsResponse.prototype.setNextCursorAmount = function(value) {
+  return jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 
 /**
- * optional int32 total_pages = 5;
- * @return {number}
+ * optional string next_cursor_date = 7;
+ * @return {string}
  */
-proto.transaction.GetUserTransactionsResponse.prototype.getTotalPages = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+proto.transaction.GetUserTransactionsResponse.prototype.getNextCursorDate = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.transaction.GetUserTransactionsResponse} returns this
  */
-proto.transaction.GetUserTransactionsResponse.prototype.setTotalPages = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+proto.transaction.GetUserTransactionsResponse.prototype.setNextCursorDate = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

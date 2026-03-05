@@ -7,7 +7,17 @@ option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/investment";
 service InvestmentService {
     rpc GetInvestments (GetInvestmentOptions) returns (stream Investment);
     rpc GetUserInvestments (UserID) returns (stream Investment);
+    rpc GetUserInvestmentList (GetUserInvestmentListRequest) returns (GetUserInvestmentListResponse);
+    rpc GetInvestmentDetail (GetInvestmentDetailRequest) returns (Investment);
+    rpc CreateInvestment (CreateInvestmentRequest) returns (Investment);
+    rpc SellInvestment (SellInvestmentRequest) returns (SellInvestmentResponse);
+    rpc GetInvestmentSummary (UserID) returns (InvestmentSummaryResponse);
+    rpc GetAssetCodes (Empty) returns (GetAssetCodesResponse);
 }
+
+// ── Common Messages ──
+
+message Empty {}
 
 message AssetCode {
     string code = 1;
@@ -34,6 +44,21 @@ message Investment {
     string updatedAt = 11;
 }
 
+message InvestmentSold {
+    string id = 1;
+    string investmentId = 2;
+    string userId = 3;
+    double quantity = 4;
+    double sellPrice = 5;
+    double amount = 6;
+    string date = 7;
+    string description = 8;
+    double deficit = 9;
+    string createdAt = 10;
+    string updatedAt = 11;
+    AssetCode assetCode = 12;
+}
+
 message InvestmentID {
     string id = 1;
 }
@@ -44,4 +69,68 @@ message UserID {
 
 message GetInvestmentOptions {
     int32 limit = 1;
+}
+
+// ── Request Messages ──
+
+message GetUserInvestmentListRequest {
+    string userId = 1;
+    int32 page = 2;
+    int32 pageSize = 3;
+    string sortBy = 4;
+    string sortOrder = 5;
+    string search = 6;
+    string code = 7;
+}
+
+message GetInvestmentDetailRequest {
+    string userId = 1;
+    string investmentId = 2;
+}
+
+message CreateInvestmentRequest {
+    string userId = 1;
+    string code = 2;
+    double quantity = 3;
+    double amount = 4;
+    double initialValuation = 5;
+    string date = 6;
+    string description = 7;
+}
+
+message SellInvestmentRequest {
+    string userId = 1;
+    string assetcode = 2;
+    double quantity = 3;
+    double amount = 4;
+    string date = 5;
+    string description = 6;
+}
+
+// ── Response Messages ──
+
+message GetUserInvestmentListResponse {
+    repeated Investment investments = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 pageSize = 4;
+    int32 totalPages = 5;
+}
+
+message SellInvestmentResponse {
+    repeated InvestmentSold soldRecords = 1;
+}
+
+message InvestmentSummaryResponse {
+    int32 totalInvestments = 1;
+    double totalInvested = 2;
+    double totalCurrentValue = 3;
+    double totalProfitLoss = 4;
+    double totalProfitLossPct = 5;
+    double totalSoldAmount = 6;
+    double totalRealizedGain = 7;
+}
+
+message GetAssetCodesResponse {
+    repeated AssetCode assetCodes = 1;
 }

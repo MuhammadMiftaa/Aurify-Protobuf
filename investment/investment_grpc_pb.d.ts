@@ -10,6 +10,12 @@ import * as investment_investment_pb from "../investment/investment_pb";
 interface IInvestmentServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     getInvestments: IInvestmentServiceService_IGetInvestments;
     getUserInvestments: IInvestmentServiceService_IGetUserInvestments;
+    getUserInvestmentList: IInvestmentServiceService_IGetUserInvestmentList;
+    getInvestmentDetail: IInvestmentServiceService_IGetInvestmentDetail;
+    createInvestment: IInvestmentServiceService_ICreateInvestment;
+    sellInvestment: IInvestmentServiceService_ISellInvestment;
+    getInvestmentSummary: IInvestmentServiceService_IGetInvestmentSummary;
+    getAssetCodes: IInvestmentServiceService_IGetAssetCodes;
 }
 
 interface IInvestmentServiceService_IGetInvestments extends grpc.MethodDefinition<investment_investment_pb.GetInvestmentOptions, investment_investment_pb.Investment> {
@@ -30,12 +36,72 @@ interface IInvestmentServiceService_IGetUserInvestments extends grpc.MethodDefin
     responseSerialize: grpc.serialize<investment_investment_pb.Investment>;
     responseDeserialize: grpc.deserialize<investment_investment_pb.Investment>;
 }
+interface IInvestmentServiceService_IGetUserInvestmentList extends grpc.MethodDefinition<investment_investment_pb.GetUserInvestmentListRequest, investment_investment_pb.GetUserInvestmentListResponse> {
+    path: "/investment.InvestmentService/GetUserInvestmentList";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.GetUserInvestmentListRequest>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.GetUserInvestmentListRequest>;
+    responseSerialize: grpc.serialize<investment_investment_pb.GetUserInvestmentListResponse>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.GetUserInvestmentListResponse>;
+}
+interface IInvestmentServiceService_IGetInvestmentDetail extends grpc.MethodDefinition<investment_investment_pb.GetInvestmentDetailRequest, investment_investment_pb.Investment> {
+    path: "/investment.InvestmentService/GetInvestmentDetail";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.GetInvestmentDetailRequest>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.GetInvestmentDetailRequest>;
+    responseSerialize: grpc.serialize<investment_investment_pb.Investment>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.Investment>;
+}
+interface IInvestmentServiceService_ICreateInvestment extends grpc.MethodDefinition<investment_investment_pb.CreateInvestmentRequest, investment_investment_pb.Investment> {
+    path: "/investment.InvestmentService/CreateInvestment";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.CreateInvestmentRequest>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.CreateInvestmentRequest>;
+    responseSerialize: grpc.serialize<investment_investment_pb.Investment>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.Investment>;
+}
+interface IInvestmentServiceService_ISellInvestment extends grpc.MethodDefinition<investment_investment_pb.SellInvestmentRequest, investment_investment_pb.SellInvestmentResponse> {
+    path: "/investment.InvestmentService/SellInvestment";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.SellInvestmentRequest>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.SellInvestmentRequest>;
+    responseSerialize: grpc.serialize<investment_investment_pb.SellInvestmentResponse>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.SellInvestmentResponse>;
+}
+interface IInvestmentServiceService_IGetInvestmentSummary extends grpc.MethodDefinition<investment_investment_pb.UserID, investment_investment_pb.InvestmentSummaryResponse> {
+    path: "/investment.InvestmentService/GetInvestmentSummary";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.UserID>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.UserID>;
+    responseSerialize: grpc.serialize<investment_investment_pb.InvestmentSummaryResponse>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.InvestmentSummaryResponse>;
+}
+interface IInvestmentServiceService_IGetAssetCodes extends grpc.MethodDefinition<investment_investment_pb.Empty, investment_investment_pb.GetAssetCodesResponse> {
+    path: "/investment.InvestmentService/GetAssetCodes";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<investment_investment_pb.Empty>;
+    requestDeserialize: grpc.deserialize<investment_investment_pb.Empty>;
+    responseSerialize: grpc.serialize<investment_investment_pb.GetAssetCodesResponse>;
+    responseDeserialize: grpc.deserialize<investment_investment_pb.GetAssetCodesResponse>;
+}
 
 export const InvestmentServiceService: IInvestmentServiceService;
 
 export interface IInvestmentServiceServer extends grpc.UntypedServiceImplementation {
     getInvestments: grpc.handleServerStreamingCall<investment_investment_pb.GetInvestmentOptions, investment_investment_pb.Investment>;
     getUserInvestments: grpc.handleServerStreamingCall<investment_investment_pb.UserID, investment_investment_pb.Investment>;
+    getUserInvestmentList: grpc.handleUnaryCall<investment_investment_pb.GetUserInvestmentListRequest, investment_investment_pb.GetUserInvestmentListResponse>;
+    getInvestmentDetail: grpc.handleUnaryCall<investment_investment_pb.GetInvestmentDetailRequest, investment_investment_pb.Investment>;
+    createInvestment: grpc.handleUnaryCall<investment_investment_pb.CreateInvestmentRequest, investment_investment_pb.Investment>;
+    sellInvestment: grpc.handleUnaryCall<investment_investment_pb.SellInvestmentRequest, investment_investment_pb.SellInvestmentResponse>;
+    getInvestmentSummary: grpc.handleUnaryCall<investment_investment_pb.UserID, investment_investment_pb.InvestmentSummaryResponse>;
+    getAssetCodes: grpc.handleUnaryCall<investment_investment_pb.Empty, investment_investment_pb.GetAssetCodesResponse>;
 }
 
 export interface IInvestmentServiceClient {
@@ -43,6 +109,24 @@ export interface IInvestmentServiceClient {
     getInvestments(request: investment_investment_pb.GetInvestmentOptions, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
     getUserInvestments(request: investment_investment_pb.UserID, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
     getUserInvestments(request: investment_investment_pb.UserID, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
+    getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    createInvestment(request: investment_investment_pb.CreateInvestmentRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    createInvestment(request: investment_investment_pb.CreateInvestmentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    createInvestment(request: investment_investment_pb.CreateInvestmentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    sellInvestment(request: investment_investment_pb.SellInvestmentRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    sellInvestment(request: investment_investment_pb.SellInvestmentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    sellInvestment(request: investment_investment_pb.SellInvestmentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    getInvestmentSummary(request: investment_investment_pb.UserID, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    getInvestmentSummary(request: investment_investment_pb.UserID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    getInvestmentSummary(request: investment_investment_pb.UserID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    getAssetCodes(request: investment_investment_pb.Empty, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
+    getAssetCodes(request: investment_investment_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
+    getAssetCodes(request: investment_investment_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
 }
 
 export class InvestmentServiceClient extends grpc.Client implements IInvestmentServiceClient {
@@ -51,4 +135,22 @@ export class InvestmentServiceClient extends grpc.Client implements IInvestmentS
     public getInvestments(request: investment_investment_pb.GetInvestmentOptions, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
     public getUserInvestments(request: investment_investment_pb.UserID, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
     public getUserInvestments(request: investment_investment_pb.UserID, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<investment_investment_pb.Investment>;
+    public getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    public getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    public getUserInvestmentList(request: investment_investment_pb.GetUserInvestmentListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetUserInvestmentListResponse) => void): grpc.ClientUnaryCall;
+    public getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public getInvestmentDetail(request: investment_investment_pb.GetInvestmentDetailRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public createInvestment(request: investment_investment_pb.CreateInvestmentRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public createInvestment(request: investment_investment_pb.CreateInvestmentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public createInvestment(request: investment_investment_pb.CreateInvestmentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.Investment) => void): grpc.ClientUnaryCall;
+    public sellInvestment(request: investment_investment_pb.SellInvestmentRequest, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    public sellInvestment(request: investment_investment_pb.SellInvestmentRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    public sellInvestment(request: investment_investment_pb.SellInvestmentRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.SellInvestmentResponse) => void): grpc.ClientUnaryCall;
+    public getInvestmentSummary(request: investment_investment_pb.UserID, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    public getInvestmentSummary(request: investment_investment_pb.UserID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    public getInvestmentSummary(request: investment_investment_pb.UserID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.InvestmentSummaryResponse) => void): grpc.ClientUnaryCall;
+    public getAssetCodes(request: investment_investment_pb.Empty, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
+    public getAssetCodes(request: investment_investment_pb.Empty, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
+    public getAssetCodes(request: investment_investment_pb.Empty, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: investment_investment_pb.GetAssetCodesResponse) => void): grpc.ClientUnaryCall;
 }
