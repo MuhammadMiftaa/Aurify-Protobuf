@@ -42,6 +42,7 @@ message Investment {
     AssetCode asset = 9;
     string created_at = 10;
     string updated_at = 11;
+    string wallet_id = 12;
 }
 
 message InvestmentSold {
@@ -57,6 +58,7 @@ message InvestmentSold {
     string created_at = 10;
     string updated_at = 11;
     AssetCode asset = 12;
+    string wallet_id = 13;
 }
 
 message InvestmentID {
@@ -96,6 +98,7 @@ message CreateInvestmentRequest {
     double initial_valuation = 5;
     string date = 6;
     string description = 7;
+    string wallet_id = 8;
 }
 
 message SellInvestmentRequest {
@@ -105,6 +108,7 @@ message SellInvestmentRequest {
     double amount = 4;
     string date = 5;
     string description = 6;
+    string wallet_id = 7;
 }
 
 // ── Response Messages ──

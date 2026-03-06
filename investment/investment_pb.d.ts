@@ -90,6 +90,8 @@ export class Investment extends jspb.Message {
     setCreatedAt(value: string): Investment;
     getUpdatedAt(): string;
     setUpdatedAt(value: string): Investment;
+    getWalletId(): string;
+    setWalletId(value: string): Investment;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Investment.AsObject;
@@ -114,6 +116,7 @@ export namespace Investment {
         asset?: AssetCode.AsObject,
         createdAt: string,
         updatedAt: string,
+        walletId: string,
     }
 }
 
@@ -145,6 +148,8 @@ export class InvestmentSold extends jspb.Message {
     clearAsset(): void;
     getAsset(): AssetCode | undefined;
     setAsset(value?: AssetCode): InvestmentSold;
+    getWalletId(): string;
+    setWalletId(value: string): InvestmentSold;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InvestmentSold.AsObject;
@@ -170,6 +175,7 @@ export namespace InvestmentSold {
         createdAt: string,
         updatedAt: string,
         asset?: AssetCode.AsObject,
+        walletId: string,
     }
 }
 
@@ -309,6 +315,8 @@ export class CreateInvestmentRequest extends jspb.Message {
     setDate(value: string): CreateInvestmentRequest;
     getDescription(): string;
     setDescription(value: string): CreateInvestmentRequest;
+    getWalletId(): string;
+    setWalletId(value: string): CreateInvestmentRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateInvestmentRequest.AsObject;
@@ -329,6 +337,7 @@ export namespace CreateInvestmentRequest {
         initialValuation: number,
         date: string,
         description: string,
+        walletId: string,
     }
 }
 
@@ -345,6 +354,8 @@ export class SellInvestmentRequest extends jspb.Message {
     setDate(value: string): SellInvestmentRequest;
     getDescription(): string;
     setDescription(value: string): SellInvestmentRequest;
+    getWalletId(): string;
+    setWalletId(value: string): SellInvestmentRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SellInvestmentRequest.AsObject;
@@ -364,6 +375,7 @@ export namespace SellInvestmentRequest {
         amount: number,
         date: string,
         description: string,
+        walletId: string,
     }
 }
 

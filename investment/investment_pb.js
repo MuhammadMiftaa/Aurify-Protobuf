@@ -834,7 +834,8 @@ proto.investment.Investment.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     asset: (f = msg.getAsset()) && proto.investment.AssetCode.toObject(includeInstance, f),
     createdAt: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    updatedAt: jspb.Message.getFieldWithDefault(msg, 11, "")
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    walletId: jspb.Message.getFieldWithDefault(msg, 12, "")
   };
 
   if (includeInstance) {
@@ -915,6 +916,10 @@ proto.investment.Investment.deserializeBinaryFromReader = function(msg, reader) 
     case 11:
       var value = /** @type {string} */ (reader.readString());
       msg.setUpdatedAt(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWalletId(value);
       break;
     default:
       reader.skipField();
@@ -1020,6 +1025,13 @@ proto.investment.Investment.serializeBinaryToWriter = function(message, writer) 
   if (f.length > 0) {
     writer.writeString(
       11,
+      f
+    );
+  }
+  f = message.getWalletId();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
       f
     );
   }
@@ -1243,6 +1255,24 @@ proto.investment.Investment.prototype.setUpdatedAt = function(value) {
 };
 
 
+/**
+ * optional string wallet_id = 12;
+ * @return {string}
+ */
+proto.investment.Investment.prototype.getWalletId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.investment.Investment} returns this
+ */
+proto.investment.Investment.prototype.setWalletId = function(value) {
+  return jspb.Message.setProto3StringField(this, 12, value);
+};
+
+
 
 
 
@@ -1286,7 +1316,8 @@ proto.investment.InvestmentSold.toObject = function(includeInstance, msg) {
     deficit: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     createdAt: jspb.Message.getFieldWithDefault(msg, 10, ""),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    asset: (f = msg.getAsset()) && proto.investment.AssetCode.toObject(includeInstance, f)
+    asset: (f = msg.getAsset()) && proto.investment.AssetCode.toObject(includeInstance, f),
+    walletId: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -1371,6 +1402,10 @@ proto.investment.InvestmentSold.deserializeBinaryFromReader = function(msg, read
       var value = new proto.investment.AssetCode;
       reader.readMessage(value,proto.investment.AssetCode.deserializeBinaryFromReader);
       msg.setAsset(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWalletId(value);
       break;
     default:
       reader.skipField();
@@ -1484,6 +1519,13 @@ proto.investment.InvestmentSold.serializeBinaryToWriter = function(message, writ
       12,
       f,
       proto.investment.AssetCode.serializeBinaryToWriter
+    );
+  }
+  f = message.getWalletId();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
     );
   }
 };
@@ -1721,6 +1763,24 @@ proto.investment.InvestmentSold.prototype.clearAsset = function() {
  */
 proto.investment.InvestmentSold.prototype.hasAsset = function() {
   return jspb.Message.getField(this, 12) != null;
+};
+
+
+/**
+ * optional string wallet_id = 13;
+ * @return {string}
+ */
+proto.investment.InvestmentSold.prototype.getWalletId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.investment.InvestmentSold} returns this
+ */
+proto.investment.InvestmentSold.prototype.setWalletId = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
 };
 
 
@@ -2622,7 +2682,8 @@ proto.investment.CreateInvestmentRequest.toObject = function(includeInstance, ms
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     initialValuation: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 7, "")
+    description: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    walletId: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -2686,6 +2747,10 @@ proto.investment.CreateInvestmentRequest.deserializeBinaryFromReader = function(
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWalletId(value);
       break;
     default:
       reader.skipField();
@@ -2762,6 +2827,13 @@ proto.investment.CreateInvestmentRequest.serializeBinaryToWriter = function(mess
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getWalletId();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -2894,6 +2966,24 @@ proto.investment.CreateInvestmentRequest.prototype.setDescription = function(val
 };
 
 
+/**
+ * optional string wallet_id = 8;
+ * @return {string}
+ */
+proto.investment.CreateInvestmentRequest.prototype.getWalletId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.investment.CreateInvestmentRequest} returns this
+ */
+proto.investment.CreateInvestmentRequest.prototype.setWalletId = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
 
 
 
@@ -2931,7 +3021,8 @@ proto.investment.SellInvestmentRequest.toObject = function(includeInstance, msg)
     quantity: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    description: jspb.Message.getFieldWithDefault(msg, 6, "")
+    description: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    walletId: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -2991,6 +3082,10 @@ proto.investment.SellInvestmentRequest.deserializeBinaryFromReader = function(ms
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setDescription(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWalletId(value);
       break;
     default:
       reader.skipField();
@@ -3060,6 +3155,13 @@ proto.investment.SellInvestmentRequest.serializeBinaryToWriter = function(messag
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getWalletId();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -3171,6 +3273,24 @@ proto.investment.SellInvestmentRequest.prototype.getDescription = function() {
  */
 proto.investment.SellInvestmentRequest.prototype.setDescription = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string wallet_id = 7;
+ * @return {string}
+ */
+proto.investment.SellInvestmentRequest.prototype.getWalletId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.investment.SellInvestmentRequest} returns this
+ */
+proto.investment.SellInvestmentRequest.prototype.setWalletId = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 

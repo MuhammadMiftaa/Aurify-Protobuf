@@ -170,6 +170,7 @@ type Investment struct {
 	Asset            *AssetCode             `protobuf:"bytes,9,opt,name=asset,proto3" json:"asset,omitempty"`
 	CreatedAt        string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt        string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	WalletId         string                 `protobuf:"bytes,12,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -281,6 +282,13 @@ func (x *Investment) GetUpdatedAt() string {
 	return ""
 }
 
+func (x *Investment) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
+}
+
 type InvestmentSold struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -295,6 +303,7 @@ type InvestmentSold struct {
 	CreatedAt     string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Asset         *AssetCode             `protobuf:"bytes,12,opt,name=asset,proto3" json:"asset,omitempty"`
+	WalletId      string                 `protobuf:"bytes,13,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -411,6 +420,13 @@ func (x *InvestmentSold) GetAsset() *AssetCode {
 		return x.Asset
 	}
 	return nil
+}
+
+func (x *InvestmentSold) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
 }
 
 type InvestmentID struct {
@@ -698,6 +714,7 @@ type CreateInvestmentRequest struct {
 	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initial_valuation,json=initialValuation,proto3" json:"initial_valuation,omitempty"`
 	Date             string                 `protobuf:"bytes,6,opt,name=date,proto3" json:"date,omitempty"`
 	Description      string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
+	WalletId         string                 `protobuf:"bytes,8,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -781,6 +798,13 @@ func (x *CreateInvestmentRequest) GetDescription() string {
 	return ""
 }
 
+func (x *CreateInvestmentRequest) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
+}
+
 type SellInvestmentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -789,6 +813,7 @@ type SellInvestmentRequest struct {
 	Amount        float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
 	Date          string                 `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`
 	Description   string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	WalletId      string                 `protobuf:"bytes,7,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -861,6 +886,13 @@ func (x *SellInvestmentRequest) GetDate() string {
 func (x *SellInvestmentRequest) GetDescription() string {
 	if x != nil {
 		return x.Description
+	}
+	return ""
+}
+
+func (x *SellInvestmentRequest) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
 	}
 	return ""
 }
@@ -1138,7 +1170,7 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\tR\tupdatedAt\"\xcb\x02\n" +
+	"updated_at\x18\b \x01(\tR\tupdatedAt\"\xe8\x02\n" +
 	"\n" +
 	"Investment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
@@ -1154,7 +1186,8 @@ const file_investment_investment_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\v \x01(\tR\tupdatedAt\"\xec\x02\n" +
+	"updated_at\x18\v \x01(\tR\tupdatedAt\x12\x1b\n" +
+	"\twallet_id\x18\f \x01(\tR\bwalletId\"\x89\x03\n" +
 	"\x0eInvestmentSold\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12#\n" +
 	"\rinvestment_id\x18\x02 \x01(\tR\finvestmentId\x12\x17\n" +
@@ -1171,7 +1204,8 @@ const file_investment_investment_proto_rawDesc = "" +
 	" \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\v \x01(\tR\tupdatedAt\x12+\n" +
-	"\x05asset\x18\f \x01(\v2\x15.investment.AssetCodeR\x05asset\"\x1e\n" +
+	"\x05asset\x18\f \x01(\v2\x15.investment.AssetCodeR\x05asset\x12\x1b\n" +
+	"\twallet_id\x18\r \x01(\tR\bwalletId\"\x1e\n" +
 	"\fInvestmentID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
@@ -1189,7 +1223,7 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\x04code\x18\a \x01(\tR\x04code\"Z\n" +
 	"\x1aGetInvestmentDetailRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
-	"\rinvestment_id\x18\x02 \x01(\tR\finvestmentId\"\xdd\x01\n" +
+	"\rinvestment_id\x18\x02 \x01(\tR\finvestmentId\"\xfa\x01\n" +
 	"\x17CreateInvestmentRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x1a\n" +
@@ -1197,7 +1231,8 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12+\n" +
 	"\x11initial_valuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x12\n" +
 	"\x04date\x18\x06 \x01(\tR\x04date\x12 \n" +
-	"\vdescription\x18\a \x01(\tR\vdescription\"\xb9\x01\n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\x12\x1b\n" +
+	"\twallet_id\x18\b \x01(\tR\bwalletId\"\xd6\x01\n" +
 	"\x15SellInvestmentRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
@@ -1205,7 +1240,8 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x16\n" +
 	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12\x12\n" +
 	"\x04date\x18\x05 \x01(\tR\x04date\x12 \n" +
-	"\vdescription\x18\x06 \x01(\tR\vdescription\"\xc1\x01\n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\x12\x1b\n" +
+	"\twallet_id\x18\a \x01(\tR\bwalletId\"\xc1\x01\n" +
 	"\x1dGetUserInvestmentListResponse\x128\n" +
 	"\vinvestments\x18\x01 \x03(\v2\x16.investment.InvestmentR\vinvestments\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
