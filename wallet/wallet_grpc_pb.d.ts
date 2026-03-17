@@ -16,6 +16,8 @@ interface IWalletServiceService extends grpc.ServiceDefinition<grpc.UntypedServi
     deleteWallet: IWalletServiceService_IDeleteWallet;
     getWalletTypes: IWalletServiceService_IGetWalletTypes;
     getWalletSummary: IWalletServiceService_IGetWalletSummary;
+    listWalletTypes: IWalletServiceService_IListWalletTypes;
+    getWalletTypeDetail: IWalletServiceService_IGetWalletTypeDetail;
 }
 
 interface IWalletServiceService_IGetWallets extends grpc.MethodDefinition<wallet_wallet_pb.GetWalletOptions, wallet_wallet_pb.Wallet> {
@@ -90,6 +92,24 @@ interface IWalletServiceService_IGetWalletSummary extends grpc.MethodDefinition<
     responseSerialize: grpc.serialize<wallet_wallet_pb.WalletSummary>;
     responseDeserialize: grpc.deserialize<wallet_wallet_pb.WalletSummary>;
 }
+interface IWalletServiceService_IListWalletTypes extends grpc.MethodDefinition<wallet_wallet_pb.ListWalletTypesRequest, wallet_wallet_pb.ListWalletTypesResponse> {
+    path: "/wallet.WalletService/ListWalletTypes";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<wallet_wallet_pb.ListWalletTypesRequest>;
+    requestDeserialize: grpc.deserialize<wallet_wallet_pb.ListWalletTypesRequest>;
+    responseSerialize: grpc.serialize<wallet_wallet_pb.ListWalletTypesResponse>;
+    responseDeserialize: grpc.deserialize<wallet_wallet_pb.ListWalletTypesResponse>;
+}
+interface IWalletServiceService_IGetWalletTypeDetail extends grpc.MethodDefinition<wallet_wallet_pb.WalletTypeID, wallet_wallet_pb.WalletTypeDetail> {
+    path: "/wallet.WalletService/GetWalletTypeDetail";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<wallet_wallet_pb.WalletTypeID>;
+    requestDeserialize: grpc.deserialize<wallet_wallet_pb.WalletTypeID>;
+    responseSerialize: grpc.serialize<wallet_wallet_pb.WalletTypeDetail>;
+    responseDeserialize: grpc.deserialize<wallet_wallet_pb.WalletTypeDetail>;
+}
 
 export const WalletServiceService: IWalletServiceService;
 
@@ -102,6 +122,8 @@ export interface IWalletServiceServer extends grpc.UntypedServiceImplementation 
     deleteWallet: grpc.handleUnaryCall<wallet_wallet_pb.WalletID, wallet_wallet_pb.Wallet>;
     getWalletTypes: grpc.handleUnaryCall<wallet_wallet_pb.Empty, wallet_wallet_pb.GetWalletTypesResponse>;
     getWalletSummary: grpc.handleUnaryCall<wallet_wallet_pb.UserID, wallet_wallet_pb.WalletSummary>;
+    listWalletTypes: grpc.handleUnaryCall<wallet_wallet_pb.ListWalletTypesRequest, wallet_wallet_pb.ListWalletTypesResponse>;
+    getWalletTypeDetail: grpc.handleUnaryCall<wallet_wallet_pb.WalletTypeID, wallet_wallet_pb.WalletTypeDetail>;
 }
 
 export interface IWalletServiceClient {
@@ -128,6 +150,12 @@ export interface IWalletServiceClient {
     getWalletSummary(request: wallet_wallet_pb.UserID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
     getWalletSummary(request: wallet_wallet_pb.UserID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
     getWalletSummary(request: wallet_wallet_pb.UserID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
+    listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
+    getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
+    getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
 }
 
 export class WalletServiceClient extends grpc.Client implements IWalletServiceClient {
@@ -155,4 +183,10 @@ export class WalletServiceClient extends grpc.Client implements IWalletServiceCl
     public getWalletSummary(request: wallet_wallet_pb.UserID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
     public getWalletSummary(request: wallet_wallet_pb.UserID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
     public getWalletSummary(request: wallet_wallet_pb.UserID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletSummary) => void): grpc.ClientUnaryCall;
+    public listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    public listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    public listWalletTypes(request: wallet_wallet_pb.ListWalletTypesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.ListWalletTypesResponse) => void): grpc.ClientUnaryCall;
+    public getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
+    public getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
+    public getWalletTypeDetail(request: wallet_wallet_pb.WalletTypeID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.WalletTypeDetail) => void): grpc.ClientUnaryCall;
 }

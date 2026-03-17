@@ -1697,6 +1697,302 @@ func (x *NewTransaction) GetDescription() string {
 	return ""
 }
 
+type CategoryID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CategoryID) Reset() {
+	*x = CategoryID{}
+	mi := &file_transaction_transaction_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryID) ProtoMessage() {}
+
+func (x *CategoryID) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryID.ProtoReflect.Descriptor instead.
+func (*CategoryID) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *CategoryID) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type CategoryDetail struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ParentId      string                 `protobuf:"bytes,2,opt,name=parent_id,json=parentId,proto3" json:"parent_id,omitempty"`
+	ParentName    string                 `protobuf:"bytes,3,opt,name=parent_name,json=parentName,proto3" json:"parent_name,omitempty"`
+	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Type          string                 `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CategoryDetail) Reset() {
+	*x = CategoryDetail{}
+	mi := &file_transaction_transaction_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryDetail) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryDetail) ProtoMessage() {}
+
+func (x *CategoryDetail) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryDetail.ProtoReflect.Descriptor instead.
+func (*CategoryDetail) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *CategoryDetail) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetParentId() string {
+	if x != nil {
+		return x.ParentId
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetParentName() string {
+	if x != nil {
+		return x.ParentName
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *CategoryDetail) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+type ListCategoriesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	SortBy        string                 `protobuf:"bytes,3,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,4,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
+	Type          string                 `protobuf:"bytes,6,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListCategoriesRequest) Reset() {
+	*x = ListCategoriesRequest{}
+	mi := &file_transaction_transaction_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListCategoriesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCategoriesRequest) ProtoMessage() {}
+
+func (x *ListCategoriesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCategoriesRequest.ProtoReflect.Descriptor instead.
+func (*ListCategoriesRequest) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *ListCategoriesRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListCategoriesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListCategoriesRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListCategoriesRequest) GetSortOrder() string {
+	if x != nil {
+		return x.SortOrder
+	}
+	return ""
+}
+
+func (x *ListCategoriesRequest) GetSearch() string {
+	if x != nil {
+		return x.Search
+	}
+	return ""
+}
+
+func (x *ListCategoriesRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type ListCategoriesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Categories    []*CategoryDetail      `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	TotalPages    int32                  `protobuf:"varint,5,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListCategoriesResponse) Reset() {
+	*x = ListCategoriesResponse{}
+	mi := &file_transaction_transaction_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListCategoriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListCategoriesResponse) ProtoMessage() {}
+
+func (x *ListCategoriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListCategoriesResponse.ProtoReflect.Descriptor instead.
+func (*ListCategoriesResponse) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *ListCategoriesResponse) GetCategories() []*CategoryDetail {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+func (x *ListCategoriesResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListCategoriesResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListCategoriesResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListCategoriesResponse) GetTotalPages() int32 {
+	if x != nil {
+		return x.TotalPages
+	}
+	return 0
+}
+
 var File_transaction_transaction_proto protoreflect.FileDescriptor
 
 const file_transaction_transaction_proto_rawDesc = "" +
@@ -1859,7 +2155,38 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\vcategory_id\x18\x03 \x01(\tR\n" +
 	"categoryId\x12)\n" +
 	"\x10transaction_date\x18\x04 \x01(\tR\x0ftransactionDate\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription2\xe2\a\n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\"\x1c\n" +
+	"\n" +
+	"CategoryID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xc4\x01\n" +
+	"\x0eCategoryDetail\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
+	"\tparent_id\x18\x02 \x01(\tR\bparentId\x12\x1f\n" +
+	"\vparent_name\x18\x03 \x01(\tR\n" +
+	"parentName\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12\x12\n" +
+	"\x04type\x18\x05 \x01(\tR\x04type\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\a \x01(\tR\tupdatedAt\"\xac\x01\n" +
+	"\x15ListCategoriesRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x17\n" +
+	"\asort_by\x18\x03 \x01(\tR\x06sortBy\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x04 \x01(\tR\tsortOrder\x12\x16\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search\x12\x12\n" +
+	"\x04type\x18\x06 \x01(\tR\x04type\"\xbd\x01\n" +
+	"\x16ListCategoriesResponse\x12;\n" +
+	"\n" +
+	"categories\x18\x01 \x03(\v2\x1b.transaction.CategoryDetailR\n" +
+	"categories\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
+	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
+	"totalPages2\x88\t\n" +
 	"\x12TransactionService\x12Q\n" +
 	"\x0fGetTransactions\x12\".transaction.GetTransactionOptions\x1a\x18.transaction.Transaction0\x01\x12h\n" +
 	"\x13GetUserTransactions\x12'.transaction.GetUserTransactionsRequest\x1a(.transaction.GetUserTransactionsResponse\x12P\n" +
@@ -1868,7 +2195,9 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x12CreateFundTransfer\x12&.transaction.CreateFundTransferRequest\x1a!.transaction.FundTransferResponse\x12Z\n" +
 	"\x11UpdateTransaction\x12%.transaction.UpdateTransactionRequest\x1a\x1e.transaction.TransactionDetail\x12O\n" +
 	"\x11DeleteTransaction\x12\x1a.transaction.TransactionID\x1a\x1e.transaction.TransactionDetail\x12V\n" +
-	"\rGetCategories\x12!.transaction.GetCategoriesRequest\x1a\".transaction.GetCategoriesResponse\x12`\n" +
+	"\rGetCategories\x12!.transaction.GetCategoriesRequest\x1a\".transaction.GetCategoriesResponse\x12Y\n" +
+	"\x0eListCategories\x12\".transaction.ListCategoriesRequest\x1a#.transaction.ListCategoriesResponse\x12I\n" +
+	"\x11GetCategoryDetail\x12\x17.transaction.CategoryID\x1a\x1b.transaction.CategoryDetail\x12`\n" +
 	"\x1dGetAttachmentsByTransactionID\x12\x1a.transaction.TransactionID\x1a#.transaction.GetAttachmentsResponse\x12Q\n" +
 	"\x10CreateAttachment\x12$.transaction.CreateAttachmentRequest\x1a\x17.transaction.Attachment\x12F\n" +
 	"\x10DeleteAttachment\x12\x19.transaction.AttachmentID\x1a\x17.transaction.AttachmentB7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
@@ -1885,7 +2214,7 @@ func file_transaction_transaction_proto_rawDescGZIP() []byte {
 	return file_transaction_transaction_proto_rawDescData
 }
 
-var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_transaction_transaction_proto_goTypes = []any{
 	(*Empty)(nil),                       // 0: transaction.Empty
 	(*Transaction)(nil),                 // 1: transaction.Transaction
@@ -1910,6 +2239,10 @@ var file_transaction_transaction_proto_goTypes = []any{
 	(*GetAttachmentsResponse)(nil),      // 20: transaction.GetAttachmentsResponse
 	(*FundTransferResponse)(nil),        // 21: transaction.FundTransferResponse
 	(*NewTransaction)(nil),              // 22: transaction.NewTransaction
+	(*CategoryID)(nil),                  // 23: transaction.CategoryID
+	(*CategoryDetail)(nil),              // 24: transaction.CategoryDetail
+	(*ListCategoriesRequest)(nil),       // 25: transaction.ListCategoriesRequest
+	(*ListCategoriesResponse)(nil),      // 26: transaction.ListCategoriesResponse
 }
 var file_transaction_transaction_proto_depIdxs = []int32{
 	2,  // 0: transaction.TransactionDetail.attachments:type_name -> transaction.Attachment
@@ -1918,33 +2251,38 @@ var file_transaction_transaction_proto_depIdxs = []int32{
 	3,  // 3: transaction.GetUserTransactionsResponse.transactions:type_name -> transaction.TransactionDetail
 	4,  // 4: transaction.GetCategoriesResponse.categories:type_name -> transaction.CategoryGroup
 	2,  // 5: transaction.GetAttachmentsResponse.attachments:type_name -> transaction.Attachment
-	10, // 6: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
-	11, // 7: transaction.TransactionService.GetUserTransactions:input_type -> transaction.GetUserTransactionsRequest
-	6,  // 8: transaction.TransactionService.GetTransactionByID:input_type -> transaction.TransactionID
-	12, // 9: transaction.TransactionService.CreateTransaction:input_type -> transaction.CreateTransactionRequest
-	13, // 10: transaction.TransactionService.CreateFundTransfer:input_type -> transaction.CreateFundTransferRequest
-	14, // 11: transaction.TransactionService.UpdateTransaction:input_type -> transaction.UpdateTransactionRequest
-	6,  // 12: transaction.TransactionService.DeleteTransaction:input_type -> transaction.TransactionID
-	16, // 13: transaction.TransactionService.GetCategories:input_type -> transaction.GetCategoriesRequest
-	6,  // 14: transaction.TransactionService.GetAttachmentsByTransactionID:input_type -> transaction.TransactionID
-	17, // 15: transaction.TransactionService.CreateAttachment:input_type -> transaction.CreateAttachmentRequest
-	7,  // 16: transaction.TransactionService.DeleteAttachment:input_type -> transaction.AttachmentID
-	1,  // 17: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
-	18, // 18: transaction.TransactionService.GetUserTransactions:output_type -> transaction.GetUserTransactionsResponse
-	3,  // 19: transaction.TransactionService.GetTransactionByID:output_type -> transaction.TransactionDetail
-	3,  // 20: transaction.TransactionService.CreateTransaction:output_type -> transaction.TransactionDetail
-	21, // 21: transaction.TransactionService.CreateFundTransfer:output_type -> transaction.FundTransferResponse
-	3,  // 22: transaction.TransactionService.UpdateTransaction:output_type -> transaction.TransactionDetail
-	3,  // 23: transaction.TransactionService.DeleteTransaction:output_type -> transaction.TransactionDetail
-	19, // 24: transaction.TransactionService.GetCategories:output_type -> transaction.GetCategoriesResponse
-	20, // 25: transaction.TransactionService.GetAttachmentsByTransactionID:output_type -> transaction.GetAttachmentsResponse
-	2,  // 26: transaction.TransactionService.CreateAttachment:output_type -> transaction.Attachment
-	2,  // 27: transaction.TransactionService.DeleteAttachment:output_type -> transaction.Attachment
-	17, // [17:28] is the sub-list for method output_type
-	6,  // [6:17] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	24, // 6: transaction.ListCategoriesResponse.categories:type_name -> transaction.CategoryDetail
+	10, // 7: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
+	11, // 8: transaction.TransactionService.GetUserTransactions:input_type -> transaction.GetUserTransactionsRequest
+	6,  // 9: transaction.TransactionService.GetTransactionByID:input_type -> transaction.TransactionID
+	12, // 10: transaction.TransactionService.CreateTransaction:input_type -> transaction.CreateTransactionRequest
+	13, // 11: transaction.TransactionService.CreateFundTransfer:input_type -> transaction.CreateFundTransferRequest
+	14, // 12: transaction.TransactionService.UpdateTransaction:input_type -> transaction.UpdateTransactionRequest
+	6,  // 13: transaction.TransactionService.DeleteTransaction:input_type -> transaction.TransactionID
+	16, // 14: transaction.TransactionService.GetCategories:input_type -> transaction.GetCategoriesRequest
+	25, // 15: transaction.TransactionService.ListCategories:input_type -> transaction.ListCategoriesRequest
+	23, // 16: transaction.TransactionService.GetCategoryDetail:input_type -> transaction.CategoryID
+	6,  // 17: transaction.TransactionService.GetAttachmentsByTransactionID:input_type -> transaction.TransactionID
+	17, // 18: transaction.TransactionService.CreateAttachment:input_type -> transaction.CreateAttachmentRequest
+	7,  // 19: transaction.TransactionService.DeleteAttachment:input_type -> transaction.AttachmentID
+	1,  // 20: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
+	18, // 21: transaction.TransactionService.GetUserTransactions:output_type -> transaction.GetUserTransactionsResponse
+	3,  // 22: transaction.TransactionService.GetTransactionByID:output_type -> transaction.TransactionDetail
+	3,  // 23: transaction.TransactionService.CreateTransaction:output_type -> transaction.TransactionDetail
+	21, // 24: transaction.TransactionService.CreateFundTransfer:output_type -> transaction.FundTransferResponse
+	3,  // 25: transaction.TransactionService.UpdateTransaction:output_type -> transaction.TransactionDetail
+	3,  // 26: transaction.TransactionService.DeleteTransaction:output_type -> transaction.TransactionDetail
+	19, // 27: transaction.TransactionService.GetCategories:output_type -> transaction.GetCategoriesResponse
+	26, // 28: transaction.TransactionService.ListCategories:output_type -> transaction.ListCategoriesResponse
+	24, // 29: transaction.TransactionService.GetCategoryDetail:output_type -> transaction.CategoryDetail
+	20, // 30: transaction.TransactionService.GetAttachmentsByTransactionID:output_type -> transaction.GetAttachmentsResponse
+	2,  // 31: transaction.TransactionService.CreateAttachment:output_type -> transaction.Attachment
+	2,  // 32: transaction.TransactionService.DeleteAttachment:output_type -> transaction.Attachment
+	20, // [20:33] is the sub-list for method output_type
+	7,  // [7:20] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_transaction_transaction_proto_init() }
@@ -1958,7 +2296,7 @@ func file_transaction_transaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transaction_transaction_proto_rawDesc), len(file_transaction_transaction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

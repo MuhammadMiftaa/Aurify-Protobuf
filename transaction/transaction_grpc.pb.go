@@ -27,6 +27,8 @@ const (
 	TransactionService_UpdateTransaction_FullMethodName             = "/transaction.TransactionService/UpdateTransaction"
 	TransactionService_DeleteTransaction_FullMethodName             = "/transaction.TransactionService/DeleteTransaction"
 	TransactionService_GetCategories_FullMethodName                 = "/transaction.TransactionService/GetCategories"
+	TransactionService_ListCategories_FullMethodName                = "/transaction.TransactionService/ListCategories"
+	TransactionService_GetCategoryDetail_FullMethodName             = "/transaction.TransactionService/GetCategoryDetail"
 	TransactionService_GetAttachmentsByTransactionID_FullMethodName = "/transaction.TransactionService/GetAttachmentsByTransactionID"
 	TransactionService_CreateAttachment_FullMethodName              = "/transaction.TransactionService/CreateAttachment"
 	TransactionService_DeleteAttachment_FullMethodName              = "/transaction.TransactionService/DeleteAttachment"
@@ -46,6 +48,9 @@ type TransactionServiceClient interface {
 	DeleteTransaction(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*TransactionDetail, error)
 	// ── Category RPCs ──
 	GetCategories(ctx context.Context, in *GetCategoriesRequest, opts ...grpc.CallOption) (*GetCategoriesResponse, error)
+	// ── Admin Master Data RPCs ──
+	ListCategories(ctx context.Context, in *ListCategoriesRequest, opts ...grpc.CallOption) (*ListCategoriesResponse, error)
+	GetCategoryDetail(ctx context.Context, in *CategoryID, opts ...grpc.CallOption) (*CategoryDetail, error)
 	// ── Attachment RPCs ──
 	GetAttachmentsByTransactionID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*GetAttachmentsResponse, error)
 	CreateAttachment(ctx context.Context, in *CreateAttachmentRequest, opts ...grpc.CallOption) (*Attachment, error)
@@ -149,6 +154,26 @@ func (c *transactionServiceClient) GetCategories(ctx context.Context, in *GetCat
 	return out, nil
 }
 
+func (c *transactionServiceClient) ListCategories(ctx context.Context, in *ListCategoriesRequest, opts ...grpc.CallOption) (*ListCategoriesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListCategoriesResponse)
+	err := c.cc.Invoke(ctx, TransactionService_ListCategories_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) GetCategoryDetail(ctx context.Context, in *CategoryID, opts ...grpc.CallOption) (*CategoryDetail, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CategoryDetail)
+	err := c.cc.Invoke(ctx, TransactionService_GetCategoryDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *transactionServiceClient) GetAttachmentsByTransactionID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*GetAttachmentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAttachmentsResponse)
@@ -193,6 +218,9 @@ type TransactionServiceServer interface {
 	DeleteTransaction(context.Context, *TransactionID) (*TransactionDetail, error)
 	// ── Category RPCs ──
 	GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error)
+	// ── Admin Master Data RPCs ──
+	ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error)
+	GetCategoryDetail(context.Context, *CategoryID) (*CategoryDetail, error)
 	// ── Attachment RPCs ──
 	GetAttachmentsByTransactionID(context.Context, *TransactionID) (*GetAttachmentsResponse, error)
 	CreateAttachment(context.Context, *CreateAttachmentRequest) (*Attachment, error)
@@ -230,6 +258,12 @@ func (UnimplementedTransactionServiceServer) DeleteTransaction(context.Context, 
 }
 func (UnimplementedTransactionServiceServer) GetCategories(context.Context, *GetCategoriesRequest) (*GetCategoriesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCategories not implemented")
+}
+func (UnimplementedTransactionServiceServer) ListCategories(context.Context, *ListCategoriesRequest) (*ListCategoriesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListCategories not implemented")
+}
+func (UnimplementedTransactionServiceServer) GetCategoryDetail(context.Context, *CategoryID) (*CategoryDetail, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCategoryDetail not implemented")
 }
 func (UnimplementedTransactionServiceServer) GetAttachmentsByTransactionID(context.Context, *TransactionID) (*GetAttachmentsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAttachmentsByTransactionID not implemented")
@@ -398,6 +432,42 @@ func _TransactionService_GetCategories_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransactionService_ListCategories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListCategoriesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).ListCategories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_ListCategories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).ListCategories(ctx, req.(*ListCategoriesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_GetCategoryDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CategoryID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetCategoryDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetCategoryDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetCategoryDetail(ctx, req.(*CategoryID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TransactionService_GetAttachmentsByTransactionID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TransactionID)
 	if err := dec(in); err != nil {
@@ -486,6 +556,14 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCategories",
 			Handler:    _TransactionService_GetCategories_Handler,
+		},
+		{
+			MethodName: "ListCategories",
+			Handler:    _TransactionService_ListCategories_Handler,
+		},
+		{
+			MethodName: "GetCategoryDetail",
+			Handler:    _TransactionService_GetCategoryDetail_Handler,
 		},
 		{
 			MethodName: "GetAttachmentsByTransactionID",

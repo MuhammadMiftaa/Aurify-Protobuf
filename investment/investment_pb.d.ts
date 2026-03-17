@@ -494,3 +494,89 @@ export namespace GetAssetCodesResponse {
         assetCodesList: Array<AssetCode.AsObject>,
     }
 }
+
+export class AssetCodeID extends jspb.Message { 
+    getCode(): string;
+    setCode(value: string): AssetCodeID;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AssetCodeID.AsObject;
+    static toObject(includeInstance: boolean, msg: AssetCodeID): AssetCodeID.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AssetCodeID, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AssetCodeID;
+    static deserializeBinaryFromReader(message: AssetCodeID, reader: jspb.BinaryReader): AssetCodeID;
+}
+
+export namespace AssetCodeID {
+    export type AsObject = {
+        code: string,
+    }
+}
+
+export class ListAssetCodesRequest extends jspb.Message { 
+    getPage(): number;
+    setPage(value: number): ListAssetCodesRequest;
+    getPageSize(): number;
+    setPageSize(value: number): ListAssetCodesRequest;
+    getSortBy(): string;
+    setSortBy(value: string): ListAssetCodesRequest;
+    getSortOrder(): string;
+    setSortOrder(value: string): ListAssetCodesRequest;
+    getSearch(): string;
+    setSearch(value: string): ListAssetCodesRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListAssetCodesRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListAssetCodesRequest): ListAssetCodesRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListAssetCodesRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListAssetCodesRequest;
+    static deserializeBinaryFromReader(message: ListAssetCodesRequest, reader: jspb.BinaryReader): ListAssetCodesRequest;
+}
+
+export namespace ListAssetCodesRequest {
+    export type AsObject = {
+        page: number,
+        pageSize: number,
+        sortBy: string,
+        sortOrder: string,
+        search: string,
+    }
+}
+
+export class ListAssetCodesResponse extends jspb.Message { 
+    clearAssetCodesList(): void;
+    getAssetCodesList(): Array<AssetCode>;
+    setAssetCodesList(value: Array<AssetCode>): ListAssetCodesResponse;
+    addAssetCodes(value?: AssetCode, index?: number): AssetCode;
+    getTotal(): number;
+    setTotal(value: number): ListAssetCodesResponse;
+    getPage(): number;
+    setPage(value: number): ListAssetCodesResponse;
+    getPageSize(): number;
+    setPageSize(value: number): ListAssetCodesResponse;
+    getTotalPages(): number;
+    setTotalPages(value: number): ListAssetCodesResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListAssetCodesResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ListAssetCodesResponse): ListAssetCodesResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListAssetCodesResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListAssetCodesResponse;
+    static deserializeBinaryFromReader(message: ListAssetCodesResponse, reader: jspb.BinaryReader): ListAssetCodesResponse;
+}
+
+export namespace ListAssetCodesResponse {
+    export type AsObject = {
+        assetCodesList: Array<AssetCode.AsObject>,
+        total: number,
+        page: number,
+        pageSize: number,
+        totalPages: number,
+    }
+}

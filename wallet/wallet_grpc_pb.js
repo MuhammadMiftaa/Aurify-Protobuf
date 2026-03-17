@@ -59,6 +59,28 @@ function deserialize_wallet_GetWalletTypesResponse(buffer_arg) {
   return wallet_wallet_pb.GetWalletTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_wallet_ListWalletTypesRequest(arg) {
+  if (!(arg instanceof wallet_wallet_pb.ListWalletTypesRequest)) {
+    throw new Error('Expected argument of type wallet.ListWalletTypesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_wallet_ListWalletTypesRequest(buffer_arg) {
+  return wallet_wallet_pb.ListWalletTypesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_wallet_ListWalletTypesResponse(arg) {
+  if (!(arg instanceof wallet_wallet_pb.ListWalletTypesResponse)) {
+    throw new Error('Expected argument of type wallet.ListWalletTypesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_wallet_ListWalletTypesResponse(buffer_arg) {
+  return wallet_wallet_pb.ListWalletTypesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_wallet_UpdateWalletRequest(arg) {
   if (!(arg instanceof wallet_wallet_pb.UpdateWalletRequest)) {
     throw new Error('Expected argument of type wallet.UpdateWalletRequest');
@@ -112,6 +134,28 @@ function serialize_wallet_WalletSummary(arg) {
 
 function deserialize_wallet_WalletSummary(buffer_arg) {
   return wallet_wallet_pb.WalletSummary.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_wallet_WalletTypeDetail(arg) {
+  if (!(arg instanceof wallet_wallet_pb.WalletTypeDetail)) {
+    throw new Error('Expected argument of type wallet.WalletTypeDetail');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_wallet_WalletTypeDetail(buffer_arg) {
+  return wallet_wallet_pb.WalletTypeDetail.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_wallet_WalletTypeID(arg) {
+  if (!(arg instanceof wallet_wallet_pb.WalletTypeID)) {
+    throw new Error('Expected argument of type wallet.WalletTypeID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_wallet_WalletTypeID(buffer_arg) {
+  return wallet_wallet_pb.WalletTypeID.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -203,6 +247,29 @@ var WalletServiceService = exports.WalletServiceService = {
     requestDeserialize: deserialize_wallet_UserID,
     responseSerialize: serialize_wallet_WalletSummary,
     responseDeserialize: deserialize_wallet_WalletSummary,
+  },
+  // ── Admin Master Data RPCs ──
+listWalletTypes: {
+    path: '/wallet.WalletService/ListWalletTypes',
+    requestStream: false,
+    responseStream: false,
+    requestType: wallet_wallet_pb.ListWalletTypesRequest,
+    responseType: wallet_wallet_pb.ListWalletTypesResponse,
+    requestSerialize: serialize_wallet_ListWalletTypesRequest,
+    requestDeserialize: deserialize_wallet_ListWalletTypesRequest,
+    responseSerialize: serialize_wallet_ListWalletTypesResponse,
+    responseDeserialize: deserialize_wallet_ListWalletTypesResponse,
+  },
+  getWalletTypeDetail: {
+    path: '/wallet.WalletService/GetWalletTypeDetail',
+    requestStream: false,
+    responseStream: false,
+    requestType: wallet_wallet_pb.WalletTypeID,
+    responseType: wallet_wallet_pb.WalletTypeDetail,
+    requestSerialize: serialize_wallet_WalletTypeID,
+    requestDeserialize: deserialize_wallet_WalletTypeID,
+    responseSerialize: serialize_wallet_WalletTypeDetail,
+    responseDeserialize: deserialize_wallet_WalletTypeDetail,
   },
 };
 

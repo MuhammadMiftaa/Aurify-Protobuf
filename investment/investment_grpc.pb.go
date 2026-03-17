@@ -27,6 +27,8 @@ const (
 	InvestmentService_SellInvestment_FullMethodName        = "/investment.InvestmentService/SellInvestment"
 	InvestmentService_GetInvestmentSummary_FullMethodName  = "/investment.InvestmentService/GetInvestmentSummary"
 	InvestmentService_GetAssetCodes_FullMethodName         = "/investment.InvestmentService/GetAssetCodes"
+	InvestmentService_ListAssetCodes_FullMethodName        = "/investment.InvestmentService/ListAssetCodes"
+	InvestmentService_GetAssetCodeDetail_FullMethodName    = "/investment.InvestmentService/GetAssetCodeDetail"
 )
 
 // InvestmentServiceClient is the client API for InvestmentService service.
@@ -41,6 +43,9 @@ type InvestmentServiceClient interface {
 	SellInvestment(ctx context.Context, in *SellInvestmentRequest, opts ...grpc.CallOption) (*SellInvestmentResponse, error)
 	GetInvestmentSummary(ctx context.Context, in *UserID, opts ...grpc.CallOption) (*InvestmentSummaryResponse, error)
 	GetAssetCodes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetAssetCodesResponse, error)
+	// ── Admin Master Data RPCs ──
+	ListAssetCodes(ctx context.Context, in *ListAssetCodesRequest, opts ...grpc.CallOption) (*ListAssetCodesResponse, error)
+	GetAssetCodeDetail(ctx context.Context, in *AssetCodeID, opts ...grpc.CallOption) (*AssetCode, error)
 }
 
 type investmentServiceClient struct {
@@ -149,6 +154,26 @@ func (c *investmentServiceClient) GetAssetCodes(ctx context.Context, in *Empty, 
 	return out, nil
 }
 
+func (c *investmentServiceClient) ListAssetCodes(ctx context.Context, in *ListAssetCodesRequest, opts ...grpc.CallOption) (*ListAssetCodesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListAssetCodesResponse)
+	err := c.cc.Invoke(ctx, InvestmentService_ListAssetCodes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *investmentServiceClient) GetAssetCodeDetail(ctx context.Context, in *AssetCodeID, opts ...grpc.CallOption) (*AssetCode, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AssetCode)
+	err := c.cc.Invoke(ctx, InvestmentService_GetAssetCodeDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // InvestmentServiceServer is the server API for InvestmentService service.
 // All implementations must embed UnimplementedInvestmentServiceServer
 // for forward compatibility.
@@ -161,6 +186,9 @@ type InvestmentServiceServer interface {
 	SellInvestment(context.Context, *SellInvestmentRequest) (*SellInvestmentResponse, error)
 	GetInvestmentSummary(context.Context, *UserID) (*InvestmentSummaryResponse, error)
 	GetAssetCodes(context.Context, *Empty) (*GetAssetCodesResponse, error)
+	// ── Admin Master Data RPCs ──
+	ListAssetCodes(context.Context, *ListAssetCodesRequest) (*ListAssetCodesResponse, error)
+	GetAssetCodeDetail(context.Context, *AssetCodeID) (*AssetCode, error)
 	mustEmbedUnimplementedInvestmentServiceServer()
 }
 
@@ -194,6 +222,12 @@ func (UnimplementedInvestmentServiceServer) GetInvestmentSummary(context.Context
 }
 func (UnimplementedInvestmentServiceServer) GetAssetCodes(context.Context, *Empty) (*GetAssetCodesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAssetCodes not implemented")
+}
+func (UnimplementedInvestmentServiceServer) ListAssetCodes(context.Context, *ListAssetCodesRequest) (*ListAssetCodesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListAssetCodes not implemented")
+}
+func (UnimplementedInvestmentServiceServer) GetAssetCodeDetail(context.Context, *AssetCodeID) (*AssetCode, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAssetCodeDetail not implemented")
 }
 func (UnimplementedInvestmentServiceServer) mustEmbedUnimplementedInvestmentServiceServer() {}
 func (UnimplementedInvestmentServiceServer) testEmbeddedByValue()                           {}
@@ -346,6 +380,42 @@ func _InvestmentService_GetAssetCodes_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _InvestmentService_ListAssetCodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAssetCodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).ListAssetCodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_ListAssetCodes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).ListAssetCodes(ctx, req.(*ListAssetCodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _InvestmentService_GetAssetCodeDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AssetCodeID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InvestmentServiceServer).GetAssetCodeDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InvestmentService_GetAssetCodeDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InvestmentServiceServer).GetAssetCodeDetail(ctx, req.(*AssetCodeID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // InvestmentService_ServiceDesc is the grpc.ServiceDesc for InvestmentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -376,6 +446,14 @@ var InvestmentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAssetCodes",
 			Handler:    _InvestmentService_GetAssetCodes_Handler,
+		},
+		{
+			MethodName: "ListAssetCodes",
+			Handler:    _InvestmentService_ListAssetCodes_Handler,
+		},
+		{
+			MethodName: "GetAssetCodeDetail",
+			Handler:    _InvestmentService_GetAssetCodeDetail_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

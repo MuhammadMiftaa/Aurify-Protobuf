@@ -13,6 +13,10 @@ service WalletService {
     rpc DeleteWallet (WalletID) returns (Wallet);
     rpc GetWalletTypes (Empty) returns (GetWalletTypesResponse);
     rpc GetWalletSummary (UserID) returns (WalletSummary);
+
+    // ── Admin Master Data RPCs ──
+    rpc ListWalletTypes (ListWalletTypesRequest) returns (ListWalletTypesResponse);
+    rpc GetWalletTypeDetail (WalletTypeID) returns (WalletTypeDetail);
 }
 
 message Empty {}
@@ -81,4 +85,26 @@ message WalletSummary {
     int32 total_wallets = 1;
     double total_balance = 2;
     int32 total_transactions = 3;
+}
+
+// ── Admin Master Data Messages ──
+
+message WalletTypeID {
+    string id = 1;
+}
+
+message ListWalletTypesRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+    string sort_by = 3;
+    string sort_order = 4;
+    string search = 5;
+}
+
+message ListWalletTypesResponse {
+    repeated WalletTypeDetail wallet_types = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+    int32 total_pages = 5;
 }

@@ -307,3 +307,89 @@ export namespace WalletSummary {
         totalTransactions: number,
     }
 }
+
+export class WalletTypeID extends jspb.Message { 
+    getId(): string;
+    setId(value: string): WalletTypeID;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): WalletTypeID.AsObject;
+    static toObject(includeInstance: boolean, msg: WalletTypeID): WalletTypeID.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: WalletTypeID, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): WalletTypeID;
+    static deserializeBinaryFromReader(message: WalletTypeID, reader: jspb.BinaryReader): WalletTypeID;
+}
+
+export namespace WalletTypeID {
+    export type AsObject = {
+        id: string,
+    }
+}
+
+export class ListWalletTypesRequest extends jspb.Message { 
+    getPage(): number;
+    setPage(value: number): ListWalletTypesRequest;
+    getPageSize(): number;
+    setPageSize(value: number): ListWalletTypesRequest;
+    getSortBy(): string;
+    setSortBy(value: string): ListWalletTypesRequest;
+    getSortOrder(): string;
+    setSortOrder(value: string): ListWalletTypesRequest;
+    getSearch(): string;
+    setSearch(value: string): ListWalletTypesRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListWalletTypesRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListWalletTypesRequest): ListWalletTypesRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListWalletTypesRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListWalletTypesRequest;
+    static deserializeBinaryFromReader(message: ListWalletTypesRequest, reader: jspb.BinaryReader): ListWalletTypesRequest;
+}
+
+export namespace ListWalletTypesRequest {
+    export type AsObject = {
+        page: number,
+        pageSize: number,
+        sortBy: string,
+        sortOrder: string,
+        search: string,
+    }
+}
+
+export class ListWalletTypesResponse extends jspb.Message { 
+    clearWalletTypesList(): void;
+    getWalletTypesList(): Array<WalletTypeDetail>;
+    setWalletTypesList(value: Array<WalletTypeDetail>): ListWalletTypesResponse;
+    addWalletTypes(value?: WalletTypeDetail, index?: number): WalletTypeDetail;
+    getTotal(): number;
+    setTotal(value: number): ListWalletTypesResponse;
+    getPage(): number;
+    setPage(value: number): ListWalletTypesResponse;
+    getPageSize(): number;
+    setPageSize(value: number): ListWalletTypesResponse;
+    getTotalPages(): number;
+    setTotalPages(value: number): ListWalletTypesResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListWalletTypesResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ListWalletTypesResponse): ListWalletTypesResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListWalletTypesResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListWalletTypesResponse;
+    static deserializeBinaryFromReader(message: ListWalletTypesResponse, reader: jspb.BinaryReader): ListWalletTypesResponse;
+}
+
+export namespace ListWalletTypesResponse {
+    export type AsObject = {
+        walletTypesList: Array<WalletTypeDetail.AsObject>,
+        total: number,
+        page: number,
+        pageSize: number,
+        totalPages: number,
+    }
+}

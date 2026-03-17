@@ -734,3 +734,130 @@ export namespace NewTransaction {
         description: string,
     }
 }
+
+export class CategoryID extends jspb.Message { 
+    getId(): string;
+    setId(value: string): CategoryID;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CategoryID.AsObject;
+    static toObject(includeInstance: boolean, msg: CategoryID): CategoryID.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CategoryID, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CategoryID;
+    static deserializeBinaryFromReader(message: CategoryID, reader: jspb.BinaryReader): CategoryID;
+}
+
+export namespace CategoryID {
+    export type AsObject = {
+        id: string,
+    }
+}
+
+export class CategoryDetail extends jspb.Message { 
+    getId(): string;
+    setId(value: string): CategoryDetail;
+    getParentId(): string;
+    setParentId(value: string): CategoryDetail;
+    getParentName(): string;
+    setParentName(value: string): CategoryDetail;
+    getName(): string;
+    setName(value: string): CategoryDetail;
+    getType(): string;
+    setType(value: string): CategoryDetail;
+    getCreatedAt(): string;
+    setCreatedAt(value: string): CategoryDetail;
+    getUpdatedAt(): string;
+    setUpdatedAt(value: string): CategoryDetail;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CategoryDetail.AsObject;
+    static toObject(includeInstance: boolean, msg: CategoryDetail): CategoryDetail.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CategoryDetail, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CategoryDetail;
+    static deserializeBinaryFromReader(message: CategoryDetail, reader: jspb.BinaryReader): CategoryDetail;
+}
+
+export namespace CategoryDetail {
+    export type AsObject = {
+        id: string,
+        parentId: string,
+        parentName: string,
+        name: string,
+        type: string,
+        createdAt: string,
+        updatedAt: string,
+    }
+}
+
+export class ListCategoriesRequest extends jspb.Message { 
+    getPage(): number;
+    setPage(value: number): ListCategoriesRequest;
+    getPageSize(): number;
+    setPageSize(value: number): ListCategoriesRequest;
+    getSortBy(): string;
+    setSortBy(value: string): ListCategoriesRequest;
+    getSortOrder(): string;
+    setSortOrder(value: string): ListCategoriesRequest;
+    getSearch(): string;
+    setSearch(value: string): ListCategoriesRequest;
+    getType(): string;
+    setType(value: string): ListCategoriesRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListCategoriesRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListCategoriesRequest): ListCategoriesRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListCategoriesRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListCategoriesRequest;
+    static deserializeBinaryFromReader(message: ListCategoriesRequest, reader: jspb.BinaryReader): ListCategoriesRequest;
+}
+
+export namespace ListCategoriesRequest {
+    export type AsObject = {
+        page: number,
+        pageSize: number,
+        sortBy: string,
+        sortOrder: string,
+        search: string,
+        type: string,
+    }
+}
+
+export class ListCategoriesResponse extends jspb.Message { 
+    clearCategoriesList(): void;
+    getCategoriesList(): Array<CategoryDetail>;
+    setCategoriesList(value: Array<CategoryDetail>): ListCategoriesResponse;
+    addCategories(value?: CategoryDetail, index?: number): CategoryDetail;
+    getTotal(): number;
+    setTotal(value: number): ListCategoriesResponse;
+    getPage(): number;
+    setPage(value: number): ListCategoriesResponse;
+    getPageSize(): number;
+    setPageSize(value: number): ListCategoriesResponse;
+    getTotalPages(): number;
+    setTotalPages(value: number): ListCategoriesResponse;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListCategoriesResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ListCategoriesResponse): ListCategoriesResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListCategoriesResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListCategoriesResponse;
+    static deserializeBinaryFromReader(message: ListCategoriesResponse, reader: jspb.BinaryReader): ListCategoriesResponse;
+}
+
+export namespace ListCategoriesResponse {
+    export type AsObject = {
+        categoriesList: Array<CategoryDetail.AsObject>,
+        total: number,
+        page: number,
+        pageSize: number,
+        totalPages: number,
+    }
+}

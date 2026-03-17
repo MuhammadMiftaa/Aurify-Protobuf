@@ -16,6 +16,8 @@ interface ITransactionServiceService extends grpc.ServiceDefinition<grpc.Untyped
     updateTransaction: ITransactionServiceService_IUpdateTransaction;
     deleteTransaction: ITransactionServiceService_IDeleteTransaction;
     getCategories: ITransactionServiceService_IGetCategories;
+    listCategories: ITransactionServiceService_IListCategories;
+    getCategoryDetail: ITransactionServiceService_IGetCategoryDetail;
     getAttachmentsByTransactionID: ITransactionServiceService_IGetAttachmentsByTransactionID;
     createAttachment: ITransactionServiceService_ICreateAttachment;
     deleteAttachment: ITransactionServiceService_IDeleteAttachment;
@@ -93,6 +95,24 @@ interface ITransactionServiceService_IGetCategories extends grpc.MethodDefinitio
     responseSerialize: grpc.serialize<transaction_transaction_pb.GetCategoriesResponse>;
     responseDeserialize: grpc.deserialize<transaction_transaction_pb.GetCategoriesResponse>;
 }
+interface ITransactionServiceService_IListCategories extends grpc.MethodDefinition<transaction_transaction_pb.ListCategoriesRequest, transaction_transaction_pb.ListCategoriesResponse> {
+    path: "/transaction.TransactionService/ListCategories";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.ListCategoriesRequest>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.ListCategoriesRequest>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.ListCategoriesResponse>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.ListCategoriesResponse>;
+}
+interface ITransactionServiceService_IGetCategoryDetail extends grpc.MethodDefinition<transaction_transaction_pb.CategoryID, transaction_transaction_pb.CategoryDetail> {
+    path: "/transaction.TransactionService/GetCategoryDetail";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.CategoryID>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.CategoryID>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.CategoryDetail>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.CategoryDetail>;
+}
 interface ITransactionServiceService_IGetAttachmentsByTransactionID extends grpc.MethodDefinition<transaction_transaction_pb.TransactionID, transaction_transaction_pb.GetAttachmentsResponse> {
     path: "/transaction.TransactionService/GetAttachmentsByTransactionID";
     requestStream: false;
@@ -132,6 +152,8 @@ export interface ITransactionServiceServer extends grpc.UntypedServiceImplementa
     updateTransaction: grpc.handleUnaryCall<transaction_transaction_pb.UpdateTransactionRequest, transaction_transaction_pb.TransactionDetail>;
     deleteTransaction: grpc.handleUnaryCall<transaction_transaction_pb.TransactionID, transaction_transaction_pb.TransactionDetail>;
     getCategories: grpc.handleUnaryCall<transaction_transaction_pb.GetCategoriesRequest, transaction_transaction_pb.GetCategoriesResponse>;
+    listCategories: grpc.handleUnaryCall<transaction_transaction_pb.ListCategoriesRequest, transaction_transaction_pb.ListCategoriesResponse>;
+    getCategoryDetail: grpc.handleUnaryCall<transaction_transaction_pb.CategoryID, transaction_transaction_pb.CategoryDetail>;
     getAttachmentsByTransactionID: grpc.handleUnaryCall<transaction_transaction_pb.TransactionID, transaction_transaction_pb.GetAttachmentsResponse>;
     createAttachment: grpc.handleUnaryCall<transaction_transaction_pb.CreateAttachmentRequest, transaction_transaction_pb.Attachment>;
     deleteAttachment: grpc.handleUnaryCall<transaction_transaction_pb.AttachmentID, transaction_transaction_pb.Attachment>;
@@ -161,6 +183,12 @@ export interface ITransactionServiceClient {
     getCategories(request: transaction_transaction_pb.GetCategoriesRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
     getCategories(request: transaction_transaction_pb.GetCategoriesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
     getCategories(request: transaction_transaction_pb.GetCategoriesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
+    listCategories(request: transaction_transaction_pb.ListCategoriesRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    listCategories(request: transaction_transaction_pb.ListCategoriesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    listCategories(request: transaction_transaction_pb.ListCategoriesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    getCategoryDetail(request: transaction_transaction_pb.CategoryID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
+    getCategoryDetail(request: transaction_transaction_pb.CategoryID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
+    getCategoryDetail(request: transaction_transaction_pb.CategoryID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
     getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;
     getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;
     getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;
@@ -197,6 +225,12 @@ export class TransactionServiceClient extends grpc.Client implements ITransactio
     public getCategories(request: transaction_transaction_pb.GetCategoriesRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
     public getCategories(request: transaction_transaction_pb.GetCategoriesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
     public getCategories(request: transaction_transaction_pb.GetCategoriesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetCategoriesResponse) => void): grpc.ClientUnaryCall;
+    public listCategories(request: transaction_transaction_pb.ListCategoriesRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    public listCategories(request: transaction_transaction_pb.ListCategoriesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    public listCategories(request: transaction_transaction_pb.ListCategoriesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.ListCategoriesResponse) => void): grpc.ClientUnaryCall;
+    public getCategoryDetail(request: transaction_transaction_pb.CategoryID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
+    public getCategoryDetail(request: transaction_transaction_pb.CategoryID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
+    public getCategoryDetail(request: transaction_transaction_pb.CategoryID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.CategoryDetail) => void): grpc.ClientUnaryCall;
     public getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;
     public getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;
     public getAttachmentsByTransactionID(request: transaction_transaction_pb.TransactionID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetAttachmentsResponse) => void): grpc.ClientUnaryCall;

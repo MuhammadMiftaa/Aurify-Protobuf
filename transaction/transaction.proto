@@ -17,6 +17,10 @@ service TransactionService {
     // ── Category RPCs ──
     rpc GetCategories (GetCategoriesRequest) returns (GetCategoriesResponse);
 
+    // ── Admin Master Data RPCs ──
+    rpc ListCategories (ListCategoriesRequest) returns (ListCategoriesResponse);
+    rpc GetCategoryDetail (CategoryID) returns (CategoryDetail);
+
     // ── Attachment RPCs ──
     rpc GetAttachmentsByTransactionID (TransactionID) returns (GetAttachmentsResponse);
     rpc CreateAttachment (CreateAttachmentRequest) returns (Attachment);
@@ -201,4 +205,37 @@ message NewTransaction {
     string category_id = 3;
     string transaction_date = 4;
     string description = 5;
+}
+
+// ── Admin Master Data Messages ──
+
+message CategoryID {
+    string id = 1;
+}
+
+message CategoryDetail {
+    string id = 1;
+    string parent_id = 2;
+    string parent_name = 3;
+    string name = 4;
+    string type = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message ListCategoriesRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+    string sort_by = 3;
+    string sort_order = 4;
+    string search = 5;
+    string type = 6;
+}
+
+message ListCategoriesResponse {
+    repeated CategoryDetail categories = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+    int32 total_pages = 5;
 }

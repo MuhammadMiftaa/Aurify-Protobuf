@@ -13,6 +13,10 @@ service InvestmentService {
     rpc SellInvestment (SellInvestmentRequest) returns (SellInvestmentResponse);
     rpc GetInvestmentSummary (UserID) returns (InvestmentSummaryResponse);
     rpc GetAssetCodes (Empty) returns (GetAssetCodesResponse);
+
+    // ── Admin Master Data RPCs ──
+    rpc ListAssetCodes (ListAssetCodesRequest) returns (ListAssetCodesResponse);
+    rpc GetAssetCodeDetail (AssetCodeID) returns (AssetCode);
 }
 
 // ── Common Messages ──
@@ -137,4 +141,26 @@ message InvestmentSummaryResponse {
 
 message GetAssetCodesResponse {
     repeated AssetCode asset_codes = 1;
+}
+
+// ── Admin Master Data Messages ──
+
+message AssetCodeID {
+    string code = 1;
+}
+
+message ListAssetCodesRequest {
+    int32 page = 1;
+    int32 page_size = 2;
+    string sort_by = 3;
+    string sort_order = 4;
+    string search = 5;
+}
+
+message ListAssetCodesResponse {
+    repeated AssetCode asset_codes = 1;
+    int32 total = 2;
+    int32 page = 3;
+    int32 page_size = 4;
+    int32 total_pages = 5;
 }

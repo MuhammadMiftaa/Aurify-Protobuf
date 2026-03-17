@@ -1153,6 +1153,202 @@ func (x *GetAssetCodesResponse) GetAssetCodes() []*AssetCode {
 	return nil
 }
 
+type AssetCodeID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AssetCodeID) Reset() {
+	*x = AssetCodeID{}
+	mi := &file_investment_investment_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AssetCodeID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AssetCodeID) ProtoMessage() {}
+
+func (x *AssetCodeID) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AssetCodeID.ProtoReflect.Descriptor instead.
+func (*AssetCodeID) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *AssetCodeID) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+type ListAssetCodesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	SortBy        string                 `protobuf:"bytes,3,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,4,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAssetCodesRequest) Reset() {
+	*x = ListAssetCodesRequest{}
+	mi := &file_investment_investment_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAssetCodesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAssetCodesRequest) ProtoMessage() {}
+
+func (x *ListAssetCodesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAssetCodesRequest.ProtoReflect.Descriptor instead.
+func (*ListAssetCodesRequest) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ListAssetCodesRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListAssetCodesRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListAssetCodesRequest) GetSortBy() string {
+	if x != nil {
+		return x.SortBy
+	}
+	return ""
+}
+
+func (x *ListAssetCodesRequest) GetSortOrder() string {
+	if x != nil {
+		return x.SortOrder
+	}
+	return ""
+}
+
+func (x *ListAssetCodesRequest) GetSearch() string {
+	if x != nil {
+		return x.Search
+	}
+	return ""
+}
+
+type ListAssetCodesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AssetCodes    []*AssetCode           `protobuf:"bytes,1,rep,name=asset_codes,json=assetCodes,proto3" json:"asset_codes,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	TotalPages    int32                  `protobuf:"varint,5,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAssetCodesResponse) Reset() {
+	*x = ListAssetCodesResponse{}
+	mi := &file_investment_investment_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAssetCodesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAssetCodesResponse) ProtoMessage() {}
+
+func (x *ListAssetCodesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_investment_investment_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAssetCodesResponse.ProtoReflect.Descriptor instead.
+func (*ListAssetCodesResponse) Descriptor() ([]byte, []int) {
+	return file_investment_investment_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ListAssetCodesResponse) GetAssetCodes() []*AssetCode {
+	if x != nil {
+		return x.AssetCodes
+	}
+	return nil
+}
+
+func (x *ListAssetCodesResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListAssetCodesResponse) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListAssetCodesResponse) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+func (x *ListAssetCodesResponse) GetTotalPages() int32 {
+	if x != nil {
+		return x.TotalPages
+	}
+	return 0
+}
+
 var File_investment_investment_proto protoreflect.FileDescriptor
 
 const file_investment_investment_proto_rawDesc = "" +
@@ -1261,7 +1457,24 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\x13total_realized_gain\x18\a \x01(\x01R\x11totalRealizedGain\"O\n" +
 	"\x15GetAssetCodesResponse\x126\n" +
 	"\vasset_codes\x18\x01 \x03(\v2\x15.investment.AssetCodeR\n" +
-	"assetCodes2\xae\x05\n" +
+	"assetCodes\"!\n" +
+	"\vAssetCodeID\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"\x98\x01\n" +
+	"\x15ListAssetCodesRequest\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x17\n" +
+	"\asort_by\x18\x03 \x01(\tR\x06sortBy\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x04 \x01(\tR\tsortOrder\x12\x16\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search\"\xb8\x01\n" +
+	"\x16ListAssetCodesResponse\x126\n" +
+	"\vasset_codes\x18\x01 \x03(\v2\x15.investment.AssetCodeR\n" +
+	"assetCodes\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
+	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
+	"totalPages2\xcd\x06\n" +
 	"\x11InvestmentService\x12L\n" +
 	"\x0eGetInvestments\x12 .investment.GetInvestmentOptions\x1a\x16.investment.Investment0\x01\x12B\n" +
 	"\x12GetUserInvestments\x12\x12.investment.UserID\x1a\x16.investment.Investment0\x01\x12l\n" +
@@ -1270,7 +1483,9 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\x10CreateInvestment\x12#.investment.CreateInvestmentRequest\x1a\x16.investment.Investment\x12W\n" +
 	"\x0eSellInvestment\x12!.investment.SellInvestmentRequest\x1a\".investment.SellInvestmentResponse\x12Q\n" +
 	"\x14GetInvestmentSummary\x12\x12.investment.UserID\x1a%.investment.InvestmentSummaryResponse\x12E\n" +
-	"\rGetAssetCodes\x12\x11.investment.Empty\x1a!.investment.GetAssetCodesResponseB6Z4github.com/MuhammadMiftaa/Refina-Protobuf/investmentb\x06proto3"
+	"\rGetAssetCodes\x12\x11.investment.Empty\x1a!.investment.GetAssetCodesResponse\x12W\n" +
+	"\x0eListAssetCodes\x12!.investment.ListAssetCodesRequest\x1a\".investment.ListAssetCodesResponse\x12D\n" +
+	"\x12GetAssetCodeDetail\x12\x17.investment.AssetCodeID\x1a\x15.investment.AssetCodeB6Z4github.com/MuhammadMiftaa/Refina-Protobuf/investmentb\x06proto3"
 
 var (
 	file_investment_investment_proto_rawDescOnce sync.Once
@@ -1284,7 +1499,7 @@ func file_investment_investment_proto_rawDescGZIP() []byte {
 	return file_investment_investment_proto_rawDescData
 }
 
-var file_investment_investment_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_investment_investment_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_investment_investment_proto_goTypes = []any{
 	(*Empty)(nil),                         // 0: investment.Empty
 	(*AssetCode)(nil),                     // 1: investment.AssetCode
@@ -1301,6 +1516,9 @@ var file_investment_investment_proto_goTypes = []any{
 	(*SellInvestmentResponse)(nil),        // 12: investment.SellInvestmentResponse
 	(*InvestmentSummaryResponse)(nil),     // 13: investment.InvestmentSummaryResponse
 	(*GetAssetCodesResponse)(nil),         // 14: investment.GetAssetCodesResponse
+	(*AssetCodeID)(nil),                   // 15: investment.AssetCodeID
+	(*ListAssetCodesRequest)(nil),         // 16: investment.ListAssetCodesRequest
+	(*ListAssetCodesResponse)(nil),        // 17: investment.ListAssetCodesResponse
 }
 var file_investment_investment_proto_depIdxs = []int32{
 	1,  // 0: investment.Investment.asset:type_name -> investment.AssetCode
@@ -1308,27 +1526,32 @@ var file_investment_investment_proto_depIdxs = []int32{
 	2,  // 2: investment.GetUserInvestmentListResponse.investments:type_name -> investment.Investment
 	3,  // 3: investment.SellInvestmentResponse.sold_records:type_name -> investment.InvestmentSold
 	1,  // 4: investment.GetAssetCodesResponse.asset_codes:type_name -> investment.AssetCode
-	6,  // 5: investment.InvestmentService.GetInvestments:input_type -> investment.GetInvestmentOptions
-	5,  // 6: investment.InvestmentService.GetUserInvestments:input_type -> investment.UserID
-	7,  // 7: investment.InvestmentService.GetUserInvestmentList:input_type -> investment.GetUserInvestmentListRequest
-	8,  // 8: investment.InvestmentService.GetInvestmentDetail:input_type -> investment.GetInvestmentDetailRequest
-	9,  // 9: investment.InvestmentService.CreateInvestment:input_type -> investment.CreateInvestmentRequest
-	10, // 10: investment.InvestmentService.SellInvestment:input_type -> investment.SellInvestmentRequest
-	5,  // 11: investment.InvestmentService.GetInvestmentSummary:input_type -> investment.UserID
-	0,  // 12: investment.InvestmentService.GetAssetCodes:input_type -> investment.Empty
-	2,  // 13: investment.InvestmentService.GetInvestments:output_type -> investment.Investment
-	2,  // 14: investment.InvestmentService.GetUserInvestments:output_type -> investment.Investment
-	11, // 15: investment.InvestmentService.GetUserInvestmentList:output_type -> investment.GetUserInvestmentListResponse
-	2,  // 16: investment.InvestmentService.GetInvestmentDetail:output_type -> investment.Investment
-	2,  // 17: investment.InvestmentService.CreateInvestment:output_type -> investment.Investment
-	12, // 18: investment.InvestmentService.SellInvestment:output_type -> investment.SellInvestmentResponse
-	13, // 19: investment.InvestmentService.GetInvestmentSummary:output_type -> investment.InvestmentSummaryResponse
-	14, // 20: investment.InvestmentService.GetAssetCodes:output_type -> investment.GetAssetCodesResponse
-	13, // [13:21] is the sub-list for method output_type
-	5,  // [5:13] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	1,  // 5: investment.ListAssetCodesResponse.asset_codes:type_name -> investment.AssetCode
+	6,  // 6: investment.InvestmentService.GetInvestments:input_type -> investment.GetInvestmentOptions
+	5,  // 7: investment.InvestmentService.GetUserInvestments:input_type -> investment.UserID
+	7,  // 8: investment.InvestmentService.GetUserInvestmentList:input_type -> investment.GetUserInvestmentListRequest
+	8,  // 9: investment.InvestmentService.GetInvestmentDetail:input_type -> investment.GetInvestmentDetailRequest
+	9,  // 10: investment.InvestmentService.CreateInvestment:input_type -> investment.CreateInvestmentRequest
+	10, // 11: investment.InvestmentService.SellInvestment:input_type -> investment.SellInvestmentRequest
+	5,  // 12: investment.InvestmentService.GetInvestmentSummary:input_type -> investment.UserID
+	0,  // 13: investment.InvestmentService.GetAssetCodes:input_type -> investment.Empty
+	16, // 14: investment.InvestmentService.ListAssetCodes:input_type -> investment.ListAssetCodesRequest
+	15, // 15: investment.InvestmentService.GetAssetCodeDetail:input_type -> investment.AssetCodeID
+	2,  // 16: investment.InvestmentService.GetInvestments:output_type -> investment.Investment
+	2,  // 17: investment.InvestmentService.GetUserInvestments:output_type -> investment.Investment
+	11, // 18: investment.InvestmentService.GetUserInvestmentList:output_type -> investment.GetUserInvestmentListResponse
+	2,  // 19: investment.InvestmentService.GetInvestmentDetail:output_type -> investment.Investment
+	2,  // 20: investment.InvestmentService.CreateInvestment:output_type -> investment.Investment
+	12, // 21: investment.InvestmentService.SellInvestment:output_type -> investment.SellInvestmentResponse
+	13, // 22: investment.InvestmentService.GetInvestmentSummary:output_type -> investment.InvestmentSummaryResponse
+	14, // 23: investment.InvestmentService.GetAssetCodes:output_type -> investment.GetAssetCodesResponse
+	17, // 24: investment.InvestmentService.ListAssetCodes:output_type -> investment.ListAssetCodesResponse
+	1,  // 25: investment.InvestmentService.GetAssetCodeDetail:output_type -> investment.AssetCode
+	16, // [16:26] is the sub-list for method output_type
+	6,  // [6:16] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_investment_investment_proto_init() }
@@ -1342,7 +1565,7 @@ func file_investment_investment_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_investment_investment_proto_rawDesc), len(file_investment_investment_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

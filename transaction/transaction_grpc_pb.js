@@ -26,6 +26,28 @@ function deserialize_transaction_AttachmentID(buffer_arg) {
   return transaction_transaction_pb.AttachmentID.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_transaction_CategoryDetail(arg) {
+  if (!(arg instanceof transaction_transaction_pb.CategoryDetail)) {
+    throw new Error('Expected argument of type transaction.CategoryDetail');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_CategoryDetail(buffer_arg) {
+  return transaction_transaction_pb.CategoryDetail.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_CategoryID(arg) {
+  if (!(arg instanceof transaction_transaction_pb.CategoryID)) {
+    throw new Error('Expected argument of type transaction.CategoryID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_CategoryID(buffer_arg) {
+  return transaction_transaction_pb.CategoryID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_transaction_CreateAttachmentRequest(arg) {
   if (!(arg instanceof transaction_transaction_pb.CreateAttachmentRequest)) {
     throw new Error('Expected argument of type transaction.CreateAttachmentRequest');
@@ -134,6 +156,28 @@ function serialize_transaction_GetUserTransactionsResponse(arg) {
 
 function deserialize_transaction_GetUserTransactionsResponse(buffer_arg) {
   return transaction_transaction_pb.GetUserTransactionsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_ListCategoriesRequest(arg) {
+  if (!(arg instanceof transaction_transaction_pb.ListCategoriesRequest)) {
+    throw new Error('Expected argument of type transaction.ListCategoriesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_ListCategoriesRequest(buffer_arg) {
+  return transaction_transaction_pb.ListCategoriesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_ListCategoriesResponse(arg) {
+  if (!(arg instanceof transaction_transaction_pb.ListCategoriesResponse)) {
+    throw new Error('Expected argument of type transaction.ListCategoriesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_ListCategoriesResponse(buffer_arg) {
+  return transaction_transaction_pb.ListCategoriesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_transaction_Transaction(arg) {
@@ -271,6 +315,29 @@ getCategories: {
     requestDeserialize: deserialize_transaction_GetCategoriesRequest,
     responseSerialize: serialize_transaction_GetCategoriesResponse,
     responseDeserialize: deserialize_transaction_GetCategoriesResponse,
+  },
+  // ── Admin Master Data RPCs ──
+listCategories: {
+    path: '/transaction.TransactionService/ListCategories',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.ListCategoriesRequest,
+    responseType: transaction_transaction_pb.ListCategoriesResponse,
+    requestSerialize: serialize_transaction_ListCategoriesRequest,
+    requestDeserialize: deserialize_transaction_ListCategoriesRequest,
+    responseSerialize: serialize_transaction_ListCategoriesResponse,
+    responseDeserialize: deserialize_transaction_ListCategoriesResponse,
+  },
+  getCategoryDetail: {
+    path: '/transaction.TransactionService/GetCategoryDetail',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.CategoryID,
+    responseType: transaction_transaction_pb.CategoryDetail,
+    requestSerialize: serialize_transaction_CategoryID,
+    requestDeserialize: deserialize_transaction_CategoryID,
+    responseSerialize: serialize_transaction_CategoryDetail,
+    responseDeserialize: deserialize_transaction_CategoryDetail,
   },
   // ── Attachment RPCs ──
 getAttachmentsByTransactionID: {

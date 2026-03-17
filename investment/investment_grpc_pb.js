@@ -4,6 +4,28 @@
 var grpc = require('@grpc/grpc-js');
 var investment_investment_pb = require('../investment/investment_pb.js');
 
+function serialize_investment_AssetCode(arg) {
+  if (!(arg instanceof investment_investment_pb.AssetCode)) {
+    throw new Error('Expected argument of type investment.AssetCode');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_investment_AssetCode(buffer_arg) {
+  return investment_investment_pb.AssetCode.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_investment_AssetCodeID(arg) {
+  if (!(arg instanceof investment_investment_pb.AssetCodeID)) {
+    throw new Error('Expected argument of type investment.AssetCodeID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_investment_AssetCodeID(buffer_arg) {
+  return investment_investment_pb.AssetCodeID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_investment_CreateInvestmentRequest(arg) {
   if (!(arg instanceof investment_investment_pb.CreateInvestmentRequest)) {
     throw new Error('Expected argument of type investment.CreateInvestmentRequest');
@@ -101,6 +123,28 @@ function serialize_investment_InvestmentSummaryResponse(arg) {
 
 function deserialize_investment_InvestmentSummaryResponse(buffer_arg) {
   return investment_investment_pb.InvestmentSummaryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_investment_ListAssetCodesRequest(arg) {
+  if (!(arg instanceof investment_investment_pb.ListAssetCodesRequest)) {
+    throw new Error('Expected argument of type investment.ListAssetCodesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_investment_ListAssetCodesRequest(buffer_arg) {
+  return investment_investment_pb.ListAssetCodesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_investment_ListAssetCodesResponse(arg) {
+  if (!(arg instanceof investment_investment_pb.ListAssetCodesResponse)) {
+    throw new Error('Expected argument of type investment.ListAssetCodesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_investment_ListAssetCodesResponse(buffer_arg) {
+  return investment_investment_pb.ListAssetCodesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_investment_SellInvestmentRequest(arg) {
@@ -225,6 +269,29 @@ var InvestmentServiceService = exports.InvestmentServiceService = {
     requestDeserialize: deserialize_investment_Empty,
     responseSerialize: serialize_investment_GetAssetCodesResponse,
     responseDeserialize: deserialize_investment_GetAssetCodesResponse,
+  },
+  // ── Admin Master Data RPCs ──
+listAssetCodes: {
+    path: '/investment.InvestmentService/ListAssetCodes',
+    requestStream: false,
+    responseStream: false,
+    requestType: investment_investment_pb.ListAssetCodesRequest,
+    responseType: investment_investment_pb.ListAssetCodesResponse,
+    requestSerialize: serialize_investment_ListAssetCodesRequest,
+    requestDeserialize: deserialize_investment_ListAssetCodesRequest,
+    responseSerialize: serialize_investment_ListAssetCodesResponse,
+    responseDeserialize: deserialize_investment_ListAssetCodesResponse,
+  },
+  getAssetCodeDetail: {
+    path: '/investment.InvestmentService/GetAssetCodeDetail',
+    requestStream: false,
+    responseStream: false,
+    requestType: investment_investment_pb.AssetCodeID,
+    responseType: investment_investment_pb.AssetCode,
+    requestSerialize: serialize_investment_AssetCodeID,
+    requestDeserialize: deserialize_investment_AssetCodeID,
+    responseSerialize: serialize_investment_AssetCode,
+    responseDeserialize: deserialize_investment_AssetCode,
   },
 };
 
