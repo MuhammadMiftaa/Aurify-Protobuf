@@ -1,0 +1,20 @@
+{
+    "name": "muhammadmiftaa/refina-protobuf",
+    "description": "Shared Protocol Buffer definitions for Refina microservices",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "google/protobuf": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wallet\\": "wallet/",
+            "Transaction\\": "transaction/",
+            "Investment\\": "investment/",
+            "GPBMetadata\\Wallet\\": "wallet/",
+            "GPBMetadata\\Transaction\\": "transaction/",
+            "GPBMetadata\\Investment\\": "investment/"
+        }
+    }
+}
