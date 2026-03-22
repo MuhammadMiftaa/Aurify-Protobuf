@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package profile;
+
+option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/profile";
+
+// ═══════════════════════════════════════════════
+// Profile Service
+// ═══════════════════════════════════════════════
+
+service ProfileService {
+    // Get user profile
+    rpc GetProfile (GetProfileRequest) returns (Profile);
+    
+    // Update user profile (fullname, etc)
+    rpc UpdateProfile (UpdateProfileRequest) returns (Profile);
+    
+    // Upload profile photo
+    rpc UploadProfilePhoto (UploadProfilePhotoRequest) returns (UploadProfilePhotoResponse);
+    
+    // Delete profile photo
+    rpc DeleteProfilePhoto (DeleteProfilePhotoRequest) returns (DeleteProfilePhotoResponse);
+}
+
+// ═══════════════════════════════════════════════
+// Messages
+// ═══════════════════════════════════════════════
+
+message GetProfileRequest {
+    string user_id = 1;
+}
+
+message Profile {
+    string id = 1;           // Profile ID (UUID)
+    string user_id = 2;      // User ID (UUID) - from auth service
+    string fullname = 3;
+    string photo_url = 4;    // Profile photo URL
+    string created_at = 5;   // RFC3339 format
+    string updated_at = 6;   // RFC3339 format
+}
+
+message UpdateProfileRequest {
+    string user_id = 1;
+    string fullname = 2;
+}
+
+message UploadProfilePhotoRequest {
+    string user_id = 1;
+    string base64_image = 2; // Base64 encoded image data
+}
+
+message UploadProfilePhotoResponse {
+    bool success = 1;
+    string photo_url = 2;
+    string message = 3;
+}
+
+message DeleteProfilePhotoRequest {
+    string user_id = 1;
+}
+
+message DeleteProfilePhotoResponse {
+    bool success = 1;
+    string message = 2;
+}
