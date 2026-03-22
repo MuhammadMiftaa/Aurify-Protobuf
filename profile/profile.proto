@@ -11,7 +11,10 @@ option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/profile";
 service ProfileService {
     // Get user profile
     rpc GetProfile (GetProfileRequest) returns (Profile);
-    
+
+    // Create user profile
+    rpc CreateProfile (CreateProfileRequest) returns (Profile);
+
     // Update user profile (fullname, etc)
     rpc UpdateProfile (UpdateProfileRequest) returns (Profile);
     
@@ -37,6 +40,11 @@ message Profile {
     string photo_url = 4;    // Profile photo URL
     string created_at = 5;   // RFC3339 format
     string updated_at = 6;   // RFC3339 format
+}
+
+message CreateProfileRequest {
+    string user_id = 1;
+    string fullname = 2;
 }
 
 message UpdateProfileRequest {

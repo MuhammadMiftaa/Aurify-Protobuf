@@ -17,7 +17,10 @@
     "generate:dashboard:go": "./generate.sh dashboard go",
     "generate:dashboard:node": "./generate.sh dashboard node",
     "generate:dashboard:all": "./generate.sh dashboard all",
-    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all && ./generate.sh investment all && ./generate.sh dashboard all"
+    "generate:profile:go": "./generate.sh profile go",
+    "generate:profile:node": "./generate.sh profile node",
+    "generate:profile:all": "./generate.sh profile all",
+    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all && ./generate.sh investment all && ./generate.sh dashboard all && ./generate.sh profile all"
   },
   "keywords": [
     "protobuf",

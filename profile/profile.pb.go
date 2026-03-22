@@ -149,6 +149,58 @@ func (x *Profile) GetUpdatedAt() string {
 	return ""
 }
 
+type CreateProfileRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Fullname      string                 `protobuf:"bytes,2,opt,name=fullname,proto3" json:"fullname,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateProfileRequest) Reset() {
+	*x = CreateProfileRequest{}
+	mi := &file_profile_profile_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateProfileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateProfileRequest) ProtoMessage() {}
+
+func (x *CreateProfileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_profile_profile_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateProfileRequest.ProtoReflect.Descriptor instead.
+func (*CreateProfileRequest) Descriptor() ([]byte, []int) {
+	return file_profile_profile_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateProfileRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CreateProfileRequest) GetFullname() string {
+	if x != nil {
+		return x.Fullname
+	}
+	return ""
+}
+
 type UpdateProfileRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -159,7 +211,7 @@ type UpdateProfileRequest struct {
 
 func (x *UpdateProfileRequest) Reset() {
 	*x = UpdateProfileRequest{}
-	mi := &file_profile_profile_proto_msgTypes[2]
+	mi := &file_profile_profile_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -171,7 +223,7 @@ func (x *UpdateProfileRequest) String() string {
 func (*UpdateProfileRequest) ProtoMessage() {}
 
 func (x *UpdateProfileRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_profile_profile_proto_msgTypes[2]
+	mi := &file_profile_profile_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -184,7 +236,7 @@ func (x *UpdateProfileRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProfileRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProfileRequest) Descriptor() ([]byte, []int) {
-	return file_profile_profile_proto_rawDescGZIP(), []int{2}
+	return file_profile_profile_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UpdateProfileRequest) GetUserId() string {
@@ -211,7 +263,7 @@ type UploadProfilePhotoRequest struct {
 
 func (x *UploadProfilePhotoRequest) Reset() {
 	*x = UploadProfilePhotoRequest{}
-	mi := &file_profile_profile_proto_msgTypes[3]
+	mi := &file_profile_profile_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -223,7 +275,7 @@ func (x *UploadProfilePhotoRequest) String() string {
 func (*UploadProfilePhotoRequest) ProtoMessage() {}
 
 func (x *UploadProfilePhotoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_profile_profile_proto_msgTypes[3]
+	mi := &file_profile_profile_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -236,7 +288,7 @@ func (x *UploadProfilePhotoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadProfilePhotoRequest.ProtoReflect.Descriptor instead.
 func (*UploadProfilePhotoRequest) Descriptor() ([]byte, []int) {
-	return file_profile_profile_proto_rawDescGZIP(), []int{3}
+	return file_profile_profile_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UploadProfilePhotoRequest) GetUserId() string {
@@ -264,7 +316,7 @@ type UploadProfilePhotoResponse struct {
 
 func (x *UploadProfilePhotoResponse) Reset() {
 	*x = UploadProfilePhotoResponse{}
-	mi := &file_profile_profile_proto_msgTypes[4]
+	mi := &file_profile_profile_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -276,7 +328,7 @@ func (x *UploadProfilePhotoResponse) String() string {
 func (*UploadProfilePhotoResponse) ProtoMessage() {}
 
 func (x *UploadProfilePhotoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_profile_profile_proto_msgTypes[4]
+	mi := &file_profile_profile_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -289,7 +341,7 @@ func (x *UploadProfilePhotoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UploadProfilePhotoResponse.ProtoReflect.Descriptor instead.
 func (*UploadProfilePhotoResponse) Descriptor() ([]byte, []int) {
-	return file_profile_profile_proto_rawDescGZIP(), []int{4}
+	return file_profile_profile_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UploadProfilePhotoResponse) GetSuccess() bool {
@@ -322,7 +374,7 @@ type DeleteProfilePhotoRequest struct {
 
 func (x *DeleteProfilePhotoRequest) Reset() {
 	*x = DeleteProfilePhotoRequest{}
-	mi := &file_profile_profile_proto_msgTypes[5]
+	mi := &file_profile_profile_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -334,7 +386,7 @@ func (x *DeleteProfilePhotoRequest) String() string {
 func (*DeleteProfilePhotoRequest) ProtoMessage() {}
 
 func (x *DeleteProfilePhotoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_profile_profile_proto_msgTypes[5]
+	mi := &file_profile_profile_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -347,7 +399,7 @@ func (x *DeleteProfilePhotoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProfilePhotoRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProfilePhotoRequest) Descriptor() ([]byte, []int) {
-	return file_profile_profile_proto_rawDescGZIP(), []int{5}
+	return file_profile_profile_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteProfilePhotoRequest) GetUserId() string {
@@ -367,7 +419,7 @@ type DeleteProfilePhotoResponse struct {
 
 func (x *DeleteProfilePhotoResponse) Reset() {
 	*x = DeleteProfilePhotoResponse{}
-	mi := &file_profile_profile_proto_msgTypes[6]
+	mi := &file_profile_profile_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -379,7 +431,7 @@ func (x *DeleteProfilePhotoResponse) String() string {
 func (*DeleteProfilePhotoResponse) ProtoMessage() {}
 
 func (x *DeleteProfilePhotoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_profile_profile_proto_msgTypes[6]
+	mi := &file_profile_profile_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -392,7 +444,7 @@ func (x *DeleteProfilePhotoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProfilePhotoResponse.ProtoReflect.Descriptor instead.
 func (*DeleteProfilePhotoResponse) Descriptor() ([]byte, []int) {
-	return file_profile_profile_proto_rawDescGZIP(), []int{6}
+	return file_profile_profile_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteProfilePhotoResponse) GetSuccess() bool {
@@ -425,6 +477,9 @@ const file_profile_profile_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\tR\tupdatedAt\"K\n" +
+	"\x14CreateProfileRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bfullname\x18\x02 \x01(\tR\bfullname\"K\n" +
 	"\x14UpdateProfileRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1a\n" +
 	"\bfullname\x18\x02 \x01(\tR\bfullname\"W\n" +
@@ -439,10 +494,11 @@ const file_profile_profile_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"P\n" +
 	"\x1aDeleteProfilePhotoResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xcc\x02\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\x8e\x03\n" +
 	"\x0eProfileService\x12:\n" +
 	"\n" +
 	"GetProfile\x12\x1a.profile.GetProfileRequest\x1a\x10.profile.Profile\x12@\n" +
+	"\rCreateProfile\x12\x1d.profile.CreateProfileRequest\x1a\x10.profile.Profile\x12@\n" +
 	"\rUpdateProfile\x12\x1d.profile.UpdateProfileRequest\x1a\x10.profile.Profile\x12]\n" +
 	"\x12UploadProfilePhoto\x12\".profile.UploadProfilePhotoRequest\x1a#.profile.UploadProfilePhotoResponse\x12]\n" +
 	"\x12DeleteProfilePhoto\x12\".profile.DeleteProfilePhotoRequest\x1a#.profile.DeleteProfilePhotoResponseB3Z1github.com/MuhammadMiftaa/Refina-Protobuf/profileb\x06proto3"
@@ -459,27 +515,30 @@ func file_profile_profile_proto_rawDescGZIP() []byte {
 	return file_profile_profile_proto_rawDescData
 }
 
-var file_profile_profile_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_profile_profile_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_profile_profile_proto_goTypes = []any{
 	(*GetProfileRequest)(nil),          // 0: profile.GetProfileRequest
 	(*Profile)(nil),                    // 1: profile.Profile
-	(*UpdateProfileRequest)(nil),       // 2: profile.UpdateProfileRequest
-	(*UploadProfilePhotoRequest)(nil),  // 3: profile.UploadProfilePhotoRequest
-	(*UploadProfilePhotoResponse)(nil), // 4: profile.UploadProfilePhotoResponse
-	(*DeleteProfilePhotoRequest)(nil),  // 5: profile.DeleteProfilePhotoRequest
-	(*DeleteProfilePhotoResponse)(nil), // 6: profile.DeleteProfilePhotoResponse
+	(*CreateProfileRequest)(nil),       // 2: profile.CreateProfileRequest
+	(*UpdateProfileRequest)(nil),       // 3: profile.UpdateProfileRequest
+	(*UploadProfilePhotoRequest)(nil),  // 4: profile.UploadProfilePhotoRequest
+	(*UploadProfilePhotoResponse)(nil), // 5: profile.UploadProfilePhotoResponse
+	(*DeleteProfilePhotoRequest)(nil),  // 6: profile.DeleteProfilePhotoRequest
+	(*DeleteProfilePhotoResponse)(nil), // 7: profile.DeleteProfilePhotoResponse
 }
 var file_profile_profile_proto_depIdxs = []int32{
 	0, // 0: profile.ProfileService.GetProfile:input_type -> profile.GetProfileRequest
-	2, // 1: profile.ProfileService.UpdateProfile:input_type -> profile.UpdateProfileRequest
-	3, // 2: profile.ProfileService.UploadProfilePhoto:input_type -> profile.UploadProfilePhotoRequest
-	5, // 3: profile.ProfileService.DeleteProfilePhoto:input_type -> profile.DeleteProfilePhotoRequest
-	1, // 4: profile.ProfileService.GetProfile:output_type -> profile.Profile
-	1, // 5: profile.ProfileService.UpdateProfile:output_type -> profile.Profile
-	4, // 6: profile.ProfileService.UploadProfilePhoto:output_type -> profile.UploadProfilePhotoResponse
-	6, // 7: profile.ProfileService.DeleteProfilePhoto:output_type -> profile.DeleteProfilePhotoResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	2, // 1: profile.ProfileService.CreateProfile:input_type -> profile.CreateProfileRequest
+	3, // 2: profile.ProfileService.UpdateProfile:input_type -> profile.UpdateProfileRequest
+	4, // 3: profile.ProfileService.UploadProfilePhoto:input_type -> profile.UploadProfilePhotoRequest
+	6, // 4: profile.ProfileService.DeleteProfilePhoto:input_type -> profile.DeleteProfilePhotoRequest
+	1, // 5: profile.ProfileService.GetProfile:output_type -> profile.Profile
+	1, // 6: profile.ProfileService.CreateProfile:output_type -> profile.Profile
+	1, // 7: profile.ProfileService.UpdateProfile:output_type -> profile.Profile
+	5, // 8: profile.ProfileService.UploadProfilePhoto:output_type -> profile.UploadProfilePhotoResponse
+	7, // 9: profile.ProfileService.DeleteProfilePhoto:output_type -> profile.DeleteProfilePhotoResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -496,7 +555,7 @@ func file_profile_profile_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_profile_profile_proto_rawDesc), len(file_profile_profile_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

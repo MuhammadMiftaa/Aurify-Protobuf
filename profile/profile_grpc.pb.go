@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	ProfileService_GetProfile_FullMethodName         = "/profile.ProfileService/GetProfile"
+	ProfileService_CreateProfile_FullMethodName      = "/profile.ProfileService/CreateProfile"
 	ProfileService_UpdateProfile_FullMethodName      = "/profile.ProfileService/UpdateProfile"
 	ProfileService_UploadProfilePhoto_FullMethodName = "/profile.ProfileService/UploadProfilePhoto"
 	ProfileService_DeleteProfilePhoto_FullMethodName = "/profile.ProfileService/DeleteProfilePhoto"
@@ -31,6 +32,8 @@ const (
 type ProfileServiceClient interface {
 	// Get user profile
 	GetProfile(ctx context.Context, in *GetProfileRequest, opts ...grpc.CallOption) (*Profile, error)
+	// Create user profile
+	CreateProfile(ctx context.Context, in *CreateProfileRequest, opts ...grpc.CallOption) (*Profile, error)
 	// Update user profile (fullname, etc)
 	UpdateProfile(ctx context.Context, in *UpdateProfileRequest, opts ...grpc.CallOption) (*Profile, error)
 	// Upload profile photo
@@ -51,6 +54,16 @@ func (c *profileServiceClient) GetProfile(ctx context.Context, in *GetProfileReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Profile)
 	err := c.cc.Invoke(ctx, ProfileService_GetProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) CreateProfile(ctx context.Context, in *CreateProfileRequest, opts ...grpc.CallOption) (*Profile, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Profile)
+	err := c.cc.Invoke(ctx, ProfileService_CreateProfile_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,6 +106,8 @@ func (c *profileServiceClient) DeleteProfilePhoto(ctx context.Context, in *Delet
 type ProfileServiceServer interface {
 	// Get user profile
 	GetProfile(context.Context, *GetProfileRequest) (*Profile, error)
+	// Create user profile
+	CreateProfile(context.Context, *CreateProfileRequest) (*Profile, error)
 	// Update user profile (fullname, etc)
 	UpdateProfile(context.Context, *UpdateProfileRequest) (*Profile, error)
 	// Upload profile photo
@@ -111,6 +126,9 @@ type UnimplementedProfileServiceServer struct{}
 
 func (UnimplementedProfileServiceServer) GetProfile(context.Context, *GetProfileRequest) (*Profile, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfile not implemented")
+}
+func (UnimplementedProfileServiceServer) CreateProfile(context.Context, *CreateProfileRequest) (*Profile, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateProfile not implemented")
 }
 func (UnimplementedProfileServiceServer) UpdateProfile(context.Context, *UpdateProfileRequest) (*Profile, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateProfile not implemented")
@@ -156,6 +174,24 @@ func _ProfileService_GetProfile_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfileServiceServer).GetProfile(ctx, req.(*GetProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_CreateProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).CreateProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_CreateProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).CreateProfile(ctx, req.(*CreateProfileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -224,6 +260,10 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProfile",
 			Handler:    _ProfileService_GetProfile_Handler,
+		},
+		{
+			MethodName: "CreateProfile",
+			Handler:    _ProfileService_CreateProfile_Handler,
 		},
 		{
 			MethodName: "UpdateProfile",
