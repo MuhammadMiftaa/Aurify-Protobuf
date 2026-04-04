@@ -21,6 +21,11 @@ interface ITransactionServiceService extends grpc.ServiceDefinition<grpc.Untyped
     getAttachmentsByTransactionID: ITransactionServiceService_IGetAttachmentsByTransactionID;
     createAttachment: ITransactionServiceService_ICreateAttachment;
     deleteAttachment: ITransactionServiceService_IDeleteAttachment;
+    getBudgets: ITransactionServiceService_IGetBudgets;
+    createBudget: ITransactionServiceService_ICreateBudget;
+    updateBudget: ITransactionServiceService_IUpdateBudget;
+    deleteBudget: ITransactionServiceService_IDeleteBudget;
+    resetBudget: ITransactionServiceService_IResetBudget;
 }
 
 interface ITransactionServiceService_IGetTransactions extends grpc.MethodDefinition<transaction_transaction_pb.GetTransactionOptions, transaction_transaction_pb.Transaction> {
@@ -140,6 +145,51 @@ interface ITransactionServiceService_IDeleteAttachment extends grpc.MethodDefini
     responseSerialize: grpc.serialize<transaction_transaction_pb.Attachment>;
     responseDeserialize: grpc.deserialize<transaction_transaction_pb.Attachment>;
 }
+interface ITransactionServiceService_IGetBudgets extends grpc.MethodDefinition<transaction_transaction_pb.GetBudgetsRequest, transaction_transaction_pb.GetBudgetsResponse> {
+    path: "/transaction.TransactionService/GetBudgets";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.GetBudgetsRequest>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.GetBudgetsRequest>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.GetBudgetsResponse>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.GetBudgetsResponse>;
+}
+interface ITransactionServiceService_ICreateBudget extends grpc.MethodDefinition<transaction_transaction_pb.CreateBudgetRequest, transaction_transaction_pb.Budget> {
+    path: "/transaction.TransactionService/CreateBudget";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.CreateBudgetRequest>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.CreateBudgetRequest>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.Budget>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.Budget>;
+}
+interface ITransactionServiceService_IUpdateBudget extends grpc.MethodDefinition<transaction_transaction_pb.UpdateBudgetRequest, transaction_transaction_pb.Budget> {
+    path: "/transaction.TransactionService/UpdateBudget";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.UpdateBudgetRequest>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.UpdateBudgetRequest>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.Budget>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.Budget>;
+}
+interface ITransactionServiceService_IDeleteBudget extends grpc.MethodDefinition<transaction_transaction_pb.BudgetID, transaction_transaction_pb.Budget> {
+    path: "/transaction.TransactionService/DeleteBudget";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.BudgetID>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.BudgetID>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.Budget>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.Budget>;
+}
+interface ITransactionServiceService_IResetBudget extends grpc.MethodDefinition<transaction_transaction_pb.BudgetID, transaction_transaction_pb.Budget> {
+    path: "/transaction.TransactionService/ResetBudget";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<transaction_transaction_pb.BudgetID>;
+    requestDeserialize: grpc.deserialize<transaction_transaction_pb.BudgetID>;
+    responseSerialize: grpc.serialize<transaction_transaction_pb.Budget>;
+    responseDeserialize: grpc.deserialize<transaction_transaction_pb.Budget>;
+}
 
 export const TransactionServiceService: ITransactionServiceService;
 
@@ -157,6 +207,11 @@ export interface ITransactionServiceServer extends grpc.UntypedServiceImplementa
     getAttachmentsByTransactionID: grpc.handleUnaryCall<transaction_transaction_pb.TransactionID, transaction_transaction_pb.GetAttachmentsResponse>;
     createAttachment: grpc.handleUnaryCall<transaction_transaction_pb.CreateAttachmentRequest, transaction_transaction_pb.Attachment>;
     deleteAttachment: grpc.handleUnaryCall<transaction_transaction_pb.AttachmentID, transaction_transaction_pb.Attachment>;
+    getBudgets: grpc.handleUnaryCall<transaction_transaction_pb.GetBudgetsRequest, transaction_transaction_pb.GetBudgetsResponse>;
+    createBudget: grpc.handleUnaryCall<transaction_transaction_pb.CreateBudgetRequest, transaction_transaction_pb.Budget>;
+    updateBudget: grpc.handleUnaryCall<transaction_transaction_pb.UpdateBudgetRequest, transaction_transaction_pb.Budget>;
+    deleteBudget: grpc.handleUnaryCall<transaction_transaction_pb.BudgetID, transaction_transaction_pb.Budget>;
+    resetBudget: grpc.handleUnaryCall<transaction_transaction_pb.BudgetID, transaction_transaction_pb.Budget>;
 }
 
 export interface ITransactionServiceClient {
@@ -198,6 +253,21 @@ export interface ITransactionServiceClient {
     deleteAttachment(request: transaction_transaction_pb.AttachmentID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
     deleteAttachment(request: transaction_transaction_pb.AttachmentID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
     deleteAttachment(request: transaction_transaction_pb.AttachmentID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
+    getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    createBudget(request: transaction_transaction_pb.CreateBudgetRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    createBudget(request: transaction_transaction_pb.CreateBudgetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    createBudget(request: transaction_transaction_pb.CreateBudgetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    deleteBudget(request: transaction_transaction_pb.BudgetID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    deleteBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    deleteBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    resetBudget(request: transaction_transaction_pb.BudgetID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    resetBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    resetBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
 }
 
 export class TransactionServiceClient extends grpc.Client implements ITransactionServiceClient {
@@ -240,4 +310,19 @@ export class TransactionServiceClient extends grpc.Client implements ITransactio
     public deleteAttachment(request: transaction_transaction_pb.AttachmentID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
     public deleteAttachment(request: transaction_transaction_pb.AttachmentID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
     public deleteAttachment(request: transaction_transaction_pb.AttachmentID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Attachment) => void): grpc.ClientUnaryCall;
+    public getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    public getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    public getBudgets(request: transaction_transaction_pb.GetBudgetsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.GetBudgetsResponse) => void): grpc.ClientUnaryCall;
+    public createBudget(request: transaction_transaction_pb.CreateBudgetRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public createBudget(request: transaction_transaction_pb.CreateBudgetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public createBudget(request: transaction_transaction_pb.CreateBudgetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public updateBudget(request: transaction_transaction_pb.UpdateBudgetRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public deleteBudget(request: transaction_transaction_pb.BudgetID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public deleteBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public deleteBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public resetBudget(request: transaction_transaction_pb.BudgetID, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public resetBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
+    public resetBudget(request: transaction_transaction_pb.BudgetID, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: transaction_transaction_pb.Budget) => void): grpc.ClientUnaryCall;
 }

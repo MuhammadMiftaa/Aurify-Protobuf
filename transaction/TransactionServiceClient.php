@@ -202,4 +202,75 @@ class TransactionServiceClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * ── Budget RPCs ──
+     * @param \Transaction\GetBudgetsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBudgets(\Transaction\GetBudgetsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/transaction.TransactionService/GetBudgets',
+        $argument,
+        ['\Transaction\GetBudgetsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Transaction\CreateBudgetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBudget(\Transaction\CreateBudgetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/transaction.TransactionService/CreateBudget',
+        $argument,
+        ['\Transaction\Budget', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Transaction\UpdateBudgetRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateBudget(\Transaction\UpdateBudgetRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/transaction.TransactionService/UpdateBudget',
+        $argument,
+        ['\Transaction\Budget', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Transaction\BudgetID $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteBudget(\Transaction\BudgetID $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/transaction.TransactionService/DeleteBudget',
+        $argument,
+        ['\Transaction\Budget', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * @param \Transaction\BudgetID $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ResetBudget(\Transaction\BudgetID $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/transaction.TransactionService/ResetBudget',
+        $argument,
+        ['\Transaction\Budget', 'decode'],
+        $metadata, $options);
+    }
+
 }

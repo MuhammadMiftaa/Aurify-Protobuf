@@ -1993,6 +1993,422 @@ func (x *ListCategoriesResponse) GetTotalPages() int32 {
 	return 0
 }
 
+type Budget struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Scope         string                 `protobuf:"bytes,3,opt,name=scope,proto3" json:"scope,omitempty"`                                   // "overall" or "category"
+	CategoryId    string                 `protobuf:"bytes,4,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`       // nullable, only for category scope
+	CategoryName  string                 `protobuf:"bytes,5,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"` // populated from join
+	WalletScope   string                 `protobuf:"bytes,6,opt,name=wallet_scope,json=walletScope,proto3" json:"wallet_scope,omitempty"`    // "all" or wallet_id
+	WalletId      string                 `protobuf:"bytes,7,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`             // nullable
+	WalletName    string                 `protobuf:"bytes,8,opt,name=wallet_name,json=walletName,proto3" json:"wallet_name,omitempty"`       // populated from external service
+	MonthlyLimit  float64                `protobuf:"fixed64,9,opt,name=monthly_limit,json=monthlyLimit,proto3" json:"monthly_limit,omitempty"`
+	CurrentSpent  float64                `protobuf:"fixed64,10,opt,name=current_spent,json=currentSpent,proto3" json:"current_spent,omitempty"` // calculated from transactions
+	Period        string                 `protobuf:"bytes,11,opt,name=period,proto3" json:"period,omitempty"`                                   // format: "YYYY-MM"
+	StreakCount   int32                  `protobuf:"varint,12,opt,name=streak_count,json=streakCount,proto3" json:"streak_count,omitempty"`
+	StreakActive  bool                   `protobuf:"varint,13,opt,name=streak_active,json=streakActive,proto3" json:"streak_active,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Budget) Reset() {
+	*x = Budget{}
+	mi := &file_transaction_transaction_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Budget) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Budget) ProtoMessage() {}
+
+func (x *Budget) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Budget.ProtoReflect.Descriptor instead.
+func (*Budget) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *Budget) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Budget) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *Budget) GetScope() string {
+	if x != nil {
+		return x.Scope
+	}
+	return ""
+}
+
+func (x *Budget) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *Budget) GetCategoryName() string {
+	if x != nil {
+		return x.CategoryName
+	}
+	return ""
+}
+
+func (x *Budget) GetWalletScope() string {
+	if x != nil {
+		return x.WalletScope
+	}
+	return ""
+}
+
+func (x *Budget) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
+}
+
+func (x *Budget) GetWalletName() string {
+	if x != nil {
+		return x.WalletName
+	}
+	return ""
+}
+
+func (x *Budget) GetMonthlyLimit() float64 {
+	if x != nil {
+		return x.MonthlyLimit
+	}
+	return 0
+}
+
+func (x *Budget) GetCurrentSpent() float64 {
+	if x != nil {
+		return x.CurrentSpent
+	}
+	return 0
+}
+
+func (x *Budget) GetPeriod() string {
+	if x != nil {
+		return x.Period
+	}
+	return ""
+}
+
+func (x *Budget) GetStreakCount() int32 {
+	if x != nil {
+		return x.StreakCount
+	}
+	return 0
+}
+
+func (x *Budget) GetStreakActive() bool {
+	if x != nil {
+		return x.StreakActive
+	}
+	return false
+}
+
+func (x *Budget) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *Budget) GetUpdatedAt() string {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return ""
+}
+
+type BudgetID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BudgetID) Reset() {
+	*x = BudgetID{}
+	mi := &file_transaction_transaction_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BudgetID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BudgetID) ProtoMessage() {}
+
+func (x *BudgetID) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BudgetID.ProtoReflect.Descriptor instead.
+func (*BudgetID) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *BudgetID) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetBudgetsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Period        string                 `protobuf:"bytes,1,opt,name=period,proto3" json:"period,omitempty"` // format: "YYYY-MM"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBudgetsRequest) Reset() {
+	*x = GetBudgetsRequest{}
+	mi := &file_transaction_transaction_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBudgetsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBudgetsRequest) ProtoMessage() {}
+
+func (x *GetBudgetsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBudgetsRequest.ProtoReflect.Descriptor instead.
+func (*GetBudgetsRequest) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *GetBudgetsRequest) GetPeriod() string {
+	if x != nil {
+		return x.Period
+	}
+	return ""
+}
+
+type GetBudgetsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Budgets       []*Budget              `protobuf:"bytes,1,rep,name=budgets,proto3" json:"budgets,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBudgetsResponse) Reset() {
+	*x = GetBudgetsResponse{}
+	mi := &file_transaction_transaction_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBudgetsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBudgetsResponse) ProtoMessage() {}
+
+func (x *GetBudgetsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBudgetsResponse.ProtoReflect.Descriptor instead.
+func (*GetBudgetsResponse) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *GetBudgetsResponse) GetBudgets() []*Budget {
+	if x != nil {
+		return x.Budgets
+	}
+	return nil
+}
+
+type CreateBudgetRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Scope         string                 `protobuf:"bytes,1,opt,name=scope,proto3" json:"scope,omitempty"`                             // "overall" or "category"
+	CategoryId    string                 `protobuf:"bytes,2,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"` // optional, required if scope = "category"
+	WalletId      string                 `protobuf:"bytes,3,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`       // optional, null = all wallets
+	MonthlyLimit  float64                `protobuf:"fixed64,4,opt,name=monthly_limit,json=monthlyLimit,proto3" json:"monthly_limit,omitempty"`
+	Period        string                 `protobuf:"bytes,5,opt,name=period,proto3" json:"period,omitempty"` // format: "YYYY-MM"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateBudgetRequest) Reset() {
+	*x = CreateBudgetRequest{}
+	mi := &file_transaction_transaction_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateBudgetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateBudgetRequest) ProtoMessage() {}
+
+func (x *CreateBudgetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateBudgetRequest.ProtoReflect.Descriptor instead.
+func (*CreateBudgetRequest) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *CreateBudgetRequest) GetScope() string {
+	if x != nil {
+		return x.Scope
+	}
+	return ""
+}
+
+func (x *CreateBudgetRequest) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *CreateBudgetRequest) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
+}
+
+func (x *CreateBudgetRequest) GetMonthlyLimit() float64 {
+	if x != nil {
+		return x.MonthlyLimit
+	}
+	return 0
+}
+
+func (x *CreateBudgetRequest) GetPeriod() string {
+	if x != nil {
+		return x.Period
+	}
+	return ""
+}
+
+type UpdateBudgetRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	MonthlyLimit  float64                `protobuf:"fixed64,2,opt,name=monthly_limit,json=monthlyLimit,proto3" json:"monthly_limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateBudgetRequest) Reset() {
+	*x = UpdateBudgetRequest{}
+	mi := &file_transaction_transaction_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateBudgetRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateBudgetRequest) ProtoMessage() {}
+
+func (x *UpdateBudgetRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateBudgetRequest.ProtoReflect.Descriptor instead.
+func (*UpdateBudgetRequest) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *UpdateBudgetRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateBudgetRequest) GetMonthlyLimit() float64 {
+	if x != nil {
+		return x.MonthlyLimit
+	}
+	return 0
+}
+
 var File_transaction_transaction_proto protoreflect.FileDescriptor
 
 const file_transaction_transaction_proto_rawDesc = "" +
@@ -2186,7 +2602,44 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
 	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
-	"totalPages2\x88\t\n" +
+	"totalPages\"\xd6\x03\n" +
+	"\x06Budget\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05scope\x18\x03 \x01(\tR\x05scope\x12\x1f\n" +
+	"\vcategory_id\x18\x04 \x01(\tR\n" +
+	"categoryId\x12#\n" +
+	"\rcategory_name\x18\x05 \x01(\tR\fcategoryName\x12!\n" +
+	"\fwallet_scope\x18\x06 \x01(\tR\vwalletScope\x12\x1b\n" +
+	"\twallet_id\x18\a \x01(\tR\bwalletId\x12\x1f\n" +
+	"\vwallet_name\x18\b \x01(\tR\n" +
+	"walletName\x12#\n" +
+	"\rmonthly_limit\x18\t \x01(\x01R\fmonthlyLimit\x12#\n" +
+	"\rcurrent_spent\x18\n" +
+	" \x01(\x01R\fcurrentSpent\x12\x16\n" +
+	"\x06period\x18\v \x01(\tR\x06period\x12!\n" +
+	"\fstreak_count\x18\f \x01(\x05R\vstreakCount\x12#\n" +
+	"\rstreak_active\x18\r \x01(\bR\fstreakActive\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x0e \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x0f \x01(\tR\tupdatedAt\"\x1a\n" +
+	"\bBudgetID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"+\n" +
+	"\x11GetBudgetsRequest\x12\x16\n" +
+	"\x06period\x18\x01 \x01(\tR\x06period\"C\n" +
+	"\x12GetBudgetsResponse\x12-\n" +
+	"\abudgets\x18\x01 \x03(\v2\x13.transaction.BudgetR\abudgets\"\xa6\x01\n" +
+	"\x13CreateBudgetRequest\x12\x14\n" +
+	"\x05scope\x18\x01 \x01(\tR\x05scope\x12\x1f\n" +
+	"\vcategory_id\x18\x02 \x01(\tR\n" +
+	"categoryId\x12\x1b\n" +
+	"\twallet_id\x18\x03 \x01(\tR\bwalletId\x12#\n" +
+	"\rmonthly_limit\x18\x04 \x01(\x01R\fmonthlyLimit\x12\x16\n" +
+	"\x06period\x18\x05 \x01(\tR\x06period\"J\n" +
+	"\x13UpdateBudgetRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12#\n" +
+	"\rmonthly_limit\x18\x02 \x01(\x01R\fmonthlyLimit2\xdc\v\n" +
 	"\x12TransactionService\x12Q\n" +
 	"\x0fGetTransactions\x12\".transaction.GetTransactionOptions\x1a\x18.transaction.Transaction0\x01\x12h\n" +
 	"\x13GetUserTransactions\x12'.transaction.GetUserTransactionsRequest\x1a(.transaction.GetUserTransactionsResponse\x12P\n" +
@@ -2200,7 +2653,13 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x11GetCategoryDetail\x12\x17.transaction.CategoryID\x1a\x1b.transaction.CategoryDetail\x12`\n" +
 	"\x1dGetAttachmentsByTransactionID\x12\x1a.transaction.TransactionID\x1a#.transaction.GetAttachmentsResponse\x12Q\n" +
 	"\x10CreateAttachment\x12$.transaction.CreateAttachmentRequest\x1a\x17.transaction.Attachment\x12F\n" +
-	"\x10DeleteAttachment\x12\x19.transaction.AttachmentID\x1a\x17.transaction.AttachmentB7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
+	"\x10DeleteAttachment\x12\x19.transaction.AttachmentID\x1a\x17.transaction.Attachment\x12M\n" +
+	"\n" +
+	"GetBudgets\x12\x1e.transaction.GetBudgetsRequest\x1a\x1f.transaction.GetBudgetsResponse\x12E\n" +
+	"\fCreateBudget\x12 .transaction.CreateBudgetRequest\x1a\x13.transaction.Budget\x12E\n" +
+	"\fUpdateBudget\x12 .transaction.UpdateBudgetRequest\x1a\x13.transaction.Budget\x12:\n" +
+	"\fDeleteBudget\x12\x15.transaction.BudgetID\x1a\x13.transaction.Budget\x129\n" +
+	"\vResetBudget\x12\x15.transaction.BudgetID\x1a\x13.transaction.BudgetB7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
 
 var (
 	file_transaction_transaction_proto_rawDescOnce sync.Once
@@ -2214,7 +2673,7 @@ func file_transaction_transaction_proto_rawDescGZIP() []byte {
 	return file_transaction_transaction_proto_rawDescData
 }
 
-var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
 var file_transaction_transaction_proto_goTypes = []any{
 	(*Empty)(nil),                       // 0: transaction.Empty
 	(*Transaction)(nil),                 // 1: transaction.Transaction
@@ -2243,6 +2702,12 @@ var file_transaction_transaction_proto_goTypes = []any{
 	(*CategoryDetail)(nil),              // 24: transaction.CategoryDetail
 	(*ListCategoriesRequest)(nil),       // 25: transaction.ListCategoriesRequest
 	(*ListCategoriesResponse)(nil),      // 26: transaction.ListCategoriesResponse
+	(*Budget)(nil),                      // 27: transaction.Budget
+	(*BudgetID)(nil),                    // 28: transaction.BudgetID
+	(*GetBudgetsRequest)(nil),           // 29: transaction.GetBudgetsRequest
+	(*GetBudgetsResponse)(nil),          // 30: transaction.GetBudgetsResponse
+	(*CreateBudgetRequest)(nil),         // 31: transaction.CreateBudgetRequest
+	(*UpdateBudgetRequest)(nil),         // 32: transaction.UpdateBudgetRequest
 }
 var file_transaction_transaction_proto_depIdxs = []int32{
 	2,  // 0: transaction.TransactionDetail.attachments:type_name -> transaction.Attachment
@@ -2252,37 +2717,48 @@ var file_transaction_transaction_proto_depIdxs = []int32{
 	4,  // 4: transaction.GetCategoriesResponse.categories:type_name -> transaction.CategoryGroup
 	2,  // 5: transaction.GetAttachmentsResponse.attachments:type_name -> transaction.Attachment
 	24, // 6: transaction.ListCategoriesResponse.categories:type_name -> transaction.CategoryDetail
-	10, // 7: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
-	11, // 8: transaction.TransactionService.GetUserTransactions:input_type -> transaction.GetUserTransactionsRequest
-	6,  // 9: transaction.TransactionService.GetTransactionByID:input_type -> transaction.TransactionID
-	12, // 10: transaction.TransactionService.CreateTransaction:input_type -> transaction.CreateTransactionRequest
-	13, // 11: transaction.TransactionService.CreateFundTransfer:input_type -> transaction.CreateFundTransferRequest
-	14, // 12: transaction.TransactionService.UpdateTransaction:input_type -> transaction.UpdateTransactionRequest
-	6,  // 13: transaction.TransactionService.DeleteTransaction:input_type -> transaction.TransactionID
-	16, // 14: transaction.TransactionService.GetCategories:input_type -> transaction.GetCategoriesRequest
-	25, // 15: transaction.TransactionService.ListCategories:input_type -> transaction.ListCategoriesRequest
-	23, // 16: transaction.TransactionService.GetCategoryDetail:input_type -> transaction.CategoryID
-	6,  // 17: transaction.TransactionService.GetAttachmentsByTransactionID:input_type -> transaction.TransactionID
-	17, // 18: transaction.TransactionService.CreateAttachment:input_type -> transaction.CreateAttachmentRequest
-	7,  // 19: transaction.TransactionService.DeleteAttachment:input_type -> transaction.AttachmentID
-	1,  // 20: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
-	18, // 21: transaction.TransactionService.GetUserTransactions:output_type -> transaction.GetUserTransactionsResponse
-	3,  // 22: transaction.TransactionService.GetTransactionByID:output_type -> transaction.TransactionDetail
-	3,  // 23: transaction.TransactionService.CreateTransaction:output_type -> transaction.TransactionDetail
-	21, // 24: transaction.TransactionService.CreateFundTransfer:output_type -> transaction.FundTransferResponse
-	3,  // 25: transaction.TransactionService.UpdateTransaction:output_type -> transaction.TransactionDetail
-	3,  // 26: transaction.TransactionService.DeleteTransaction:output_type -> transaction.TransactionDetail
-	19, // 27: transaction.TransactionService.GetCategories:output_type -> transaction.GetCategoriesResponse
-	26, // 28: transaction.TransactionService.ListCategories:output_type -> transaction.ListCategoriesResponse
-	24, // 29: transaction.TransactionService.GetCategoryDetail:output_type -> transaction.CategoryDetail
-	20, // 30: transaction.TransactionService.GetAttachmentsByTransactionID:output_type -> transaction.GetAttachmentsResponse
-	2,  // 31: transaction.TransactionService.CreateAttachment:output_type -> transaction.Attachment
-	2,  // 32: transaction.TransactionService.DeleteAttachment:output_type -> transaction.Attachment
-	20, // [20:33] is the sub-list for method output_type
-	7,  // [7:20] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	27, // 7: transaction.GetBudgetsResponse.budgets:type_name -> transaction.Budget
+	10, // 8: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
+	11, // 9: transaction.TransactionService.GetUserTransactions:input_type -> transaction.GetUserTransactionsRequest
+	6,  // 10: transaction.TransactionService.GetTransactionByID:input_type -> transaction.TransactionID
+	12, // 11: transaction.TransactionService.CreateTransaction:input_type -> transaction.CreateTransactionRequest
+	13, // 12: transaction.TransactionService.CreateFundTransfer:input_type -> transaction.CreateFundTransferRequest
+	14, // 13: transaction.TransactionService.UpdateTransaction:input_type -> transaction.UpdateTransactionRequest
+	6,  // 14: transaction.TransactionService.DeleteTransaction:input_type -> transaction.TransactionID
+	16, // 15: transaction.TransactionService.GetCategories:input_type -> transaction.GetCategoriesRequest
+	25, // 16: transaction.TransactionService.ListCategories:input_type -> transaction.ListCategoriesRequest
+	23, // 17: transaction.TransactionService.GetCategoryDetail:input_type -> transaction.CategoryID
+	6,  // 18: transaction.TransactionService.GetAttachmentsByTransactionID:input_type -> transaction.TransactionID
+	17, // 19: transaction.TransactionService.CreateAttachment:input_type -> transaction.CreateAttachmentRequest
+	7,  // 20: transaction.TransactionService.DeleteAttachment:input_type -> transaction.AttachmentID
+	29, // 21: transaction.TransactionService.GetBudgets:input_type -> transaction.GetBudgetsRequest
+	31, // 22: transaction.TransactionService.CreateBudget:input_type -> transaction.CreateBudgetRequest
+	32, // 23: transaction.TransactionService.UpdateBudget:input_type -> transaction.UpdateBudgetRequest
+	28, // 24: transaction.TransactionService.DeleteBudget:input_type -> transaction.BudgetID
+	28, // 25: transaction.TransactionService.ResetBudget:input_type -> transaction.BudgetID
+	1,  // 26: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
+	18, // 27: transaction.TransactionService.GetUserTransactions:output_type -> transaction.GetUserTransactionsResponse
+	3,  // 28: transaction.TransactionService.GetTransactionByID:output_type -> transaction.TransactionDetail
+	3,  // 29: transaction.TransactionService.CreateTransaction:output_type -> transaction.TransactionDetail
+	21, // 30: transaction.TransactionService.CreateFundTransfer:output_type -> transaction.FundTransferResponse
+	3,  // 31: transaction.TransactionService.UpdateTransaction:output_type -> transaction.TransactionDetail
+	3,  // 32: transaction.TransactionService.DeleteTransaction:output_type -> transaction.TransactionDetail
+	19, // 33: transaction.TransactionService.GetCategories:output_type -> transaction.GetCategoriesResponse
+	26, // 34: transaction.TransactionService.ListCategories:output_type -> transaction.ListCategoriesResponse
+	24, // 35: transaction.TransactionService.GetCategoryDetail:output_type -> transaction.CategoryDetail
+	20, // 36: transaction.TransactionService.GetAttachmentsByTransactionID:output_type -> transaction.GetAttachmentsResponse
+	2,  // 37: transaction.TransactionService.CreateAttachment:output_type -> transaction.Attachment
+	2,  // 38: transaction.TransactionService.DeleteAttachment:output_type -> transaction.Attachment
+	30, // 39: transaction.TransactionService.GetBudgets:output_type -> transaction.GetBudgetsResponse
+	27, // 40: transaction.TransactionService.CreateBudget:output_type -> transaction.Budget
+	27, // 41: transaction.TransactionService.UpdateBudget:output_type -> transaction.Budget
+	27, // 42: transaction.TransactionService.DeleteBudget:output_type -> transaction.Budget
+	27, // 43: transaction.TransactionService.ResetBudget:output_type -> transaction.Budget
+	26, // [26:44] is the sub-list for method output_type
+	8,  // [8:26] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_transaction_transaction_proto_init() }
@@ -2296,7 +2772,7 @@ func file_transaction_transaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transaction_transaction_proto_rawDesc), len(file_transaction_transaction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   27,
+			NumMessages:   33,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

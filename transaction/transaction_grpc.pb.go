@@ -32,6 +32,11 @@ const (
 	TransactionService_GetAttachmentsByTransactionID_FullMethodName = "/transaction.TransactionService/GetAttachmentsByTransactionID"
 	TransactionService_CreateAttachment_FullMethodName              = "/transaction.TransactionService/CreateAttachment"
 	TransactionService_DeleteAttachment_FullMethodName              = "/transaction.TransactionService/DeleteAttachment"
+	TransactionService_GetBudgets_FullMethodName                    = "/transaction.TransactionService/GetBudgets"
+	TransactionService_CreateBudget_FullMethodName                  = "/transaction.TransactionService/CreateBudget"
+	TransactionService_UpdateBudget_FullMethodName                  = "/transaction.TransactionService/UpdateBudget"
+	TransactionService_DeleteBudget_FullMethodName                  = "/transaction.TransactionService/DeleteBudget"
+	TransactionService_ResetBudget_FullMethodName                   = "/transaction.TransactionService/ResetBudget"
 )
 
 // TransactionServiceClient is the client API for TransactionService service.
@@ -55,6 +60,12 @@ type TransactionServiceClient interface {
 	GetAttachmentsByTransactionID(ctx context.Context, in *TransactionID, opts ...grpc.CallOption) (*GetAttachmentsResponse, error)
 	CreateAttachment(ctx context.Context, in *CreateAttachmentRequest, opts ...grpc.CallOption) (*Attachment, error)
 	DeleteAttachment(ctx context.Context, in *AttachmentID, opts ...grpc.CallOption) (*Attachment, error)
+	// ── Budget RPCs ──
+	GetBudgets(ctx context.Context, in *GetBudgetsRequest, opts ...grpc.CallOption) (*GetBudgetsResponse, error)
+	CreateBudget(ctx context.Context, in *CreateBudgetRequest, opts ...grpc.CallOption) (*Budget, error)
+	UpdateBudget(ctx context.Context, in *UpdateBudgetRequest, opts ...grpc.CallOption) (*Budget, error)
+	DeleteBudget(ctx context.Context, in *BudgetID, opts ...grpc.CallOption) (*Budget, error)
+	ResetBudget(ctx context.Context, in *BudgetID, opts ...grpc.CallOption) (*Budget, error)
 }
 
 type transactionServiceClient struct {
@@ -204,6 +215,56 @@ func (c *transactionServiceClient) DeleteAttachment(ctx context.Context, in *Att
 	return out, nil
 }
 
+func (c *transactionServiceClient) GetBudgets(ctx context.Context, in *GetBudgetsRequest, opts ...grpc.CallOption) (*GetBudgetsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetBudgetsResponse)
+	err := c.cc.Invoke(ctx, TransactionService_GetBudgets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) CreateBudget(ctx context.Context, in *CreateBudgetRequest, opts ...grpc.CallOption) (*Budget, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Budget)
+	err := c.cc.Invoke(ctx, TransactionService_CreateBudget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) UpdateBudget(ctx context.Context, in *UpdateBudgetRequest, opts ...grpc.CallOption) (*Budget, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Budget)
+	err := c.cc.Invoke(ctx, TransactionService_UpdateBudget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) DeleteBudget(ctx context.Context, in *BudgetID, opts ...grpc.CallOption) (*Budget, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Budget)
+	err := c.cc.Invoke(ctx, TransactionService_DeleteBudget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transactionServiceClient) ResetBudget(ctx context.Context, in *BudgetID, opts ...grpc.CallOption) (*Budget, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Budget)
+	err := c.cc.Invoke(ctx, TransactionService_ResetBudget_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransactionServiceServer is the server API for TransactionService service.
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility.
@@ -225,6 +286,12 @@ type TransactionServiceServer interface {
 	GetAttachmentsByTransactionID(context.Context, *TransactionID) (*GetAttachmentsResponse, error)
 	CreateAttachment(context.Context, *CreateAttachmentRequest) (*Attachment, error)
 	DeleteAttachment(context.Context, *AttachmentID) (*Attachment, error)
+	// ── Budget RPCs ──
+	GetBudgets(context.Context, *GetBudgetsRequest) (*GetBudgetsResponse, error)
+	CreateBudget(context.Context, *CreateBudgetRequest) (*Budget, error)
+	UpdateBudget(context.Context, *UpdateBudgetRequest) (*Budget, error)
+	DeleteBudget(context.Context, *BudgetID) (*Budget, error)
+	ResetBudget(context.Context, *BudgetID) (*Budget, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -273,6 +340,21 @@ func (UnimplementedTransactionServiceServer) CreateAttachment(context.Context, *
 }
 func (UnimplementedTransactionServiceServer) DeleteAttachment(context.Context, *AttachmentID) (*Attachment, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteAttachment not implemented")
+}
+func (UnimplementedTransactionServiceServer) GetBudgets(context.Context, *GetBudgetsRequest) (*GetBudgetsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetBudgets not implemented")
+}
+func (UnimplementedTransactionServiceServer) CreateBudget(context.Context, *CreateBudgetRequest) (*Budget, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateBudget not implemented")
+}
+func (UnimplementedTransactionServiceServer) UpdateBudget(context.Context, *UpdateBudgetRequest) (*Budget, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateBudget not implemented")
+}
+func (UnimplementedTransactionServiceServer) DeleteBudget(context.Context, *BudgetID) (*Budget, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteBudget not implemented")
+}
+func (UnimplementedTransactionServiceServer) ResetBudget(context.Context, *BudgetID) (*Budget, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResetBudget not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
 func (UnimplementedTransactionServiceServer) testEmbeddedByValue()                            {}
@@ -522,6 +604,96 @@ func _TransactionService_DeleteAttachment_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransactionService_GetBudgets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBudgetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).GetBudgets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_GetBudgets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).GetBudgets(ctx, req.(*GetBudgetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_CreateBudget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBudgetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).CreateBudget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_CreateBudget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).CreateBudget(ctx, req.(*CreateBudgetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_UpdateBudget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBudgetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).UpdateBudget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_UpdateBudget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).UpdateBudget(ctx, req.(*UpdateBudgetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_DeleteBudget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BudgetID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).DeleteBudget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_DeleteBudget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).DeleteBudget(ctx, req.(*BudgetID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransactionService_ResetBudget_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BudgetID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).ResetBudget(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_ResetBudget_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).ResetBudget(ctx, req.(*BudgetID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransactionService_ServiceDesc is the grpc.ServiceDesc for TransactionService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -576,6 +748,26 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteAttachment",
 			Handler:    _TransactionService_DeleteAttachment_Handler,
+		},
+		{
+			MethodName: "GetBudgets",
+			Handler:    _TransactionService_GetBudgets_Handler,
+		},
+		{
+			MethodName: "CreateBudget",
+			Handler:    _TransactionService_CreateBudget_Handler,
+		},
+		{
+			MethodName: "UpdateBudget",
+			Handler:    _TransactionService_UpdateBudget_Handler,
+		},
+		{
+			MethodName: "DeleteBudget",
+			Handler:    _TransactionService_DeleteBudget_Handler,
+		},
+		{
+			MethodName: "ResetBudget",
+			Handler:    _TransactionService_ResetBudget_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

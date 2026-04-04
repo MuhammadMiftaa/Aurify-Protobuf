@@ -25,6 +25,13 @@ service TransactionService {
     rpc GetAttachmentsByTransactionID (TransactionID) returns (GetAttachmentsResponse);
     rpc CreateAttachment (CreateAttachmentRequest) returns (Attachment);
     rpc DeleteAttachment (AttachmentID) returns (Attachment);
+
+    // ── Budget RPCs ──
+    rpc GetBudgets (GetBudgetsRequest) returns (GetBudgetsResponse);
+    rpc CreateBudget (CreateBudgetRequest) returns (Budget);
+    rpc UpdateBudget (UpdateBudgetRequest) returns (Budget);
+    rpc DeleteBudget (BudgetID) returns (Budget);
+    rpc ResetBudget (BudgetID) returns (Budget);
 }
 
 // ── Base Messages ──
@@ -238,4 +245,49 @@ message ListCategoriesResponse {
     int32 page = 3;
     int32 page_size = 4;
     int32 total_pages = 5;
+}
+
+// ── Budget Messages ──
+
+message Budget {
+    string id = 1;
+    string user_id = 2;
+    string scope = 3;                 // "overall" or "category"
+    string category_id = 4;           // nullable, only for category scope
+    string category_name = 5;         // populated from join
+    string wallet_scope = 6;          // "all" or wallet_id
+    string wallet_id = 7;             // nullable
+    string wallet_name = 8;           // populated from external service
+    double monthly_limit = 9;
+    double current_spent = 10;        // calculated from transactions
+    string period = 11;               // format: "YYYY-MM"
+    int32 streak_count = 12;
+    bool streak_active = 13;
+    string created_at = 14;
+    string updated_at = 15;
+}
+
+message BudgetID {
+    string id = 1;
+}
+
+message GetBudgetsRequest {
+    string period = 1;                // format: "YYYY-MM"
+}
+
+message GetBudgetsResponse {
+    repeated Budget budgets = 1;
+}
+
+message CreateBudgetRequest {
+    string scope = 1;                 // "overall" or "category"
+    string category_id = 2;           // optional, required if scope = "category"
+    string wallet_id = 3;             // optional, null = all wallets
+    double monthly_limit = 4;
+    string period = 5;                // format: "YYYY-MM"
+}
+
+message UpdateBudgetRequest {
+    string id = 1;
+    double monthly_limit = 2;
 }

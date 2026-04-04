@@ -26,6 +26,28 @@ function deserialize_transaction_AttachmentID(buffer_arg) {
   return transaction_transaction_pb.AttachmentID.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_transaction_Budget(arg) {
+  if (!(arg instanceof transaction_transaction_pb.Budget)) {
+    throw new Error('Expected argument of type transaction.Budget');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_Budget(buffer_arg) {
+  return transaction_transaction_pb.Budget.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_BudgetID(arg) {
+  if (!(arg instanceof transaction_transaction_pb.BudgetID)) {
+    throw new Error('Expected argument of type transaction.BudgetID');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_BudgetID(buffer_arg) {
+  return transaction_transaction_pb.BudgetID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_transaction_CategoryDetail(arg) {
   if (!(arg instanceof transaction_transaction_pb.CategoryDetail)) {
     throw new Error('Expected argument of type transaction.CategoryDetail');
@@ -57,6 +79,17 @@ function serialize_transaction_CreateAttachmentRequest(arg) {
 
 function deserialize_transaction_CreateAttachmentRequest(buffer_arg) {
   return transaction_transaction_pb.CreateAttachmentRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_CreateBudgetRequest(arg) {
+  if (!(arg instanceof transaction_transaction_pb.CreateBudgetRequest)) {
+    throw new Error('Expected argument of type transaction.CreateBudgetRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_CreateBudgetRequest(buffer_arg) {
+  return transaction_transaction_pb.CreateBudgetRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_transaction_CreateFundTransferRequest(arg) {
@@ -101,6 +134,28 @@ function serialize_transaction_GetAttachmentsResponse(arg) {
 
 function deserialize_transaction_GetAttachmentsResponse(buffer_arg) {
   return transaction_transaction_pb.GetAttachmentsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_GetBudgetsRequest(arg) {
+  if (!(arg instanceof transaction_transaction_pb.GetBudgetsRequest)) {
+    throw new Error('Expected argument of type transaction.GetBudgetsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_GetBudgetsRequest(buffer_arg) {
+  return transaction_transaction_pb.GetBudgetsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_GetBudgetsResponse(arg) {
+  if (!(arg instanceof transaction_transaction_pb.GetBudgetsResponse)) {
+    throw new Error('Expected argument of type transaction.GetBudgetsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_GetBudgetsResponse(buffer_arg) {
+  return transaction_transaction_pb.GetBudgetsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_transaction_GetCategoriesRequest(arg) {
@@ -211,6 +266,17 @@ function serialize_transaction_TransactionID(arg) {
 
 function deserialize_transaction_TransactionID(buffer_arg) {
   return transaction_transaction_pb.TransactionID.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_transaction_UpdateBudgetRequest(arg) {
+  if (!(arg instanceof transaction_transaction_pb.UpdateBudgetRequest)) {
+    throw new Error('Expected argument of type transaction.UpdateBudgetRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_transaction_UpdateBudgetRequest(buffer_arg) {
+  return transaction_transaction_pb.UpdateBudgetRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_transaction_UpdateTransactionRequest(arg) {
@@ -372,6 +438,62 @@ getAttachmentsByTransactionID: {
     requestDeserialize: deserialize_transaction_AttachmentID,
     responseSerialize: serialize_transaction_Attachment,
     responseDeserialize: deserialize_transaction_Attachment,
+  },
+  // ── Budget RPCs ──
+getBudgets: {
+    path: '/transaction.TransactionService/GetBudgets',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.GetBudgetsRequest,
+    responseType: transaction_transaction_pb.GetBudgetsResponse,
+    requestSerialize: serialize_transaction_GetBudgetsRequest,
+    requestDeserialize: deserialize_transaction_GetBudgetsRequest,
+    responseSerialize: serialize_transaction_GetBudgetsResponse,
+    responseDeserialize: deserialize_transaction_GetBudgetsResponse,
+  },
+  createBudget: {
+    path: '/transaction.TransactionService/CreateBudget',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.CreateBudgetRequest,
+    responseType: transaction_transaction_pb.Budget,
+    requestSerialize: serialize_transaction_CreateBudgetRequest,
+    requestDeserialize: deserialize_transaction_CreateBudgetRequest,
+    responseSerialize: serialize_transaction_Budget,
+    responseDeserialize: deserialize_transaction_Budget,
+  },
+  updateBudget: {
+    path: '/transaction.TransactionService/UpdateBudget',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.UpdateBudgetRequest,
+    responseType: transaction_transaction_pb.Budget,
+    requestSerialize: serialize_transaction_UpdateBudgetRequest,
+    requestDeserialize: deserialize_transaction_UpdateBudgetRequest,
+    responseSerialize: serialize_transaction_Budget,
+    responseDeserialize: deserialize_transaction_Budget,
+  },
+  deleteBudget: {
+    path: '/transaction.TransactionService/DeleteBudget',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.BudgetID,
+    responseType: transaction_transaction_pb.Budget,
+    requestSerialize: serialize_transaction_BudgetID,
+    requestDeserialize: deserialize_transaction_BudgetID,
+    responseSerialize: serialize_transaction_Budget,
+    responseDeserialize: deserialize_transaction_Budget,
+  },
+  resetBudget: {
+    path: '/transaction.TransactionService/ResetBudget',
+    requestStream: false,
+    responseStream: false,
+    requestType: transaction_transaction_pb.BudgetID,
+    responseType: transaction_transaction_pb.Budget,
+    requestSerialize: serialize_transaction_BudgetID,
+    requestDeserialize: deserialize_transaction_BudgetID,
+    responseSerialize: serialize_transaction_Budget,
+    responseDeserialize: deserialize_transaction_Budget,
   },
 };
 

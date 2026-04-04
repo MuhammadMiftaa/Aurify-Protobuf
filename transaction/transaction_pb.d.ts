@@ -861,3 +861,182 @@ export namespace ListCategoriesResponse {
         totalPages: number,
     }
 }
+
+export class Budget extends jspb.Message { 
+    getId(): string;
+    setId(value: string): Budget;
+    getUserId(): string;
+    setUserId(value: string): Budget;
+    getScope(): string;
+    setScope(value: string): Budget;
+    getCategoryId(): string;
+    setCategoryId(value: string): Budget;
+    getCategoryName(): string;
+    setCategoryName(value: string): Budget;
+    getWalletScope(): string;
+    setWalletScope(value: string): Budget;
+    getWalletId(): string;
+    setWalletId(value: string): Budget;
+    getWalletName(): string;
+    setWalletName(value: string): Budget;
+    getMonthlyLimit(): number;
+    setMonthlyLimit(value: number): Budget;
+    getCurrentSpent(): number;
+    setCurrentSpent(value: number): Budget;
+    getPeriod(): string;
+    setPeriod(value: string): Budget;
+    getStreakCount(): number;
+    setStreakCount(value: number): Budget;
+    getStreakActive(): boolean;
+    setStreakActive(value: boolean): Budget;
+    getCreatedAt(): string;
+    setCreatedAt(value: string): Budget;
+    getUpdatedAt(): string;
+    setUpdatedAt(value: string): Budget;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Budget.AsObject;
+    static toObject(includeInstance: boolean, msg: Budget): Budget.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Budget, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Budget;
+    static deserializeBinaryFromReader(message: Budget, reader: jspb.BinaryReader): Budget;
+}
+
+export namespace Budget {
+    export type AsObject = {
+        id: string,
+        userId: string,
+        scope: string,
+        categoryId: string,
+        categoryName: string,
+        walletScope: string,
+        walletId: string,
+        walletName: string,
+        monthlyLimit: number,
+        currentSpent: number,
+        period: string,
+        streakCount: number,
+        streakActive: boolean,
+        createdAt: string,
+        updatedAt: string,
+    }
+}
+
+export class BudgetID extends jspb.Message { 
+    getId(): string;
+    setId(value: string): BudgetID;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): BudgetID.AsObject;
+    static toObject(includeInstance: boolean, msg: BudgetID): BudgetID.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: BudgetID, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): BudgetID;
+    static deserializeBinaryFromReader(message: BudgetID, reader: jspb.BinaryReader): BudgetID;
+}
+
+export namespace BudgetID {
+    export type AsObject = {
+        id: string,
+    }
+}
+
+export class GetBudgetsRequest extends jspb.Message { 
+    getPeriod(): string;
+    setPeriod(value: string): GetBudgetsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetBudgetsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetBudgetsRequest): GetBudgetsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetBudgetsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetBudgetsRequest;
+    static deserializeBinaryFromReader(message: GetBudgetsRequest, reader: jspb.BinaryReader): GetBudgetsRequest;
+}
+
+export namespace GetBudgetsRequest {
+    export type AsObject = {
+        period: string,
+    }
+}
+
+export class GetBudgetsResponse extends jspb.Message { 
+    clearBudgetsList(): void;
+    getBudgetsList(): Array<Budget>;
+    setBudgetsList(value: Array<Budget>): GetBudgetsResponse;
+    addBudgets(value?: Budget, index?: number): Budget;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetBudgetsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetBudgetsResponse): GetBudgetsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetBudgetsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetBudgetsResponse;
+    static deserializeBinaryFromReader(message: GetBudgetsResponse, reader: jspb.BinaryReader): GetBudgetsResponse;
+}
+
+export namespace GetBudgetsResponse {
+    export type AsObject = {
+        budgetsList: Array<Budget.AsObject>,
+    }
+}
+
+export class CreateBudgetRequest extends jspb.Message { 
+    getScope(): string;
+    setScope(value: string): CreateBudgetRequest;
+    getCategoryId(): string;
+    setCategoryId(value: string): CreateBudgetRequest;
+    getWalletId(): string;
+    setWalletId(value: string): CreateBudgetRequest;
+    getMonthlyLimit(): number;
+    setMonthlyLimit(value: number): CreateBudgetRequest;
+    getPeriod(): string;
+    setPeriod(value: string): CreateBudgetRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CreateBudgetRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CreateBudgetRequest): CreateBudgetRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CreateBudgetRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CreateBudgetRequest;
+    static deserializeBinaryFromReader(message: CreateBudgetRequest, reader: jspb.BinaryReader): CreateBudgetRequest;
+}
+
+export namespace CreateBudgetRequest {
+    export type AsObject = {
+        scope: string,
+        categoryId: string,
+        walletId: string,
+        monthlyLimit: number,
+        period: string,
+    }
+}
+
+export class UpdateBudgetRequest extends jspb.Message { 
+    getId(): string;
+    setId(value: string): UpdateBudgetRequest;
+    getMonthlyLimit(): number;
+    setMonthlyLimit(value: number): UpdateBudgetRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateBudgetRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateBudgetRequest): UpdateBudgetRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateBudgetRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateBudgetRequest;
+    static deserializeBinaryFromReader(message: UpdateBudgetRequest, reader: jspb.BinaryReader): UpdateBudgetRequest;
+}
+
+export namespace UpdateBudgetRequest {
+    export type AsObject = {
+        id: string,
+        monthlyLimit: number,
+    }
+}
